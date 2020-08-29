@@ -9,12 +9,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DataBaseHelper dataBaseHelper = DataBaseHelper();
-  List<Note> noteList;
+  List<Draft> noteList;
   int count = 0;
   @override
   Widget build(BuildContext context) {
     if (noteList == null) {
-      noteList = List<Note>();
+      noteList = List<Draft>();
       updateListView();
     }
 
@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            navigateToDetail(Note('', '', 2), 'Add note');
+            navigateToDetail(Draft('', '', 2), 'Add note');
           },
           label: Text('Add Task'),
           elevation: 4,
@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _delete(BuildContext context, Note note) async {
+  void _delete(BuildContext context, Draft note) async {
     int result = await dataBaseHelper.deleteNote(note.id);
     if (result != 0) {
       _showSnackBar(context, 'Note deleted successfully');
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Scaffold.of(context).showSnackBar(snackBar);
   }
 
-  void navigateToDetail(Note note, String title) async {
+  void navigateToDetail(Draft note, String title) async {
     bool result =
         await Navigator.push(context, MaterialPageRoute(builder: (context) {
       return AddDraft(note, title);
@@ -148,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void updateListView() {
     final Future<Database> DbFuture = dataBaseHelper.initializeDatabase();
     DbFuture.then((database) {
-      Future<List<Note>> noteListFuture = dataBaseHelper.getNoteList();
+      Future<List<Draft>> noteListFuture = dataBaseHelper.getNoteList();
       noteListFuture.then((noteList) {
         setState(() {
           this.noteList = noteList;

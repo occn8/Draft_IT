@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class AddDraft extends StatefulWidget {
   final String appBarTitle;
-  final Note note;
+  final Draft note;
   AddDraft(this.note, this.appBarTitle);
   @override
   _AddDraftState createState() =>
@@ -14,7 +14,7 @@ class _AddDraftState extends State<AddDraft> {
   DataBaseHelper helper = DataBaseHelper();
 
   String appBarTitle;
-  Note note;
+  Draft note;
   _AddDraftState(this.appBarTitle, this.note);
 
   static var _priorities = ['high', 'low'];

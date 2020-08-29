@@ -49,14 +49,14 @@ class DataBaseHelper {
   }
 
   //insert operation
-  Future<int> insertNote(Note note) async {
+  Future<int> insertNote(Draft note) async {
     Database db = await this.database;
     var result = await db.insert(noteTable, note.toMap());
     return result;
   }
 
   //update operation
-  Future<int> updateNote(Note note) async {
+  Future<int> updateNote(Draft note) async {
     Database db = await this.database;
     var result = await db.update(noteTable, note.toMap(),
         where: '$colId =?', whereArgs: [note.id]);
@@ -81,12 +81,12 @@ class DataBaseHelper {
   }
 
   //get map list[list<map>] | convert it to notelist
-  Future<List<Note>> getNoteList() async {
+  Future<List<Draft>> getNoteList() async {
     var noteMapList = await getNoteMapList();
     int count = noteMapList.length;
-    List<Note> noteList = List<Note>();
+    List<Draft> noteList = List<Draft>();
     for (int i = 0; i < count; i++) {
-      noteList.add(Note.fromMapOject(noteMapList[i]));
+      noteList.add(Draft.fromMapOject(noteMapList[i]));
     }
     return noteList;
   }

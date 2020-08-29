@@ -1,13 +1,13 @@
-class Note {
+class Draft {
   int _id;
   String _title;
   String _description;
   String _date;
   int _priority;
 
-  Note(this._title, this._date, this._priority, [this._description]);
+  Draft(this._title, this._date, this._priority, [this._description]);
 
-  Note.withId(this._id, this._title, this._date, this._priority,
+  Draft.withId(this._id, this._title, this._date, this._priority,
       [this._description]);
 
   int get id => _id;
@@ -55,7 +55,7 @@ class Note {
   }
 
   //extract note obj from map obj
-  Note.fromMapOject(Map<String, dynamic> map) {
+  Draft.fromMapOject(Map<String, dynamic> map) {
     this._id = map['id'];
     this._title = map['title'];
     this._description = map['description'];

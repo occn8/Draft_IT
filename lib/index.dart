@@ -1,6 +1,7 @@
 //dependencies
 export 'package:flutter/material.dart';
 export 'dart:io';
+export 'dart:ffi';
 export 'package:path_provider/path_provider.dart';
 export 'package:sqflite/sqflite.dart';
 export 'package:flutter/foundation.dart';

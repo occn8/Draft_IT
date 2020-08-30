@@ -16,7 +16,7 @@ export 'package:Draft_IT/models/draft_model.dart';
 //utils
 export 'package:Draft_IT/utils/dbhelper.dart';
 //widgets
-
+export 'package:Draft_IT/widgets/draft_bulder.dart';
 //theme
 export 'package:Draft_IT/themes/light.dart';
 export 'package:Draft_IT/themes/dark.dart';

@@ -8,12 +8,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DataBaseHelper dataBaseHelper = DataBaseHelper();
-  List<Draft> noteList;
+  List<Draft> noteDraftList;
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
-    if (noteList == null) {
-      noteList = List<Draft>();
+    if (noteDraftList == null) {
+      noteDraftList = List<Draft>();
       updateListView();
     }
 
@@ -42,22 +43,25 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   Text('what is your plan?'),
+                  Container(
+                    margin: new EdgeInsets.all(5),
+                    padding: new EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        color: Colors.white60,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: new Icon(Icons.notifications,
+                        size: 25, color: Colors.black),
+                  ),
                 ],
               ),
             ),
             Container(
               color: Colors.amber,
-              height: 40,
+              height: 4,
             ),
-            DraftBuilder(drafts: noteList)
+            DraftBuilder(drafts: noteDraftList)
           ],
         ),
-        // body: Column(
-        //   children: [
-
-        //     Container(child: getDraftsList()),
-        //   ],
-        // ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             navigateToDetail(Draft('', '', 2), 'Add note');
@@ -65,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
           label: Text('Add Task'),
           elevation: 4,
           icon: Icon(Icons.add),
+          backgroundColor: Colors.amber,
         ),
       ),
     );
@@ -79,19 +84,19 @@ class _MyHomePageState extends State<MyHomePage> {
             elevation: 2,
             child: ListTile(
               leading: CircleAvatar(
-                child: getPriorityIcon(this.noteList[position].priority),
+                child: getPriorityIcon(this.noteDraftList[position].priority),
                 backgroundColor:
-                    getPriorityColor(this.noteList[position].priority),
+                    getPriorityColor(this.noteDraftList[position].priority),
               ),
               title: Text(
-                this.noteList[position].title,
+                this.noteDraftList[position].title,
               ),
-              subtitle: Text(this.noteList[position].date),
+              subtitle: Text(this.noteDraftList[position].date),
               trailing: GestureDetector(
-                  onTap: () => _delete(context, noteList[position]),
+                  onTap: () => _delete(context, noteDraftList[position]),
                   child: Icon(Icons.delete, color: Colors.grey)),
               onTap: () {
-                navigateToDetail(this.noteList[position], 'Edit note');
+                navigateToDetail(this.noteDraftList[position], 'Edit note');
               },
             ),
           );
@@ -153,7 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Future<List<Draft>> noteListFuture = dataBaseHelper.getNoteList();
       noteListFuture.then((noteList) {
         setState(() {
-          this.noteList = noteList;
+          this.noteDraftList = noteList;
           this.count = noteList.length;
         });
       });
@@ -161,84 +166,3 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class DraftBuilder extends StatefulWidget {
-  final List<Draft> drafts;
-  DraftBuilder({@required this.drafts});
-  @override
-  _DraftBuilderState createState() => _DraftBuilderState();
-}
-
-class _DraftBuilderState extends State<DraftBuilder> {
-  List<Widget> draftList() {
-    List<Widget> draftItemList = List();
-
-    for (int i = 0; i < widget.drafts.length; i++) {
-      draftItemList.add(draftItem(
-        draft: widget.drafts[i],
-        widget: getPriorityIcon(this.widget.drafts[i].priority),
-        color: getPriorityColor(this.widget.drafts[i].priority),
-        ontap1: () {},
-        ontap2: () {},
-      ));
-    }
-    return draftItemList;
-  }
-
-  Widget draftItem(
-      {Draft draft,
-      Widget widget,
-      Color color,
-      Function ontap1,
-      Function ontap2}) {
-    return Card(
-      color: Colors.white,
-      elevation: 2,
-      child: ListTile(
-        leading: CircleAvatar(
-          child: widget,
-          backgroundColor: color,
-        ),
-        title: Text(
-          draft.title,
-        ),
-        subtitle: Text(draft.description ?? ''),
-        trailing: GestureDetector(
-            onTap: ontap1, child: Icon(Icons.delete, color: Colors.grey)),
-        onTap: ontap2,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: draftList(),
-    );
-  }
-
-  Color getPriorityColor(int priority) {
-    switch (priority) {
-      case 1:
-        return Colors.red;
-        break;
-      case 2:
-        return Colors.yellow;
-        break;
-      default:
-        return Colors.yellow;
-    }
-  }
-
-  Icon getPriorityIcon(int priority) {
-    switch (priority) {
-      case 1:
-        return Icon(Icons.play_arrow);
-        break;
-      case 2:
-        return Icon(Icons.keyboard_arrow_right);
-        break;
-      default:
-        return Icon(Icons.keyboard_arrow_right);
-    }
-  }
-}

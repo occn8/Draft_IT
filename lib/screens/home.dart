@@ -1,8 +1,7 @@
 import 'package:Draft_IT/index.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -20,39 +19,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+        body: ListView(
+          children: [
+            Container(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Builder(
+                    builder: (context) => InkWell(
+                      splashColor: Theme.of(context).accentColor,
+                      onTap: () => Scaffold.of(context).openDrawer(),
+                      child: Container(
+                        margin: new EdgeInsets.all(5),
+                        padding: new EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Colors.white60,
+                            borderRadius: BorderRadius.circular(10)),
+                        child:
+                            new Icon(Icons.menu, size: 25, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  Text('what is your plan?'),
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.amber,
+              height: 40,
+            ),
+            DraftBuilder(drafts: noteList)
+          ],
         ),
-        body: ListView(children: [
-          Container(color: Colors.amber, height: 40,),
-          DraftBuilder(drafts: noteList)
-        ],),
         // body: Column(
         //   children: [
-        //     Container(
-        //       height: 50,
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //         children: [
-        //           Builder(
-        //             builder: (context) => InkWell(
-        //               splashColor: Theme.of(context).accentColor,
-        //               onTap: () => Scaffold.of(context).openDrawer(),
-        //               child: Container(
-        //                 margin: new EdgeInsets.all(5),
-        //                 padding: new EdgeInsets.all(8),
-        //                 decoration: BoxDecoration(
-        //                     color: Colors.white60,
-        //                     borderRadius: BorderRadius.circular(10)),
-        //                 child:
-        //                     new Icon(Icons.menu, size: 25, color: Colors.black),
-        //               ),
-        //             ),
-        //           ),
-        //           Text('what is your plan?'),
-        //         ],
-        //       ),
-        //     ),
+
         //     Container(child: getDraftsList()),
         //   ],
         // ),
@@ -167,24 +169,27 @@ class DraftBuilder extends StatefulWidget {
 }
 
 class _DraftBuilderState extends State<DraftBuilder> {
-
   List<Widget> draftList() {
     List<Widget> draftItemList = List();
 
     for (int i = 0; i < widget.drafts.length; i++) {
-
       draftItemList.add(draftItem(
         draft: widget.drafts[i],
         widget: getPriorityIcon(this.widget.drafts[i].priority),
         color: getPriorityColor(this.widget.drafts[i].priority),
         ontap1: () {},
-        ontap2: (){},
+        ontap2: () {},
       ));
     }
     return draftItemList;
   }
 
-  Widget draftItem({Draft draft, Widget widget, Color color, Function ontap1, Function ontap2}) {
+  Widget draftItem(
+      {Draft draft,
+      Widget widget,
+      Color color,
+      Function ontap1,
+      Function ontap2}) {
     return Card(
       color: Colors.white,
       elevation: 2,
@@ -196,7 +201,7 @@ class _DraftBuilderState extends State<DraftBuilder> {
         title: Text(
           draft.title,
         ),
-        subtitle: Text(draft.description),
+        subtitle: Text(draft.description ?? ''),
         trailing: GestureDetector(
             onTap: ontap1, child: Icon(Icons.delete, color: Colors.grey)),
         onTap: ontap2,

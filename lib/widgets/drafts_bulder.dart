@@ -1,5 +1,4 @@
 import 'package:Draft_IT/index.dart';
-import 'package:Draft_IT/widgets/search_box.dart';
 
 class DraftBuilder extends StatefulWidget {
   @override
@@ -63,9 +62,10 @@ class _DraftBuilderState extends State<DraftBuilder> {
         children: [
           customAppBar(),
           SearchBox(),
+          Align(alignment: Alignment.centerRight, child: CategorySelector(colors: [Color(0xffe1e1e6),Color(0xffe1e1e6)],)),
           Container(
             color: Colors.amber,
-            height: 4,
+            height: 1,
           ),
           Column(
             children: draftList(),

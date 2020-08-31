@@ -19,6 +19,8 @@ export 'package:Draft_IT/utils/dbhelper.dart';
 //widgets
 export 'package:Draft_IT/widgets/drafts_bulder.dart';
 export 'package:Draft_IT/widgets/custom_drawer.dart';
+export 'package:Draft_IT/widgets/search_box.dart'; 
+export 'package:Draft_IT/widgets/category_selector.dart';
 //theme
 export 'package:Draft_IT/themes/light.dart';
 export 'package:Draft_IT/themes/dark.dart';

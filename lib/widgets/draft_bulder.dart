@@ -2,7 +2,7 @@ import 'package:Draft_IT/index.dart';
 
 class DraftBuilder extends StatefulWidget {
   List<Draft> drafts;
-  DraftBuilder({@required this.drafts});
+  // DraftBuilder({@required this.drafts});
   @override
   _DraftBuilderState createState() => _DraftBuilderState();
 }
@@ -59,8 +59,60 @@ class _DraftBuilderState extends State<DraftBuilder> {
       widget.drafts = List<Draft>();
       updateListView();
     }
-    return Column(
-      children: draftList(),
+    return Scaffold(
+      body: ListView(
+        children: [
+          Container(
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Builder(
+                  builder: (context) => InkWell(
+                    splashColor: Theme.of(context).accentColor,
+                    onTap: () => Scaffold.of(context).openDrawer(),
+                    child: Container(
+                      margin: new EdgeInsets.all(5),
+                      padding: new EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          color: Colors.white60,
+                          borderRadius: BorderRadius.circular(10)),
+                      child:
+                          new Icon(Icons.menu, size: 25, color: Colors.black),
+                    ),
+                  ),
+                ),
+                Text('what is your plan?'),
+                Container(
+                  margin: new EdgeInsets.all(5),
+                  padding: new EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: Colors.white60,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: new Icon(Icons.notifications,
+                      size: 25, color: Colors.black),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            color: Colors.amber,
+            height: 4,
+          ),
+          Column(
+            children: draftList(),
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          navigateToDetail(Draft('', '', 2), 'Add note');
+        },
+        label: Text('Add Task'),
+        elevation: 4,
+        icon: Icon(Icons.add),
+        backgroundColor: Colors.amber,
+      ),
     );
   }
 
@@ -93,9 +145,9 @@ class _DraftBuilderState extends State<DraftBuilder> {
   void _delete(BuildContext context, Draft note) async {
     int result = await dataBaseHelper.deleteNote(note.id);
     if (result != 0) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(content: Text('Note deleted successfully')),
-      );
+      // Scaffold.of(context).showSnackBar(
+      //   SnackBar(content: Text('Note deleted successfully')),
+      // );
       updateListView();
     }
   }

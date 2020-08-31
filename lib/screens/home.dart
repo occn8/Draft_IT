@@ -7,16 +7,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  DataBaseHelper dataBaseHelper = DataBaseHelper();
+  // DataBaseHelper dataBaseHelper = DataBaseHelper();
   List<Draft> noteDraftList;
-  int count = 0;
+  // int count = 0;
 
   @override
   Widget build(BuildContext context) {
-    if (noteDraftList == null) {
-      noteDraftList = List<Draft>();
-      updateListView();
-    }
+    // if (noteDraftList == null) {
+    //   noteDraftList = List<Draft>();
+    //   updateListView();
+    // }
 
     return SafeArea(
       child: Scaffold(
@@ -59,49 +59,54 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.amber,
               height: 4,
             ),
-            DraftBuilder(drafts: noteDraftList)
+            DraftBuilder(
+              drafts: noteDraftList,
+              // updt: () {
+              //   updateListView();
+              // },
+            )
           ],
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            navigateToDetail(Draft('', '', 2), 'Add note');
-          },
-          label: Text('Add Task'),
-          elevation: 4,
-          icon: Icon(Icons.add),
-          backgroundColor: Colors.amber,
-        ),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   onPressed: () {
+        //     navigateToDetail(Draft('', '', 2), 'Add note');
+        //   },
+        //   label: Text('Add Task'),
+        //   elevation: 4,
+        //   icon: Icon(Icons.add),
+        //   backgroundColor: Colors.amber,
+        // ),
       ),
     );
   }
 
-  getDraftsList() {
-    return ListView.builder(
-        itemCount: count,
-        itemBuilder: (BuildContext context, int position) {
-          return Card(
-            color: Colors.white,
-            elevation: 2,
-            child: ListTile(
-              leading: CircleAvatar(
-                child: getPriorityIcon(this.noteDraftList[position].priority),
-                backgroundColor:
-                    getPriorityColor(this.noteDraftList[position].priority),
-              ),
-              title: Text(
-                this.noteDraftList[position].title,
-              ),
-              subtitle: Text(this.noteDraftList[position].date),
-              trailing: GestureDetector(
-                  onTap: () => _delete(context, noteDraftList[position]),
-                  child: Icon(Icons.delete, color: Colors.grey)),
-              onTap: () {
-                navigateToDetail(this.noteDraftList[position], 'Edit note');
-              },
-            ),
-          );
-        });
-  }
+  // getDraftsList() {
+  //   return ListView.builder(
+  //       itemCount: count,
+  //       itemBuilder: (BuildContext context, int position) {
+  //         return Card(
+  //           color: Colors.white,
+  //           elevation: 2,
+  //           child: ListTile(
+  //             leading: CircleAvatar(
+  //               child: getPriorityIcon(this.noteDraftList[position].priority),
+  //               backgroundColor:
+  //                   getPriorityColor(this.noteDraftList[position].priority),
+  //             ),
+  //             title: Text(
+  //               this.noteDraftList[position].title,
+  //             ),
+  //             subtitle: Text(this.noteDraftList[position].date),
+  //             trailing: GestureDetector(
+  //                 onTap: () => _delete(context, noteDraftList[position]),
+  //                 child: Icon(Icons.delete, color: Colors.grey)),
+  //             onTap: () {
+  //               navigateToDetail(this.noteDraftList[position], 'Edit note');
+  //             },
+  //           ),
+  //         );
+  //       });
+  // }
 
   Color getPriorityColor(int priority) {
     switch (priority) {
@@ -129,40 +134,28 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _delete(BuildContext context, Draft note) async {
-    int result = await dataBaseHelper.deleteNote(note.id);
-    if (result != 0) {
-      _showSnackBar(context, 'Note deleted successfully');
-      updateListView();
-    }
-  }
+  // void _delete(BuildContext context, Draft note) async {
+  //   int result = await dataBaseHelper.deleteNote(note.id);
+  //   if (result != 0) {
+  //     _showSnackBar(context, 'Note deleted successfully');
+  //     updateListView();
+  //   }
+  // }
 
-  Void _showSnackBar(BuildContext context, String message) {
-    final snackBar = SnackBar(content: Text(message));
-    Scaffold.of(context).showSnackBar(snackBar);
-  }
+  // Void _showSnackBar(BuildContext context, String message) {
+  //   final snackBar = SnackBar(content: Text(message));
+  //   Scaffold.of(context).showSnackBar(snackBar);
+  // }
 
-  void navigateToDetail(Draft note, String title) async {
-    bool result =
-        await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return AddDraft(note, title);
-    }));
-    if (result == true) {
-      updateListView();
-    }
-  }
+  // void navigateToDetail(Draft note, String title) async {
+  //   bool result =
+  //       await Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //     return AddDraft(note, title);
+  //   }));
+  //   if (result == true) {
+  //     updateListView();
+  //   }
+  // }
 
-  void updateListView() {
-    final Future<Database> DbFuture = dataBaseHelper.initializeDatabase();
-    DbFuture.then((database) {
-      Future<List<Draft>> noteListFuture = dataBaseHelper.getNoteList();
-      noteListFuture.then((noteList) {
-        setState(() {
-          this.noteDraftList = noteList;
-          this.count = noteList.length;
-        });
-      });
-    });
-  }
+  
 }
-

@@ -181,9 +181,9 @@ class _AddDraftState extends State<AddDraft> {
       result = await helper.insertNote(note);
     }
     if (result != 0) {
-      _showAlartDialog('status', 'Note saved successfully');
+      // _showAlartDialog('status', 'Note saved successfully');
     } else {
-      _showAlartDialog('status', 'problem saveing note');
+      // _showAlartDialog('status', 'problem saveing note');
     }
   }
 
@@ -191,22 +191,22 @@ class _AddDraftState extends State<AddDraft> {
     moveToLastScreen();
 
     if (note.id != null) {
-      _showAlartDialog('status', 'no Note  deleted');
+      // _showAlartDialog('status', 'no Note  deleted');
       return;
     }
     int result = await helper.deleteNote(note.id);
     if (result != 0) {
-      _showAlartDialog('status', 'Note deleted successfully');
+      // _showAlartDialog('status', 'Note deleted successfully');
     } else {
-      _showAlartDialog('status', 'Error occured deleting note');
+      // _showAlartDialog('status', 'Error occured deleting note');
     }
   }
 
-  void _showAlartDialog(String title, String message) {
-    AlertDialog alartDialog = AlertDialog(
-      title: Text(title),
-      content: Text(message),
-    );
-    showDialog(context: context, builder: (_) => alartDialog);
-  }
+  // void _showAlartDialog(String title, String message) {
+  //   AlertDialog alartDialog = AlertDialog(
+  //     title: Text(title),
+  //     content: Text(message),
+  //   );
+  //   showDialog(context: context, builder: (_) => alartDialog);
+  // }
 }

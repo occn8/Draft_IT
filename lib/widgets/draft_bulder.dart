@@ -1,7 +1,7 @@
 import 'package:Draft_IT/index.dart';
 
 class DraftBuilder extends StatefulWidget {
-  final List<Draft> drafts;
+  List<Draft> drafts;
   DraftBuilder({@required this.drafts});
   @override
   _DraftBuilderState createState() => _DraftBuilderState();
@@ -9,8 +9,8 @@ class DraftBuilder extends StatefulWidget {
 
 class _DraftBuilderState extends State<DraftBuilder> {
   DataBaseHelper dataBaseHelper = DataBaseHelper();
-  List<Draft> noteDraftList;
-  int count = 0;
+  // List<Draft> noteDraftList;
+  // int count = 0;
 
   List<Widget> draftList() {
     List<Widget> draftItemList = List();
@@ -20,19 +20,20 @@ class _DraftBuilderState extends State<DraftBuilder> {
         draft: widget.drafts[i],
         widget: getPriorityIcon(this.widget.drafts[i].priority),
         color: getPriorityColor(this.widget.drafts[i].priority),
-        ontap1: () {},
-        ontap2: () {},
+        ontap1: () => _delete(context, widget.drafts[i]),
+        ontap2: () => navigateToDetail(this.widget.drafts[i], 'Edit note'),
       ));
     }
     return draftItemList;
   }
 
-  Widget draftItem(
-      {Draft draft,
-      Widget widget,
-      Color color,
-      Function ontap1,
-      Function ontap2}) {
+  Widget draftItem({
+    Draft draft,
+    Widget widget,
+    Color color,
+    Function ontap1,
+    Function ontap2,
+  }) {
     return Card(
       color: Colors.white,
       elevation: 2,
@@ -54,6 +55,10 @@ class _DraftBuilderState extends State<DraftBuilder> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.drafts == null) {
+      widget.drafts = List<Draft>();
+      updateListView();
+    }
     return Column(
       children: draftList(),
     );
@@ -84,5 +89,37 @@ class _DraftBuilderState extends State<DraftBuilder> {
         return Icon(Icons.keyboard_arrow_right);
     }
   }
-  
+
+  void _delete(BuildContext context, Draft note) async {
+    int result = await dataBaseHelper.deleteNote(note.id);
+    if (result != 0) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(content: Text('Note deleted successfully')),
+      );
+      updateListView();
+    }
+  }
+
+  void navigateToDetail(Draft note, String title) async {
+    bool result =
+        await Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return AddDraft(note, title);
+    }));
+    if (result == true) {
+      updateListView();
+    }
+  }
+
+  void updateListView() {
+    final Future<Database> dbFuture = dataBaseHelper.initializeDatabase();
+    dbFuture.then((database) {
+      Future<List<Draft>> noteListFuture = dataBaseHelper.getNoteList();
+      noteListFuture.then((noteList) {
+        setState(() {
+          this.widget.drafts = noteList;
+          // this.count = noteList.length;
+        });
+      });
+    });
+  }
 }

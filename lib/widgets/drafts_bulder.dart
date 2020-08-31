@@ -62,7 +62,7 @@ class _DraftBuilderState extends State<DraftBuilder> {
         children: [
           customAppBar(),
           SearchBox(),
-          Align(alignment: Alignment.centerRight, child: CategorySelector(colors: [Color(0xffe1e1e6),Color(0xffe1e1e6)],)),
+          CategorySelector(colors: [Color(0xffe1e1e6),Color(0xffe1e1e6)],),
           Container(
             color: Colors.amber,
             height: 1,

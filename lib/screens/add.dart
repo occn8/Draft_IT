@@ -3,19 +3,19 @@ import 'package:intl/intl.dart';
 
 class AddDraft extends StatefulWidget {
   final String appBarTitle;
-  final Draft note;
-  AddDraft(this.note, this.appBarTitle);
+  final Draft draft;
+  AddDraft(this.draft, this.appBarTitle);
   @override
   _AddDraftState createState() =>
-      _AddDraftState(this.appBarTitle, this.note);
+      _AddDraftState(this.appBarTitle, this.draft);
 }
 
 class _AddDraftState extends State<AddDraft> {
   DataBaseHelper helper = DataBaseHelper();
 
   String appBarTitle;
-  Draft note;
-  _AddDraftState(this.appBarTitle, this.note);
+  Draft draft;
+  _AddDraftState(this.appBarTitle, this.draft);
 
   static var _priorities = ['high', 'low'];
   TextEditingController titleController = TextEditingController();
@@ -23,8 +23,8 @@ class _AddDraftState extends State<AddDraft> {
 
   @override
   Widget build(BuildContext context) {
-    titleController.text = note.title;
-    descriptionController.text = note.description;
+    titleController.text = draft.title;
+    descriptionController.text = draft.description;
 
     return WillPopScope(
       onWillPop: () {
@@ -52,7 +52,7 @@ class _AddDraftState extends State<AddDraft> {
                       );
                     }).toList(),
                     style: TextStyle(),
-                    value: getPriorityAsString(note.priority),
+                    value: getPriorityAsString(draft.priority),
                     onChanged: (valueSelectedByUser) {
                       setState(() {
                         print(valueSelectedByUser);
@@ -141,10 +141,10 @@ class _AddDraftState extends State<AddDraft> {
   void updatePriorityAsInt(String value) {
     switch (value) {
       case 'high':
-        note.priority = 1;
+        draft.priority = 1;
         break;
       case 'low':
-        note.priority = 2;
+        draft.priority = 2;
         break;
     }
   }
@@ -163,21 +163,21 @@ class _AddDraftState extends State<AddDraft> {
   }
 
   void updateTitle() {
-    note.title = titleController.text;
+    draft.title = titleController.text;
   }
 
   void updateDescription() {
-    note.description = descriptionController.text;
+    draft.description = descriptionController.text;
   }
 
   void _save() async {
     moveToLastScreen();
-    note.date = DateFormat.yMMMd().format(DateTime.now());
+    draft.date = DateFormat.yMMMd().format(DateTime.now());
     int result;
-    if (note.id != null) {
-      result = await helper.updateNote(note);
+    if (draft.id != null) {
+      result = await helper.updateNote(draft);
     } else {
-      result = await helper.insertNote(note);
+      result = await helper.insertNote(draft);
     }
     if (result != 0) {
       // _showAlartDialog('status', 'Note saved successfully');
@@ -189,11 +189,11 @@ class _AddDraftState extends State<AddDraft> {
   void _delete() async {
     moveToLastScreen();
 
-    if (note.id != null) {
+    if (draft.id != null) {
       // _showAlartDialog('status', 'no Note  deleted');
       return;
     }
-    int result = await helper.deleteNote(note.id);
+    int result = await helper.deleteNote(draft.id);
     if (result != 0) {
       // _showAlartDialog('status', 'Note deleted successfully');
     } else {

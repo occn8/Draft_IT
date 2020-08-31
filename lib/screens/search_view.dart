@@ -41,7 +41,7 @@ class SearchView extends StatelessWidget {
                           hintText: 'search',
                           hintStyle: TextStyle(color: Colors.grey[600]),
                           prefixIcon: Icon(Icons.search,
-                              size: 20, color: Colors.black)),
+                              size: 40, color: Colors.black)),
                     ),
                   ),
                 ],

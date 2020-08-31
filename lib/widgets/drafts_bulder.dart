@@ -1,4 +1,5 @@
 import 'package:Draft_IT/index.dart';
+import 'package:Draft_IT/widgets/search_box.dart';
 
 class DraftBuilder extends StatefulWidget {
   @override
@@ -57,9 +58,11 @@ class _DraftBuilderState extends State<DraftBuilder> {
       updateListView();
     }
     return Scaffold(
+      backgroundColor: Color(0xffe1e1e6),
       body: ListView(
         children: [
           customAppBar(),
+          SearchBox(),
           Container(
             color: Colors.amber,
             height: 4,

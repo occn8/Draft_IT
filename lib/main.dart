@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'Draft-IT',
       theme: ThemeData(
         primarySwatch: Colors.amber,
+        // fontFamily: 'Gilroy',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),

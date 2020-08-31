@@ -23,7 +23,6 @@ class _AddDraftState extends State<AddDraft> {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle = Theme.of(context).textTheme.subhead;
     titleController.text = note.title;
     descriptionController.text = note.description;
 
@@ -52,7 +51,7 @@ class _AddDraftState extends State<AddDraft> {
                         value: dropDownStringItem,
                       );
                     }).toList(),
-                    style: textStyle,
+                    style: TextStyle(),
                     value: getPriorityAsString(note.priority),
                     onChanged: (valueSelectedByUser) {
                       setState(() {
@@ -65,13 +64,13 @@ class _AddDraftState extends State<AddDraft> {
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: TextField(
                   controller: titleController,
-                  style: textStyle,
+                  style: TextStyle(),
                   onChanged: (value) {
                     updateTitle();
                   },
                   decoration: InputDecoration(
                     labelText: 'title',
-                    labelStyle: textStyle,
+                    labelStyle: TextStyle(),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5)),
                   ),
@@ -81,13 +80,13 @@ class _AddDraftState extends State<AddDraft> {
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: TextField(
                   controller: descriptionController,
-                  style: textStyle,
+                  style: TextStyle(),
                   onChanged: (value) {
                     updateDescription();
                   },
                   decoration: InputDecoration(
                     labelText: 'Description',
-                    labelStyle: textStyle,
+                    labelStyle: TextStyle(),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5)),
                   ),

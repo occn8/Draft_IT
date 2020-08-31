@@ -1,13 +1,14 @@
 import 'package:Draft_IT/index.dart';
 
 class DraftBuilder extends StatefulWidget {
-  List<Draft> drafts;
+  
   // DraftBuilder({@required this.drafts});
   @override
   _DraftBuilderState createState() => _DraftBuilderState();
 }
 
 class _DraftBuilderState extends State<DraftBuilder> {
+  List<Draft> drafts;
   DataBaseHelper dataBaseHelper = DataBaseHelper();
   // List<Draft> noteDraftList;
   // int count = 0;
@@ -15,13 +16,13 @@ class _DraftBuilderState extends State<DraftBuilder> {
   List<Widget> draftList() {
     List<Widget> draftItemList = List();
 
-    for (int i = 0; i < widget.drafts.length; i++) {
+    for (int i = 0; i < drafts.length; i++) {
       draftItemList.add(draftItem(
-        draft: widget.drafts[i],
-        widget: getPriorityIcon(this.widget.drafts[i].priority),
-        color: getPriorityColor(this.widget.drafts[i].priority),
-        ontap1: () => _delete(context, widget.drafts[i]),
-        ontap2: () => navigateToDetail(this.widget.drafts[i], 'Edit note'),
+        draft: drafts[i],
+        widget: getPriorityIcon(this.drafts[i].priority),
+        color: getPriorityColor(this.drafts[i].priority),
+        ontap1: () => _delete(context, drafts[i]),
+        ontap2: () => navigateToDetail(this.drafts[i], 'Edit note'),
       ));
     }
     return draftItemList;
@@ -55,8 +56,8 @@ class _DraftBuilderState extends State<DraftBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.drafts == null) {
-      widget.drafts = List<Draft>();
+    if (drafts == null) {
+      drafts = List<Draft>();
       updateListView();
     }
     return Scaffold(
@@ -168,7 +169,7 @@ class _DraftBuilderState extends State<DraftBuilder> {
       Future<List<Draft>> noteListFuture = dataBaseHelper.getNoteList();
       noteListFuture.then((noteList) {
         setState(() {
-          this.widget.drafts = noteList;
+          this.drafts = noteList;
           // this.count = noteList.length;
         });
       });

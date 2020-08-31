@@ -7,15 +7,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // DataBaseHelper dataBaseHelper = DataBaseHelper();
-  List<Draft> noteDraftList;
-
   @override
   Widget build(BuildContext context) {
-    // if (noteDraftList == null) {
-    //   noteDraftList = List<Draft>();
-    //   updateListView();
-    // }
 
     return SafeArea(
       child: DraftBuilder(),

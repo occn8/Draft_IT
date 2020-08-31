@@ -1,15 +1,7 @@
 import 'package:Draft_IT/index.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  // DataBaseHelper dataBaseHelper = DataBaseHelper();
-  List<Draft> noteDraftList;
-
+class MyHomePage extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     // if (noteDraftList == null) {

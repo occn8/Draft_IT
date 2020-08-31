@@ -1,7 +1,6 @@
 import 'package:Draft_IT/index.dart';
 
 class DraftBuilder extends StatefulWidget {
-  // DraftBuilder({@required this.drafts});
   @override
   _DraftBuilderState createState() => _DraftBuilderState();
 }
@@ -70,7 +69,6 @@ class _DraftBuilderState extends State<DraftBuilder> {
           )
         ],
       ),
-
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           navigateToDetail(Draft('', '', 2), 'Add draft');

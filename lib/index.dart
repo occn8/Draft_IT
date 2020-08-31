@@ -11,6 +11,7 @@ export 'package:shared_preferences/shared_preferences.dart';
 export 'package:Draft_IT/screens/home.dart';
 export 'package:Draft_IT/screens/add.dart';
 export 'package:Draft_IT/screens/detail.dart';
+export 'package:Draft_IT/screens/search_view.dart';
 //models
 export 'package:Draft_IT/models/draft_model.dart';
 //utils

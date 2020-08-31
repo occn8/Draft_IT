@@ -1,7 +1,6 @@
 import 'package:Draft_IT/index.dart';
 
 class DraftBuilder extends StatefulWidget {
-  
   // DraftBuilder({@required this.drafts});
   @override
   _DraftBuilderState createState() => _DraftBuilderState();
@@ -10,8 +9,6 @@ class DraftBuilder extends StatefulWidget {
 class _DraftBuilderState extends State<DraftBuilder> {
   List<Draft> drafts;
   DataBaseHelper dataBaseHelper = DataBaseHelper();
-  // List<Draft> noteDraftList;
-  // int count = 0;
 
   List<Widget> draftList() {
     List<Widget> draftItemList = List();
@@ -22,7 +19,7 @@ class _DraftBuilderState extends State<DraftBuilder> {
         widget: getPriorityIcon(this.drafts[i].priority),
         color: getPriorityColor(this.drafts[i].priority),
         ontap1: () => _delete(context, drafts[i]),
-        ontap2: () => navigateToDetail(this.drafts[i], 'Edit note'),
+        ontap2: () => navigateToDetail(this.drafts[i], 'Edit draft'),
       ));
     }
     return draftItemList;
@@ -63,39 +60,7 @@ class _DraftBuilderState extends State<DraftBuilder> {
     return Scaffold(
       body: ListView(
         children: [
-          Container(
-            height: 50,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Builder(
-                  builder: (context) => InkWell(
-                    splashColor: Theme.of(context).accentColor,
-                    onTap: () => Scaffold.of(context).openDrawer(),
-                    child: Container(
-                      margin: new EdgeInsets.all(5),
-                      padding: new EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Colors.white60,
-                          borderRadius: BorderRadius.circular(10)),
-                      child:
-                          new Icon(Icons.menu, size: 25, color: Colors.black),
-                    ),
-                  ),
-                ),
-                Text('what is your plan?'),
-                Container(
-                  margin: new EdgeInsets.all(5),
-                  padding: new EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      color: Colors.white60,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: new Icon(Icons.notifications,
-                      size: 25, color: Colors.black),
-                ),
-              ],
-            ),
-          ),
+          customAppBar(),
           Container(
             color: Colors.amber,
             height: 4,
@@ -107,12 +72,45 @@ class _DraftBuilderState extends State<DraftBuilder> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          navigateToDetail(Draft('', '', 2), 'Add note');
+          navigateToDetail(Draft('', '', 2), 'Add draft');
         },
         label: Text('Add Task'),
         elevation: 4,
         icon: Icon(Icons.add),
         backgroundColor: Colors.amber,
+      ),
+    );
+  }
+
+  Container customAppBar() {
+    return Container(
+      height: 50,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Builder(
+            builder: (context) => InkWell(
+              splashColor: Theme.of(context).accentColor,
+              onTap: () => Scaffold.of(context).openDrawer(),
+              child: Container(
+                margin: new EdgeInsets.all(5),
+                padding: new EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    color: Colors.white60,
+                    borderRadius: BorderRadius.circular(10)),
+                child: new Icon(Icons.menu, size: 25, color: Colors.black),
+              ),
+            ),
+          ),
+          Text('what is your plan?'),
+          Container(
+            margin: new EdgeInsets.all(5),
+            padding: new EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Colors.white60, borderRadius: BorderRadius.circular(10)),
+            child: new Icon(Icons.notifications, size: 25, color: Colors.black),
+          ),
+        ],
       ),
     );
   }

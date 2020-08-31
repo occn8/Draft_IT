@@ -19,7 +19,15 @@ class CustomDrawer extends StatelessWidget {
               children: [
                 Container(
                   // width: 20,
-                  child: CircleAvatar(child: Icon(Icons.person),),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        child: Icon(Icons.person),
+                      ),
+                      SizedBox(width: 5),
+                      Text('occn lary'),
+                    ],
+                  ),
                 ),
                 Row(
                   children: [

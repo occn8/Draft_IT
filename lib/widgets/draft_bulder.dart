@@ -70,6 +70,7 @@ class _DraftBuilderState extends State<DraftBuilder> {
           )
         ],
       ),
+
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           navigateToDetail(Draft('', '', 2), 'Add draft');
@@ -79,6 +80,7 @@ class _DraftBuilderState extends State<DraftBuilder> {
         icon: Icon(Icons.add),
         backgroundColor: Colors.amber,
       ),
+      drawer: CustomDrawer(),
     );
   }
 

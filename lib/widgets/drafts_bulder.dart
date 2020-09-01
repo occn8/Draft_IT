@@ -19,6 +19,9 @@ class _DraftBuilderState extends State<DraftBuilder> {
         color: getPriorityColor(this.drafts[i].priority),
         ontap1: () => _delete(context, drafts[i]),
         ontap2: () => navigateToDetail(this.drafts[i], 'Edit draft'),
+        key: Key(this.drafts[i].toString()),
+        setstateRemove: () => this.drafts.removeAt(i),
+        setstateUndo: () => this.drafts.insert(i, drafts[i]),
       ));
     }
     return draftItemList;
@@ -30,22 +33,54 @@ class _DraftBuilderState extends State<DraftBuilder> {
     Color color,
     Function ontap1,
     Function ontap2,
+    Key key,
+    Function setstateRemove,
+    Function setstateUndo,
   }) {
-    return Card(
-      color: Colors.white,
-      elevation: 2,
-      child: ListTile(
-        leading: CircleAvatar(
-          child: widget,
-          backgroundColor: color,
+    return Dismissible(
+      key: key,
+      child: Card(
+        color: Colors.white,
+        elevation: 2,
+        child: ListTile(
+          leading: CircleAvatar(
+            child: widget,
+            backgroundColor: color,
+          ),
+          title: Text(
+            draft.title,
+          ),
+          subtitle: Text(draft.description ?? ''),
+          trailing: GestureDetector(
+              onTap: ontap1, child: Icon(Icons.delete, color: Colors.grey)),
+          onTap: ontap2,
         ),
-        title: Text(
-          draft.title,
-        ),
-        subtitle: Text(draft.description ?? ''),
-        trailing: GestureDetector(
-            onTap: ontap1, child: Icon(Icons.delete, color: Colors.grey)),
-        onTap: ontap2,
+      ),
+      // onDismissed: (DismissDirection dir) {
+      //   setState(setstateRemove);
+      //   Scaffold.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text(dir == DismissDirection.startToEnd
+      //           ? '$item removed.'
+      //           : '$item liked.'),
+      //       action: SnackBarAction(
+      //         label: 'UNDO',
+      //         onPressed: () {
+      //           setState(setstateUndo);
+      //         },
+      //       ),
+      //     ),
+      //   );
+      // },
+      background: Container(
+        color: Colors.red,
+        alignment: Alignment.centerLeft,
+        child: Icon(Icons.delete_outline),
+      ),
+      secondaryBackground: Container(
+        color: Colors.green,
+        alignment: Alignment.centerRight,
+        child: Icon(Icons.archive),
       ),
     );
   }

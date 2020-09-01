@@ -58,19 +58,23 @@ class _DraftBuilderState extends State<DraftBuilder> {
     }
     return Scaffold(
       backgroundColor: Color(0xffe1e1e6),
-      body: ListView(
-        children: [
-          customAppBar(),
-          SearchBox(),
-          CategorySelector(colors: [Color(0xffe1e1e6),Color(0xffe1e1e6)],),
-          Container(
-            color: Colors.amber,
-            height: 1,
-          ),
-          Column(
-            children: draftList(),
-          )
-        ],
+      body: Scrollbar(
+        child: ListView(
+          children: [
+            customAppBar(),
+            SearchBox(),
+            CategorySelector(
+              colors: [Color(0xffe1e1e6), Color(0xffe1e1e6)],
+            ),
+            Container(
+              color: Colors.amber,
+              height: 1,
+            ),
+            Column(
+              children: draftList(),
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

@@ -6,8 +6,7 @@ class AddDraft extends StatefulWidget {
   final Draft draft;
   AddDraft(this.draft, this.appBarTitle);
   @override
-  _AddDraftState createState() =>
-      _AddDraftState(this.appBarTitle, this.draft);
+  _AddDraftState createState() => _AddDraftState(this.appBarTitle, this.draft);
 }
 
 class _AddDraftState extends State<AddDraft> {
@@ -17,7 +16,7 @@ class _AddDraftState extends State<AddDraft> {
   Draft draft;
   _AddDraftState(this.appBarTitle, this.draft);
 
-  static var _priorities = ['high', 'low'];
+  static var _priorities = ['High', 'Normal'];
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
@@ -47,7 +46,10 @@ class _AddDraftState extends State<AddDraft> {
                 title: DropdownButton(
                     items: _priorities.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
-                        child: Text(dropDownStringItem),
+                        child: Text(
+                          dropDownStringItem,
+                          style: TextStyle(color: Colors.black),
+                        ),
                         value: dropDownStringItem,
                       );
                     }).toList(),
@@ -140,10 +142,10 @@ class _AddDraftState extends State<AddDraft> {
 
   void updatePriorityAsInt(String value) {
     switch (value) {
-      case 'high':
+      case 'High':
         draft.priority = 1;
         break;
-      case 'low':
+      case 'Normal':
         draft.priority = 2;
         break;
     }

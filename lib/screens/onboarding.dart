@@ -173,7 +173,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     children: _buildPageIndicator(),
                   ),
                   _currentPage != _numPages - 1
-                      ? Expanded(
+                      ? SizedBox(
                           child: Align(
                             alignment: FractionalOffset.bottomRight,
                             child: FlatButton(
@@ -217,11 +217,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: double.infinity,
                 color: Colors.white,
                 child: GestureDetector(
-                  onTap: () {
-                    return Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (ctx) => Home()),
-                  );
+                  onTap: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (BuildContext ctx) => Home()),
+                    );
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setString('usagekey', 'times');
                   },
                   child: Center(
                     child: Padding(

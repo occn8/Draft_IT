@@ -10,47 +10,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
-  bool isSelected;
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
     for (int i = 0; i < _numPages; i++) {
-      isSelected = _currentPage == i;
       list.add(i == _currentPage
           ? _indicator(
               true,
-              isSelected,
-              () {
-                setState(() {
-                  _currentPage = i;
-                });
-              },
             )
           : _indicator(
               false,
-              isSelected,
-              () {
-                setState(() {
-                  _currentPage = i;
-                });
-              },
             ));
     }
     return list;
   }
 
-  Widget _indicator(bool isActive, bool isSelected, Function ontap) {
-    return InkWell(
-      onTap: ontap,
-      child: AnimatedContainer(
-        duration: Duration(milliseconds: 150),
-        margin: EdgeInsets.symmetric(horizontal: 8.0),
-        height: 8.0,
-        width: isActive ? 24.0 : 16.0,
-        decoration: BoxDecoration(
-          color: isActive ? Colors.white : Color(0xFF7B51D3),
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
+  Widget _indicator(bool isActive,) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 150),
+      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      height: 8.0,
+      width: isActive ? 24.0 : 16.0,
+      decoration: BoxDecoration(
+        color: isActive ? Colors.white : Color(0xFF7B51D3),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
   }

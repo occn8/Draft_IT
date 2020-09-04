@@ -2,12 +2,12 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:Draft_IT/index.dart';
 
-class MyHomePage extends StatefulWidget {
+class Launcher extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _LauncherState createState() => _LauncherState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LauncherState extends State<Launcher> {
   Future<bool> isFirstTime() async {
      SharedPreferences _prefs;
 

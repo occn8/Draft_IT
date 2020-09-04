@@ -1,5 +1,4 @@
 import 'index.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
         // fontFamily: 'Gilroy',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: OnboardingScreen(),
+      home: Launcher(),
     );
   }
 }

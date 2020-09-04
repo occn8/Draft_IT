@@ -217,7 +217,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: double.infinity,
                 color: Colors.white,
                 child: GestureDetector(
-                  onTap: () =>MyHomePage(),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (ctx) => Home()),
+                  ),
                   child: Center(
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 30.0),

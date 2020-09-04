@@ -3,8 +3,8 @@ import 'index.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var lkey = prefs.getString('loginkey');
-  print(lkey);
+  var ukey = prefs.getString('usagekey');
+  print(ukey);
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeChanger(),
@@ -14,7 +14,7 @@ Future<void> main() async {
             debugShowCheckedModeBanner: false,
             title: 'Draft-IT',
             theme: notifier.darkTheme ? darkl : light,
-            home: lkey == null ? OnboardingScreen() : Home(),
+            home: ukey == null ? OnboardingScreen() : Home(),
           );
         },
       ),
@@ -22,19 +22,19 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Draft-IT',
-      theme: ThemeData(
-        // textTheme: GoogleFonts.nunitoSansTextTheme(Theme.of(context).textTheme),
-        primarySwatch: Colors.amber,
-        // fontFamily: 'Gilroy',
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Launcher(),
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Draft-IT',
+//       theme: ThemeData(
+//         // textTheme: GoogleFonts.nunitoSansTextTheme(Theme.of(context).textTheme),
+//         primarySwatch: Colors.amber,
+//         // fontFamily: 'Gilroy',
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: Home(),
+//     );
+//   }
+// }

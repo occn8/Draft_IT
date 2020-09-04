@@ -10,7 +10,6 @@ export 'package:shared_preferences/shared_preferences.dart';
 export 'package:google_fonts/google_fonts.dart';
 
 //screens
-export 'package:Draft_IT/screens/launcher.dart';
 export 'package:Draft_IT/screens/home.dart';
 export 'package:Draft_IT/screens/add.dart';
 export 'package:Draft_IT/screens/detail.dart';

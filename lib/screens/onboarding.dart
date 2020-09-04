@@ -1,3 +1,4 @@
+import 'package:Draft_IT/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,18 +15,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
     for (int i = 0; i < _numPages; i++) {
-      list.add(i == _currentPage
-          ? _indicator(
-              true,
-            )
-          : _indicator(
-              false,
-            ));
+      list.add(i == _currentPage ? _indicator(true) : _indicator(false));
     }
     return list;
   }
 
-  Widget _indicator(bool isActive,) {
+  Widget _indicator(
+    bool isActive,
+  ) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 150),
       margin: EdgeInsets.symmetric(horizontal: 8.0),
@@ -220,7 +217,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: double.infinity,
                 color: Colors.white,
                 child: GestureDetector(
-                  onTap: () => print('Get started'),
+                  onTap: () =>MyHomePage(),
                   child: Center(
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 30.0),

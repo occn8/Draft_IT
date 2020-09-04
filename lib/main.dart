@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         // fontFamily: 'Gilroy',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: OnboardingScreen(),
     );
   }
 }

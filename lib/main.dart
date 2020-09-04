@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Draft-IT',
       theme: ThemeData(
-        textTheme: GoogleFonts.nunitoSansTextTheme(Theme.of(context).textTheme),
+        // textTheme: GoogleFonts.nunitoSansTextTheme(Theme.of(context).textTheme),
         primarySwatch: Colors.amber,
         // fontFamily: 'Gilroy',
         visualDensity: VisualDensity.adaptivePlatformDensity,

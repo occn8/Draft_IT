@@ -35,7 +35,14 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(width: 15),
                     Icon(Icons.calendar_today, size: 28),
                     SizedBox(width: 15),
-                    Icon(Icons.settings, size: 28),
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext ctx) => Settings()));
+                        },
+                        child: Icon(Icons.settings, size: 28)),
                     SizedBox(width: 5),
                   ],
                 ),

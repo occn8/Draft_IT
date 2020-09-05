@@ -15,6 +15,7 @@ export 'package:Draft_IT/screens/add.dart';
 export 'package:Draft_IT/screens/detail.dart';
 export 'package:Draft_IT/screens/search_view.dart';
 export 'package:Draft_IT/screens/onboarding.dart';
+export 'package:Draft_IT/screens/settings.dart';
 //models
 export 'package:Draft_IT/models/draft_model.dart';
 //utils

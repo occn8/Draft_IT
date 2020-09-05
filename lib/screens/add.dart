@@ -177,9 +177,9 @@ class _AddDraftState extends State<AddDraft> {
     draft.date = DateFormat.yMMMd().format(DateTime.now());
     int result;
     if (draft.id != null) {
-      result = await helper.updateNote(draft);
+      result = await helper.updateDraft(draft);
     } else {
-      result = await helper.insertNote(draft);
+      result = await helper.insertDraft(draft);
     }
     if (result != 0) {
       // _showAlartDialog('status', 'Note saved successfully');
@@ -195,7 +195,7 @@ class _AddDraftState extends State<AddDraft> {
       // _showAlartDialog('status', 'no Note  deleted');
       return;
     }
-    int result = await helper.deleteNote(draft.id);
+    int result = await helper.deleteDraft(draft.id);
     if (result != 0) {
       // _showAlartDialog('status', 'Note deleted successfully');
     } else {

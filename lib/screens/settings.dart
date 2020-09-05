@@ -28,9 +28,15 @@ class _SettingsState extends State<Settings> {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('settings'),
+          centerTitle: true,
+        ),
         body: ListView(
           children: [
             Container(
+              height: 300,
+              width: MediaQuery.of(context).size.width,
               child: charts.PieChart(
                 [
                   charts.Series<_CostsData, String>(

@@ -1,15 +1,9 @@
 import 'package:Draft_IT/index.dart';
+import 'package:Draft_IT/models/todo_model.dart';
 
 class DataBaseHelper {
   static DataBaseHelper _dataBaseHelper; //singleton dbhelper
   static Database _database; //singleton db
-
-  String noteTable = 'note_table';
-  String colId = 'id';
-  String colTitle = 'title';
-  String colDescription = 'description';
-  String colPriority = 'priority';
-  String colDate = 'date';
 
   DataBaseHelper._createInstance();
 
@@ -29,45 +23,47 @@ class DataBaseHelper {
 
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'notes.db';
+    String path = directory.path + 'drafts.db';
 
-    var notesDatabase = openDatabase(path, version: 1, onCreate: _createDb);
-    return notesDatabase;
+    var draftsDb = openDatabase(path, version: 1, onCreate: _createDb);
+    return draftsDb;
   }
 
   void _createDb(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE $noteTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT,$colDescription TEXT, $colPriority INTEGER, $colDate Text)');
+        'CREATE TABLE draftstable(id INTEGER PRIMARY KEY, title TEXT,description TEXT, priority INTEGER, date Text)');
+    await db.execute(
+        "CREATE TABLE todo(id INTEGER PRIMARY KEY, taskId INTEGER, title TEXT, isDone INTEGER)");
   }
 
   //fetch operation
-  Future<List<Map<String, dynamic>>> getNoteMapList() async {
+  Future<List<Map<String, dynamic>>> getDraftMapList() async {
     Database db = await this.database;
     // var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
-    var result = await db.query(noteTable, orderBy: '$colPriority ASC');
+    var result = await db.query('draftstable', orderBy: 'priority ASC');
     return result;
   }
 
   //insert operation
-  Future<int> insertNote(Draft note) async {
+  Future<int> insertDraft(Draft note) async {
     Database db = await this.database;
-    var result = await db.insert(noteTable, note.toMap());
+    var result = await db.insert('draftstable', note.toMap());
     return result;
   }
 
   //update operation
-  Future<int> updateNote(Draft note) async {
+  Future<int> updateDraft(Draft note) async {
     Database db = await this.database;
-    var result = await db.update(noteTable, note.toMap(),
-        where: '$colId =?', whereArgs: [note.id]);
+    var result = await db.update('draftstable', note.toMap(),
+        where: 'id =?', whereArgs: [note.id]);
     return result;
   }
 
   //delete operation
-  Future<int> deleteNote(int id) async {
+  Future<int> deleteDraft(int id) async {
     Database db = await this.database;
-    int result =
-        await db.rawDelete('DELETE FROM $noteTable WHERE $colId = $id');
+    int result = await db.rawDelete('DELETE FROM draftstable WHERE id = $id');
+    await db.rawDelete("DELETE FROM todo WHERE taskId = '$id'");
     return result;
   }
 
@@ -75,19 +71,43 @@ class DataBaseHelper {
   Future<int> getCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
-        await db.rawQuery('SELECT COUNT (*) from $noteTable');
+        await db.rawQuery('SELECT COUNT (*) from draftstable');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
 
   //get map list[list<map>] | convert it to notelist
-  Future<List<Draft>> getNoteList() async {
-    var noteMapList = await getNoteMapList();
+  Future<List<Draft>> getDraftList() async {
+    var noteMapList = await getDraftMapList();
     int count = noteMapList.length;
     List<Draft> noteList = List<Draft>();
     for (int i = 0; i < count; i++) {
       noteList.add(Draft.fromMapOject(noteMapList[i]));
     }
     return noteList;
+  }
+
+  Future<void> insertTodo(Todo todo) async {
+    Database db = await this.database;
+    await db.insert('todo', todo.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<Todo>> getTodo(int taskId) async {
+    Database db = await this.database;
+    List<Map<String, dynamic>> todoMap =
+        await db.rawQuery("SELECT * FROM todo WHERE taskId = $taskId");
+    return List.generate(todoMap.length, (index) {
+      return Todo(
+          id: todoMap[index]['id'],
+          title: todoMap[index]['title'],
+          taskId: todoMap[index]['taskId'],
+          isDone: todoMap[index]['isDone']);
+    });
+  }
+
+  Future<void> updateTodoDone(int id, int isDone) async {
+    Database db = await this.database;
+    await db.rawUpdate("UPDATE todo SET isDone = '$isDone' WHERE id = '$id'");
   }
 }

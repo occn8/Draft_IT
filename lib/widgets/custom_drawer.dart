@@ -37,6 +37,7 @@ class CustomDrawer extends StatelessWidget {
                     SizedBox(width: 15),
                     InkWell(
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.push(
                               context,
                               MaterialPageRoute(

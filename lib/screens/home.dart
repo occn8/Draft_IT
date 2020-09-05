@@ -186,7 +186,7 @@ class _HomeState extends State<Home> {
   }
 
   void _delete(BuildContext context, Draft note) async {
-    int result = await dataBaseHelper.deleteNote(note.id);
+    int result = await dataBaseHelper.deleteDraft(note.id);
     if (result != 0) {
       // Scaffold.of(context).showSnackBar(
       //   SnackBar(content: Text('Note deleted successfully')),
@@ -208,7 +208,7 @@ class _HomeState extends State<Home> {
   void updateListView() {
     final Future<Database> dbFuture = dataBaseHelper.initializeDatabase();
     dbFuture.then((database) {
-      Future<List<Draft>> noteListFuture = dataBaseHelper.getNoteList();
+      Future<List<Draft>> noteListFuture = dataBaseHelper.getDraftList();
       noteListFuture.then((noteList) {
         setState(() {
           this.drafts = noteList;

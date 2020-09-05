@@ -78,13 +78,13 @@ class DataBaseHelper {
 
   //get map list[list<map>] | convert it to notelist
   Future<List<Draft>> getDraftList() async {
-    var noteMapList = await getDraftMapList();
-    int count = noteMapList.length;
-    List<Draft> noteList = List<Draft>();
+    var draftMapList = await getDraftMapList();
+    int count = draftMapList.length;
+    List<Draft> draftList = List<Draft>();
     for (int i = 0; i < count; i++) {
-      noteList.add(Draft.fromMapOject(noteMapList[i]));
+      draftList.add(Draft.fromMapOject(draftMapList[i]));
     }
-    return noteList;
+    return draftList;
   }
 
   Future<void> insertTodo(Todo todo) async {
@@ -101,7 +101,7 @@ class DataBaseHelper {
       return Todo(
           id: todoMap[index]['id'],
           title: todoMap[index]['title'],
-          taskId: todoMap[index]['taskId'],
+          draftId: todoMap[index]['taskId'],
           isDone: todoMap[index]['isDone']);
     });
   }

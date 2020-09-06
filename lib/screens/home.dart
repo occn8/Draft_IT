@@ -38,6 +38,7 @@ class _HomeState extends State<Home> {
     Function setstateUndo,
   }) {
     return Dismissible(
+      direction: DismissDirection.endToStart,
       key: key,
       child: Card(
         color: Colors.white,
@@ -102,6 +103,7 @@ class _HomeState extends State<Home> {
               CategorySelector(
                 colors: [Color(0xffe1e1e6), Color(0xffe1e1e6)],
               ),
+              ItemTile(),
               Container(
                 color: Colors.amber,
                 height: 1,
@@ -116,7 +118,7 @@ class _HomeState extends State<Home> {
           onPressed: () {
             navigateToDetail(Draft('', '', 2), 'Add draft');
           },
-          label: Text('Add Task'),
+          label: Text('Add'),
           elevation: 4,
           icon: Icon(Icons.add),
           backgroundColor: Colors.amber,

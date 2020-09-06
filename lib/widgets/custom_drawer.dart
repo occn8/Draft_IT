@@ -9,7 +9,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 280,
-      color: Colors.white,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: ListView(
         children: [
           Container(
@@ -31,7 +31,13 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.brightness_4, size: 28),
+                    Consumer<ThemeChanger>(
+                      builder: (context, notifier, child) => InkWell(
+                          onTap: () {
+                            notifier.toggleTheme();
+                          },
+                          child: Icon(Icons.brightness_4, size: 28)),
+                    ),
                     SizedBox(width: 15),
                     Icon(Icons.calendar_today, size: 28),
                     SizedBox(width: 15),

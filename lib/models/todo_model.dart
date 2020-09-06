@@ -1,8 +1,8 @@
 class Todo {
-  final int id;
-  final int draftId;
-  final String title;
-  final int isDone;
+  int id;
+  int draftId;
+  String title;
+  int isDone;
   Todo({this.id, this.draftId, this.title, this.isDone});
 
   //convert note object into map object

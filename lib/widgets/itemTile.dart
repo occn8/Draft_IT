@@ -14,12 +14,12 @@ class ItemTile extends StatelessWidget {
             child: ActiveStatus(),
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.92,
+            width: MediaQuery.of(context).size.width * 0.93,
             // padding: EdgeInsets.all(5),
             child: Card(
               color: Colors.blueGrey,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
           label: Text('Add'),
           elevation: 4,
           icon: Icon(Icons.add),
-          backgroundColor: Colors.amber,
+          backgroundColor: Colors.grey,
         ),
         drawer: CustomDrawer(),
       ),

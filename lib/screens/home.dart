@@ -15,9 +15,9 @@ class _HomeState extends State<Home> {
     for (int i = 0; i < drafts.length; i++) {
       draftItemList.add(draftItem(
         draft: drafts[i],
-        widget: getPriorityIcon(this.drafts[i].priority),
+        // widget: getPriorityIcon(this.drafts[i].priority),
         color: getPriorityColor(this.drafts[i].priority),
-        ontap1: () => _delete(context, drafts[i]),
+        // ontap1: () => _delete(context, drafts[i]),
         ontap2: () => navigateToDetail(this.drafts[i], 'Edit draft'),
         key: Key(this.drafts[i].toString()),
         setstateRemove: () => this.drafts.removeAt(i),
@@ -40,22 +40,11 @@ class _HomeState extends State<Home> {
     return Dismissible(
       direction: DismissDirection.endToStart,
       key: key,
-      child: Card(
-        color: Colors.white,
-        elevation: 2,
-        child: ListTile(
-          leading: CircleAvatar(
-            child: widget,
-            backgroundColor: color,
-          ),
-          title: Text(
-            draft.title,
-          ),
-          subtitle: Text(draft.description ?? ''),
-          trailing: GestureDetector(
-              onTap: ontap1, child: Icon(Icons.delete, color: Colors.grey)),
-          onTap: ontap2,
-        ),
+      child: ItemTile(
+        title: draft.title,
+        subtitle: draft.description,
+        color: color,
+        ontap: ontap2,
       ),
       // onDismissed: (DismissDirection dir) {
       //   setState(setstateRemove);
@@ -94,7 +83,7 @@ class _HomeState extends State<Home> {
     }
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffe1e1e6),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Scrollbar(
           child: ListView(
             children: [
@@ -103,7 +92,6 @@ class _HomeState extends State<Home> {
               CategorySelector(
                 colors: [Color(0xffe1e1e6), Color(0xffe1e1e6)],
               ),
-              ItemTile(),
               Container(
                 color: Colors.amber,
                 height: 1,

@@ -5,7 +5,6 @@ class Todo {
   int isDone;
   Todo({this.id, this.draftId, this.title, this.isDone});
 
-  //convert note object into map object
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
 
@@ -20,7 +19,6 @@ class Todo {
     return map;
   }
 
-  //extract note obj from map obj
   Todo.fromMapOject(Map<String, dynamic> map) {
     this.id = map['id'];
     this.draftId = map['draftId'];

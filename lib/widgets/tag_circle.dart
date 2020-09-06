@@ -1,14 +1,19 @@
 import 'package:Draft_IT/index.dart';
 
 class TagCircle extends StatelessWidget {
+  final Color color;
+
+  const TagCircle({@required this.color});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 20,
       height: 20,
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.white, width: 5),
-          shape: BoxShape.circle),
+        border: Border.all(color: color, width: 5),
+        shape: BoxShape.circle,
+      ),
       child: Container(
         width: double.infinity,
         height: double.infinity,

@@ -3,6 +3,13 @@ import 'package:Draft_IT/widgets/tag_circle.dart';
 import 'package:flutter/material.dart';
 
 class ItemTile extends StatelessWidget {
+  final String title, subtitle;
+  // final DateTime dateTime;
+  final Color color;
+  final Function ontap;
+
+  const ItemTile({this.title, this.subtitle, this.color, this.ontap});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,41 +20,50 @@ class ItemTile extends StatelessWidget {
             color: Colors.transparent,
             child: ActiveStatus(),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width * 0.93,
-            // padding: EdgeInsets.all(5),
-            child: Card(
-              color: Colors.blueGrey,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        TagCircle(),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.54,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+          InkWell(
+            onTap: ontap,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.93,
+              // padding: EdgeInsets.all(5),
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
                         children: [
-                          Text('TiTle sumn'),
-                          Text('description here..'),
+                          TagCircle(color: color),
                         ],
                       ),
-                    ),
-                    Column(
-                      children: [
-                        Text('7/10/20'),
-                        Text('17:08'),
-                      ],
-                    ),
-                  ],
+                      SizedBox(width: 5),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.54,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              title,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Container(
+                                child: Text(
+                              subtitle ?? 'No description added',
+                              overflow: TextOverflow.ellipsis,
+                            )),
+                          ],
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Text('7/10/20'),
+                          Text('17:08'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

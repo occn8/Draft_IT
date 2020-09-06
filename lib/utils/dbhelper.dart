@@ -31,7 +31,7 @@ class DataBaseHelper {
 
   void _createDb(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE draftstable(id INTEGER PRIMARY KEY, title TEXT,description TEXT, priority INTEGER, date Text)');
+        'CREATE TABLE draftstable(id INTEGER PRIMARY KEY, title TEXT,description TEXT, priority INTEGER, mdate Text)');
     await db.execute(
         "CREATE TABLE todo(id INTEGER PRIMARY KEY, taskId INTEGER, title TEXT, isDone INTEGER)");
   }
@@ -44,14 +44,12 @@ class DataBaseHelper {
     return result;
   }
 
-  //insert operation
   Future<int> insertDraft(Draft note) async {
     Database db = await this.database;
     var result = await db.insert('draftstable', note.toMap());
     return result;
   }
 
-  //update operation
   Future<int> updateDraft(Draft note) async {
     Database db = await this.database;
     var result = await db.update('draftstable', note.toMap(),
@@ -59,7 +57,6 @@ class DataBaseHelper {
     return result;
   }
 
-  //delete operation
   Future<int> deleteDraft(int id) async {
     Database db = await this.database;
     int result = await db.rawDelete('DELETE FROM draftstable WHERE id = $id');
@@ -67,7 +64,6 @@ class DataBaseHelper {
     return result;
   }
 
-  //get no of items in db
   Future<int> getCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
@@ -76,7 +72,6 @@ class DataBaseHelper {
     return result;
   }
 
-  //get map list[list<map>] | convert it to notelist
   Future<List<Draft>> getDraftList() async {
     var draftMapList = await getDraftMapList();
     int count = draftMapList.length;

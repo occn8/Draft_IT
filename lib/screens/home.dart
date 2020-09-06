@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            navigateToDetail(Draft('', '', 2), 'Add draft');
+            navigateToDetail(Draft('', '', '', 2), 'Add draft');
           },
           label: Text('Add'),
           elevation: 4,
@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
   Color getPriorityColor(int priority) {
     switch (priority) {
       case 1:
-        return Colors.red;
+        return Colors.redAccent;
         break;
       case 2:
         return Colors.yellow;
@@ -175,15 +175,15 @@ class _HomeState extends State<Home> {
     }
   }
 
-  void _delete(BuildContext context, Draft note) async {
-    int result = await dataBaseHelper.deleteDraft(note.id);
-    if (result != 0) {
-      // Scaffold.of(context).showSnackBar(
-      //   SnackBar(content: Text('Note deleted successfully')),
-      // );
-      updateListView();
-    }
-  }
+  // void _delete(BuildContext context, Draft note) async {
+  //   int result = await dataBaseHelper.deleteDraft(note.id);
+  //   if (result != 0) {
+  //     // Scaffold.of(context).showSnackBar(
+  //     //   SnackBar(content: Text('Note deleted successfully')),
+  //     // );
+  //     updateListView();
+  //   }
+  // }
 
   void navigateToDetail(Draft note, String title) async {
     bool result =

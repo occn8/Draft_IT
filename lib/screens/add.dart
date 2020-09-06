@@ -174,7 +174,7 @@ class _AddDraftState extends State<AddDraft> {
 
   void _save() async {
     moveToLastScreen();
-    draft.date = DateFormat.yMMMd().format(DateTime.now());
+    draft.mdate = DateFormat.yMMMd().format(DateTime.now());
     int result;
     if (draft.id != null) {
       result = await helper.updateDraft(draft);

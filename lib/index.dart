@@ -26,6 +26,7 @@ export 'package:Draft_IT/widgets/search_box.dart';
 export 'package:Draft_IT/widgets/category_selector.dart';
 export 'package:Draft_IT/widgets/tag_circle.dart';
 export 'package:Draft_IT/widgets/itemTile.dart';
+export 'package:Draft_IT/widgets/is_active_circle.dart';
 //theme
 export 'package:Draft_IT/themes/light.dart';
 export 'package:Draft_IT/themes/dark.dart';

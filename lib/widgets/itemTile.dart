@@ -1,3 +1,4 @@
+import 'package:Draft_IT/index.dart';
 import 'package:Draft_IT/widgets/tag_circle.dart';
 import 'package:flutter/material.dart';
 
@@ -9,22 +10,8 @@ class ItemTile extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            color: Colors.blueGrey,
-            child: Column(
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Colors.black,
-                ),
-                SizedBox(height: 15),
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Colors.black,
-                ),
-              ],
-            ),
+            color: Colors.transparent,
+            child: ActiveStatus(),
           ),
           Container(
             width: MediaQuery.of(context).size.width * 0.92,
@@ -41,7 +28,9 @@ class ItemTile extends StatelessWidget {
                         TagCircle(),
                       ],
                     ),
-                    SizedBox(width: 5,),
+                    SizedBox(
+                      width: 5,
+                    ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.54,
                       child: Column(

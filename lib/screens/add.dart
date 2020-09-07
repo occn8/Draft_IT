@@ -42,6 +42,46 @@ class _AddDraftState extends State<AddDraft> {
           padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
           child: ListView(
             children: <Widget>[
+              
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: TextField(
+                  controller: titleController,
+                  textCapitalization: TextCapitalization.sentences,
+                  style: TextStyle(),
+                  onChanged: (value) {
+                    updateTitle();
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'title',
+                    labelStyle: TextStyle(),
+                    border: UnderlineInputBorder(),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: TextField(
+                  controller: descriptionController,
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
+                  textCapitalization: TextCapitalization.sentences,
+                  style: TextStyle(),
+                  onChanged: (value) {
+                    updateDescription();
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    labelStyle: TextStyle(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Tag'),
+              ),
               ListTile(
                 title: DropdownButton(
                     items: _priorities.map((String dropDownStringItem) {
@@ -61,39 +101,6 @@ class _AddDraftState extends State<AddDraft> {
                         updatePriorityAsInt(valueSelectedByUser);
                       });
                     }),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: TextField(
-                  controller: titleController,
-                  style: TextStyle(),
-                  onChanged: (value) {
-                    updateTitle();
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'title',
-                    labelStyle: TextStyle(),
-                    border: UnderlineInputBorder(),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: TextField(
-                  controller: descriptionController,
-                  maxLines: null,
-                  keyboardType: TextInputType.multiline,
-                  style: TextStyle(),
-                  onChanged: (value) {
-                    updateDescription();
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Description',
-                    labelStyle: TextStyle(),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
-                ),
               ),
               Padding(
                   padding: EdgeInsets.symmetric(vertical: 15),

@@ -45,12 +45,15 @@ class ItemTile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              title,
+                              title ?? 'No Title',
                               overflow: TextOverflow.ellipsis,
                             ),
                             Container(
                                 child: Text(
-                              subtitle ?? 'No description added',
+                              subtitle ?? 'No Description Added',
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                              ),
                               overflow: TextOverflow.ellipsis,
                             )),
                           ],

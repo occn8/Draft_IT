@@ -45,7 +45,6 @@ class Draft {
     if (id != null) {
       map['id'] = _id;
     }
-
     map['title'] = _title;
     map['description'] = _description;
     map['priority'] = _priority;

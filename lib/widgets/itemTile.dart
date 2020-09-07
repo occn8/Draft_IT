@@ -3,12 +3,18 @@ import 'package:Draft_IT/widgets/tag_circle.dart';
 import 'package:flutter/material.dart';
 
 class ItemTile extends StatelessWidget {
-  final String title, subtitle;
+  final String title, subtitle, date, time;
   // final DateTime dateTime;
   final Color color;
   final Function ontap;
 
-  const ItemTile({this.title, this.subtitle, this.color, this.ontap});
+  const ItemTile(
+      {this.title,
+      this.subtitle,
+      this.color,
+      this.ontap,
+      this.date,
+      this.time});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,7 @@ class ItemTile extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         children: [
@@ -39,32 +45,54 @@ class ItemTile extends StatelessWidget {
                         ],
                       ),
                       SizedBox(width: 5),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.54,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              title ?? 'No Title',
-                              overflow: TextOverflow.ellipsis,
+
+                      Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.72,
+                            child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container( width: MediaQuery.of(context).size.width * 0.42,
+                                  child: Text(
+                                    title ?? 'No Title',
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(fontWeight: FontWeight.w800),
+                                  ),
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                date,
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              ],
                             ),
-                            Container(
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
                                 child: Text(
                               subtitle ?? 'No Description Added',
                               style: TextStyle(
+                                fontSize: 13,
                                 color: Colors.grey[600],
                               ),
                               overflow: TextOverflow.ellipsis,
                             )),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          Text('7/10/20'),
-                          Text('17:08'),
+                          SizedBox(width: 5),
+                          Text(
+                            time,
+                            style: TextStyle(
+                                fontSize: 12, color: Colors.grey[600]),
+                          ),
                         ],
                       ),
+                        ],
+                      ),
+                      
                     ],
                   ),
                 ),

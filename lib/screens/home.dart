@@ -43,6 +43,8 @@ class _HomeState extends State<Home> {
       child: ItemTile(
         title: draft.title,
         subtitle: draft.description,
+        date: draft.ddate,
+        time: draft.dtime,
         color: color,
         ontap: ontap2,
       ),

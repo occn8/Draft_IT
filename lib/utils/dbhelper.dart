@@ -25,7 +25,6 @@ class DataBaseHelper {
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = directory.path + 'drafts.db';
-    print(path);
     var draftsDb = openDatabase(path, version: 1, onCreate: _createDb);
     return draftsDb;
   }

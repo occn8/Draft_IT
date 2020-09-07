@@ -178,8 +178,8 @@ class _AddDraftState extends State<AddDraft> {
   void _save() async {
     Navigator.pop(context, true);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
-    draft.ddate = DateFormat.yMMMd().format(DateTime(2020, 7, 24));
-    draft.dtime = DateFormat.jm().format(DateTime.now());
+    draft.ddate = DateFormat.yMd().format(DateTime(2020, 7, 24));
+    draft.dtime = DateFormat.Hm().format(DateTime.now());
     int result;
     if (draft.id != null) {
       result = await helper.updateDraft(draft);

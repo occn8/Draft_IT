@@ -33,7 +33,9 @@ class DataBaseHelper {
     await db.execute(
         'CREATE TABLE draftstable(id INTEGER PRIMARY KEY, title TEXT,description TEXT, priority INTEGER, mdate Text, ddate Text)');
     await db.execute(
-        "CREATE TABLE todo(id INTEGER PRIMARY KEY, taskId INTEGER, title TEXT, isDone INTEGER)");
+        'CREATE TABLE todo(id INTEGER PRIMARY KEY, taskId INTEGER, title TEXT, isDone INTEGER)');
+    await db.execute(
+        'CREATE TABLE tags(id INTEGER PRIMARY KEY, name TEXT)');
   }
 
   //fetch operation

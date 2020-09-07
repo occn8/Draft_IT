@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            navigateToDetail(Draft('', '', '', 2), 'Add draft');
+            navigateToDetail(Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
           },
           label: Text('Add'),
           elevation: 4,

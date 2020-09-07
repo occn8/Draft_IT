@@ -31,8 +31,9 @@ class DataBaseHelper {
   }
 
   void _createDb(Database db, int newVersion) async {
-    await db.execute(
-        'CREATE TABLE draftstable(id INTEGER PRIMARY KEY, title TEXT,description TEXT, priority INTEGER, mdate Text, ddate Text)');
+    await db.execute('''CREATE TABLE draftstable(id INTEGER PRIMARY KEY, 
+        title TEXT,description TEXT, priority INTEGER, mdate Text, ddate Text, dtime Text, 
+        isStarred INTEGER, isArchived INTEGER, isTrash INTEGER, isDone INTEGER )''');
     await db.execute(
         'CREATE TABLE todos(id INTEGER PRIMARY KEY, taskId INTEGER, title TEXT, isDone INTEGER)');
     await db.execute('CREATE TABLE tags(id INTEGER PRIMARY KEY, name TEXT)');
@@ -118,8 +119,8 @@ class DataBaseHelper {
 
   Future<int> updateTag(Tag tag) async {
     Database db = await this.database;
-    var result = await db.update('tags', tag.toMap(),
-        where: 'id =?', whereArgs: [tag.id]);
+    var result = await db
+        .update('tags', tag.toMap(), where: 'id =?', whereArgs: [tag.id]);
     return result;
   }
 
@@ -131,7 +132,6 @@ class DataBaseHelper {
 
   Future<List<Map<String, dynamic>>> getTagMapList() async {
     Database db = await this.database;
-    // var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
     var result = await db.query('tags');
     return result;
   }

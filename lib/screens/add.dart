@@ -27,7 +27,7 @@ class _AddDraftState extends State<AddDraft> {
 
     return WillPopScope(
       onWillPop: () {
-       Navigator.pop(context, true);
+        Navigator.pop(context, true);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -42,7 +42,6 @@ class _AddDraftState extends State<AddDraft> {
           padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
           child: ListView(
             children: <Widget>[
-              
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: TextField(
@@ -144,7 +143,6 @@ class _AddDraftState extends State<AddDraft> {
     );
   }
 
-
   void updatePriorityAsInt(String value) {
     switch (value) {
       case 'High':
@@ -178,9 +176,10 @@ class _AddDraftState extends State<AddDraft> {
   }
 
   void _save() async {
-   Navigator.pop(context, true);
+    Navigator.pop(context, true);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
-    draft.ddate = DateFormat.jm().format(DateTime.now());
+    draft.ddate = DateFormat.yMMMd().format(DateTime(2020, 7, 24));
+    draft.dtime = DateFormat.jm().format(DateTime.now());
     int result;
     if (draft.id != null) {
       result = await helper.updateDraft(draft);
@@ -195,7 +194,7 @@ class _AddDraftState extends State<AddDraft> {
   }
 
   void _delete() async {
-   Navigator.pop(context, true);
+    Navigator.pop(context, true);
 
     if (draft.id != null) {
       // _showAlartDialog('status', 'no Note  deleted');

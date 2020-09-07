@@ -1,6 +1,4 @@
 import 'package:Draft_IT/index.dart';
-import 'package:Draft_IT/models/tag_model.dart';
-import 'package:Draft_IT/models/todo_model.dart';
 
 class DataBaseHelper {
   static DataBaseHelper _dataBaseHelper; //singleton dbhelper

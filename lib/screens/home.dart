@@ -90,6 +90,8 @@ class _HomeState extends State<Home> {
           child: ListView(
             children: [
               customAppBar(),
+              CustomAppBar(
+                  title: 'Home', leadOnTap: () {}, leadIcon: Icons.home),
               SearchBox(),
               CategorySelector(
                 colors: [Color(0xffe1e1e6), Color(0xffe1e1e6)],
@@ -127,6 +129,7 @@ class _HomeState extends State<Home> {
           Builder(
             builder: (context) => InkWell(
               splashColor: Theme.of(context).accentColor,
+              borderRadius: BorderRadius.circular(10),
               onTap: () => Scaffold.of(context).openDrawer(),
               child: Container(
                 margin: new EdgeInsets.all(5),

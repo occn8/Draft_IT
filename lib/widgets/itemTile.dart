@@ -1,6 +1,4 @@
 import 'package:Draft_IT/index.dart';
-import 'package:Draft_IT/widgets/tag_circle.dart';
-import 'package:flutter/material.dart';
 
 class ItemTile extends StatelessWidget {
   final String title, subtitle, date, time;

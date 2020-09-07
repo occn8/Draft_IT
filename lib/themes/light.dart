@@ -10,6 +10,6 @@ ThemeData light = ThemeData(
   primaryColorLight: Colors.white,
   primaryColorDark: Colors.black,
   cardColor: Colors.grey[300],
-  canvasColor: Colors.grey.shade200.withOpacity(0.5),
+  // canvasColor: Colors.grey.shade200.withOpacity(0.5),
   secondaryHeaderColor: Colors.grey[300],
 );

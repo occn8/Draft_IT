@@ -27,7 +27,7 @@ class _AddDraftState extends State<AddDraft> {
 
     return WillPopScope(
       onWillPop: () {
-        moveToLastScreen();
+       Navigator.pop(context, true);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -35,7 +35,7 @@ class _AddDraftState extends State<AddDraft> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                moveToLastScreen();
+                Navigator.pop(context, true);
               }),
         ),
         body: Padding(
@@ -73,8 +73,7 @@ class _AddDraftState extends State<AddDraft> {
                   decoration: InputDecoration(
                     labelText: 'title',
                     labelStyle: TextStyle(),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
+                    border: UnderlineInputBorder(),
                   ),
                 ),
               ),
@@ -82,6 +81,8 @@ class _AddDraftState extends State<AddDraft> {
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: TextField(
                   controller: descriptionController,
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
                   style: TextStyle(),
                   onChanged: (value) {
                     updateDescription();
@@ -136,9 +137,6 @@ class _AddDraftState extends State<AddDraft> {
     );
   }
 
-  void moveToLastScreen() {
-    Navigator.pop(context, true);
-  }
 
   void updatePriorityAsInt(String value) {
     switch (value) {
@@ -173,8 +171,9 @@ class _AddDraftState extends State<AddDraft> {
   }
 
   void _save() async {
-    moveToLastScreen();
+   Navigator.pop(context, true);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
+    draft.ddate = DateFormat.jm().format(DateTime.now());
     int result;
     if (draft.id != null) {
       result = await helper.updateDraft(draft);
@@ -189,7 +188,7 @@ class _AddDraftState extends State<AddDraft> {
   }
 
   void _delete() async {
-    moveToLastScreen();
+   Navigator.pop(context, true);
 
     if (draft.id != null) {
       // _showAlartDialog('status', 'no Note  deleted');

@@ -24,14 +24,14 @@ class DataBaseHelper {
   Future<Database> initializeDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = directory.path + 'drafts.db';
-
+    print(path);
     var draftsDb = openDatabase(path, version: 1, onCreate: _createDb);
     return draftsDb;
   }
 
   void _createDb(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE draftstable(id INTEGER PRIMARY KEY, title TEXT,description TEXT, priority INTEGER, mdate Text)');
+        'CREATE TABLE draftstable(id INTEGER PRIMARY KEY, title TEXT,description TEXT, priority INTEGER, mdate Text, ddate Text)');
     await db.execute(
         "CREATE TABLE todo(id INTEGER PRIMARY KEY, taskId INTEGER, title TEXT, isDone INTEGER)");
   }

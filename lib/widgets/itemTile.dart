@@ -26,6 +26,7 @@ class ItemTile extends StatelessWidget {
           ),
           InkWell(
             onTap: ontap,
+            borderRadius: BorderRadius.circular(5),
             child: Container(
               width: MediaQuery.of(context).size.width * 0.93,
               // padding: EdgeInsets.all(5),
@@ -41,7 +42,9 @@ class ItemTile extends StatelessWidget {
                         children: [
                           TagCircle(color: color),
                           SizedBox(height: 5),
-                          Container(child: Text(''),),
+                          Container(
+                            child: Text(''),
+                          ),
                         ],
                       ),
                       SizedBox(width: 5),

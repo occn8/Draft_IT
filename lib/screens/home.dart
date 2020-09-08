@@ -84,10 +84,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    if (drafts == null) {
-      drafts = List<Draft>();
-      updateListView();
-    }
+    // if (drafts == null) {
+    //   drafts = List<Draft>();
+    //   updateListView();
+    // }
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -103,13 +103,48 @@ class _HomeState extends State<Home> {
                 color: Colors.amber,
                 height: 1,
               ),
-              Column(children: draftList()),
+              FutureBuilder<List<Draft>>(
+                  future: dataBaseHelper.getDraftList(),
+                  initialData: [],
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    List<Widget> draftList() {
+                      int count = snapshot.data.length;
+                      List<Widget> draftItemList = List();
+
+                      for (int i = 0; i < count; i++) {
+                        draftItemList.add(
+                          ItemTile(
+                            title: snapshot.data[i].title,
+                            subtitle: snapshot.data[i].description,
+                            date: snapshot.data[i].ddate,
+                            time: snapshot.data[i].dtime,
+                            color: Colors.amber,
+                            ontap: () {},
+                          ),
+                        );
+                      }
+                      return draftItemList;
+                    }
+
+                    return Column(
+                      children: draftList(),
+                    );
+                  }),
+              // Column(children: draftList()),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigateToDetail(Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return AddDraft(
+                  Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
+            })).then(
+              (value) {
+                setState(() {});
+              },
+            );
+            // navigateToDetail(Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
           },
           elevation: 4,
           child: Icon(Icons.add),
@@ -189,26 +224,26 @@ class _HomeState extends State<Home> {
   //   }
   // }
 
-  void navigateToDetail(Draft note, String title) async {
-    bool result =
-        await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return AddDraft(note, title);
-    }));
-    if (result == true) {
-      updateListView();
-    }
-  }
+  // void navigateToDetail(Draft note, String title) async {
+  //   bool result =
+  //       await Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //     return AddDraft(note, title);
+  //   }));
+  //   if (result == true) {
+  //     updateListView();
+  //   }
+  // }
 
-  void updateListView() {
-    final Future<Database> dbFuture = dataBaseHelper.initializeDatabase();
-    dbFuture.then((database) {
-      Future<List<Draft>> noteListFuture = dataBaseHelper.getDraftList();
-      noteListFuture.then((noteList) {
-        setState(() {
-          this.drafts = noteList;
-          // this.count = noteList.length;
-        });
-      });
-    });
-  }
+  // void updateListView() {
+  //   final Future<Database> dbFuture = dataBaseHelper.initializeDatabase();
+  //   dbFuture.then((database) {
+  //     Future<List<Draft>> noteListFuture = dataBaseHelper.getDraftList();
+  //     noteListFuture.then((noteList) {
+  //       setState(() {
+  //         this.drafts = noteList;
+  //         // this.count = noteList.length;
+  //       });
+  //     });
+  //   });
+  // }
 }

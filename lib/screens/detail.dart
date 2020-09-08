@@ -146,7 +146,7 @@ class _DetailsState extends State<Details> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return AddDraft(Draft('', '', '', '', 2, 0, 0, 0, 0), 'Edit draft');
+              return AddDraft(this.widget.draft,'Edit note');
             }));
           },
           child: Icon(Icons.edit),

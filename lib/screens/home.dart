@@ -92,8 +92,13 @@ class _HomeState extends State<Home> {
             children: [
               customAppBar(),
               SearchBox(),
-              CategorySelector(
-                text: ['Active', 'All','Done'],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CategorySelector(
+                    text: ['Active', 'All','Done'],
+                  ),
+                ],
               ),
               Container(
                 color: Colors.amber,

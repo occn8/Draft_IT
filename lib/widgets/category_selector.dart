@@ -38,7 +38,6 @@ class _CategorySelectorState extends State<CategorySelector> {
         child: Container(
           // width: 90,
           height: 35,
-          
           decoration: BoxDecoration(
               border: Border.all(
                   color: isSelected ? Colors.white : Colors.transparent,
@@ -49,18 +48,30 @@ class _CategorySelectorState extends State<CategorySelector> {
               Container(
                 // width: double.infinity,
                 // height: double.infinity,
-                padding: EdgeInsets.symmetric(horizontal: 5,vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                 decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    shape: BoxShape.rectangle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black38,
-                        offset: Offset(0, 5.0),
-                        blurRadius: 5.0,
-                      ),
-                    ]),
-                child: Text(text,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w800),),
+                  color: Colors.transparent,
+                  shape: BoxShape.rectangle,
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black38,
+                  //     offset: Offset(0, 5.0),
+                  //     blurRadius: 5.0,
+                  //   ),
+                  // ],
+                ),
+                child: Text(
+                  text,
+                  style: isSelected
+                      ? TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                          color: Color.fromARGB(255, 0, 77, 128))
+                      : TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                ),
               ),
               AnimatedContainer(
                 duration: Duration(milliseconds: 150),
@@ -68,7 +79,9 @@ class _CategorySelectorState extends State<CategorySelector> {
                 height: 8.0,
                 width: isSelected ? 24.0 : 16.0,
                 decoration: BoxDecoration(
-                  color: isSelected ? Colors.blue[800] : Colors.white,
+                  color: isSelected
+                      ? Color.fromARGB(255, 0, 77, 128)
+                      : Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
               ),

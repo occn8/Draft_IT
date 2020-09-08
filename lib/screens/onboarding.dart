@@ -8,29 +8,40 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final int _numPages = 3;
+  final int _numPages = 4;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
   List<Widget> _buildPageIndicator() {
     List<Widget> list = [];
     for (int i = 0; i < _numPages; i++) {
-      list.add(i == _currentPage ? _indicator(true) : _indicator(false));
+      list.add(i == _currentPage
+          ? _indicator(true, () {
+              _pageController.animateToPage(i,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.bounceIn);
+            })
+          : _indicator(false, () {
+              _pageController.animateToPage(i,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.bounceIn);
+            }));
     }
     return list;
   }
 
-  Widget _indicator(
-    bool isActive,
-  ) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 150),
-      margin: EdgeInsets.symmetric(horizontal: 8.0),
-      height: 8.0,
-      width: isActive ? 24.0 : 16.0,
-      decoration: BoxDecoration(
-        color: isActive ? Colors.white : Color(0xFF7B51D3),
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+  Widget _indicator(bool isActive, Function ontap) {
+    return InkWell(
+      onTap: ontap,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 150),
+        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        height: 8.0,
+        width: isActive ? 24.0 : 16.0,
+        decoration: BoxDecoration(
+          color: isActive ? Colors.white : Color(0xFF7B51D3),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
       ),
     );
   }
@@ -58,12 +69,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 5.0),
               child: ListView(
-                // crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Container(
                     alignment: Alignment.centerRight,
                     child: FlatButton(
-                      onPressed: () => print('Skip'),
+                      onPressed: () {
+                         _pageController.animateToPage(3,
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.bounceIn);
+                          setState(() {
+                            _currentPage=3;
+                          });
+                      },
                       child: Text(
                         'Skip',
                         style: TextStyle(
@@ -92,7 +109,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               Center(
                                 child: Image(
                                   image: AssetImage(
-                                    'assets/images/onboarding2.png',
+                                    'assets/images/ideas_flow.png',
                                   ),
                                   height: 200.0,
                                   // width: 200.0,
@@ -119,7 +136,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               Center(
                                 child: Image(
                                   image: AssetImage(
-                                    'assets/images/onboarding1.png',
+                                    'assets/images/taking_notes.png',
                                   ),
                                   height: 200.0,
                                   width: 200.0,
@@ -146,7 +163,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               Center(
                                 child: Image(
                                   image: AssetImage(
-                                    'assets/images/onboarding0.png',
+                                    'assets/images/task.png',
                                   ),
                                   height: 200.0,
                                   width: 200.0,
@@ -155,6 +172,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               SizedBox(height: 10.0),
                               Text(
                                 'Get a new experience\nof imagination',
+                                style: kTitleStyle,
+                              ),
+                              SizedBox(height: 8.0),
+                              Text(
+                                'Lorem ipsum dolor sit amet, consect adipiscing elit, sed do eiusmod tempor incididunt ut labore et.',
+                                style: kSubtitleStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/images/fresh_notification.png',
+                                  ),
+                                  height: 200.0,
+                                  width: 200.0,
+                                ),
+                              ),
+                              SizedBox(height: 10.0),
+                              Text(
+                                'Get fresh notification experiences',
                                 style: kTitleStyle,
                               ),
                               SizedBox(height: 8.0),

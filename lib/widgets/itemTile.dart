@@ -61,7 +61,7 @@ class ItemTile extends StatelessWidget {
                                   width:
                                       MediaQuery.of(context).size.width * 0.45,
                                   child: Text(
-                                    title ?? 'No Title',
+                                    title ?? 'No Title Added',
                                     overflow: TextOverflow.ellipsis,
                                     style:
                                         TextStyle(fontWeight: FontWeight.w800),

@@ -9,27 +9,27 @@ class _HomeState extends State<Home> {
   List<Draft> drafts;
   DataBaseHelper dataBaseHelper = DataBaseHelper();
 
-  List<Widget> draftList() {
-    List<Widget> draftItemList = List();
+  // List<Widget> draftList() {
+  //   List<Widget> draftItemList = List();
 
-    for (int i = 0; i < drafts.length; i++) {
-      draftItemList.add(draftItem(
-        draft: drafts[i],
-        // widget: getPriorityIcon(this.drafts[i].priority),
-        color: getPriorityColor(this.drafts[i].priority),
-        // ontap1: () => _delete(context, drafts[i]),
-        ontap2: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext ctx) => Details(draft: this.drafts[i]),
-            )),
-        key: Key(this.drafts[i].toString()),
-        setstateRemove: () => this.drafts.removeAt(i),
-        setstateUndo: () => this.drafts.insert(i, drafts[i]),
-      ));
-    }
-    return draftItemList;
-  }
+  //   for (int i = 0; i < drafts.length; i++) {
+  //     draftItemList.add(draftItem(
+  //       draft: drafts[i],
+  //       // widget: getPriorityIcon(this.drafts[i].priority),
+  //       color: getPriorityColor(this.drafts[i].priority),
+  //       // ontap1: () => _delete(context, drafts[i]),
+  //       ontap2: () => Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (BuildContext ctx) => Details(draft: this.drafts[i]),
+  //           )),
+  //       key: Key(this.drafts[i].toString()),
+  //       setstateRemove: () => this.drafts.removeAt(i),
+  //       setstateUndo: () => this.drafts.insert(i, drafts[i]),
+  //     ));
+  //   }
+  //   return draftItemList;
+  // }
 
   Widget draftItem({
     Draft draft,
@@ -84,10 +84,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // if (drafts == null) {
-    //   drafts = List<Draft>();
-    //   updateListView();
-    // }
+ 
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

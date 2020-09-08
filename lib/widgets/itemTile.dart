@@ -17,7 +17,7 @@ class ItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
       child: Row(
         children: [
           Container(
@@ -40,57 +40,66 @@ class ItemTile extends StatelessWidget {
                       Column(
                         children: [
                           TagCircle(color: color),
+                          SizedBox(height: 5),
+                          Container(child: Text(''),),
                         ],
                       ),
                       SizedBox(width: 5),
-
-                      Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.72,
+                            width: MediaQuery.of(context).size.width * 0.75,
                             child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container( width: MediaQuery.of(context).size.width * 0.42,
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.45,
                                   child: Text(
                                     title ?? 'No Title',
                                     overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(fontWeight: FontWeight.w800),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w800),
                                   ),
                                 ),
                                 SizedBox(width: 5),
                                 Text(
-                                date,
-                                style: TextStyle(fontSize: 12),
-                              ),
+                                  date,
+                                  style: TextStyle(fontSize: 12),
+                                ),
                               ],
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                          SizedBox(height: 5),
                           Container(
-                                child: Text(
-                              subtitle ?? 'No Description Added',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.grey[600],
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            )),
-                          SizedBox(width: 5),
-                          Text(
-                            time,
-                            style: TextStyle(
-                                fontSize: 12, color: Colors.grey[600]),
+                            width: MediaQuery.of(context).size.width * 0.76,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.56,
+                                    child: Text(
+                                      subtitle ?? 'No Description Added',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey[600],
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    )),
+                                SizedBox(width: 5),
+                                Text(
+                                  time,
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.grey[600]),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                        ],
-                      ),
-                      
                     ],
                   ),
                 ),

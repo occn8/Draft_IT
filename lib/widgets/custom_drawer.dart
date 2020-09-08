@@ -77,6 +77,10 @@ class CustomDrawer extends StatelessWidget {
             title: Text('Archived'),
           ),
           ListTile(
+            leading: Icon(Icons.attach_money),
+            title: Text('Finance'),
+          ),
+          ListTile(
             leading: Icon(Icons.delete_outline),
             title: Text('Trash'),
           ),

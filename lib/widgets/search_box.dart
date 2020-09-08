@@ -129,7 +129,7 @@ class _MySearchDelegate extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     final Iterable<Draft> suggestions = this.query.isEmpty
         ? _history
-        : _drafts.where((dr) => dr.title.startsWith(query));
+        : this._drafts.where((dr) => dr.title.startsWith(query));
 
     return _SuggestionList(
       query: this.query,

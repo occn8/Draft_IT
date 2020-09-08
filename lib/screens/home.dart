@@ -70,6 +70,7 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.delete_outline),
       ),
       secondaryBackground: Container(
+        padding: EdgeInsets.all(5),
         color: Colors.green,
         alignment: Alignment.centerRight,
         child: Icon(Icons.archive),
@@ -100,9 +101,7 @@ class _HomeState extends State<Home> {
                 color: Colors.amber,
                 height: 1,
               ),
-              Column(
-                children: draftList(),
-              )
+              Column(children: draftList()),
             ],
           ),
         ),

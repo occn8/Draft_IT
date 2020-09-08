@@ -11,7 +11,7 @@ export 'package:google_fonts/google_fonts.dart';
 
 //screens
 export 'package:Draft_IT/screens/home.dart';
-export 'package:Draft_IT/screens/add.dart';
+export 'package:Draft_IT/screens/write.dart';
 export 'package:Draft_IT/screens/detail.dart';
 export 'package:Draft_IT/screens/search_view.dart';
 export 'package:Draft_IT/screens/onboarding.dart';

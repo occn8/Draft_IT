@@ -1,20 +1,20 @@
 import 'package:Draft_IT/index.dart';
 import 'package:intl/intl.dart';
 
-class AddDraft extends StatefulWidget {
+class WriteDraft extends StatefulWidget {
   final String appBarTitle;
   final Draft draft;
-  AddDraft(this.draft, this.appBarTitle);
+  WriteDraft(this.draft, this.appBarTitle);
   @override
-  _AddDraftState createState() => _AddDraftState(this.appBarTitle, this.draft);
+  _WriteDraftState createState() => _WriteDraftState(this.appBarTitle, this.draft);
 }
 
-class _AddDraftState extends State<AddDraft> {
+class _WriteDraftState extends State<WriteDraft> {
   DataBaseHelper helper = DataBaseHelper();
 
   String appBarTitle;
   Draft draft;
-  _AddDraftState(this.appBarTitle, this.draft);
+  _WriteDraftState(this.appBarTitle, this.draft);
 
   static var _priorities = ['High', 'Normal'];
   TextEditingController titleController = TextEditingController();

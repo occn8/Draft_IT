@@ -22,7 +22,7 @@ class _DetailsState extends State<Details> {
                   padding: EdgeInsets.all(5),
                   child: Center(
                       child: Text(
-                    widget.draft.title,
+                    widget.draft.title ?? 'No Title Added',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
@@ -32,7 +32,7 @@ class _DetailsState extends State<Details> {
                 Container(
                   padding: EdgeInsets.all(5),
                   child: Text(
-                    widget.draft.description,
+                    widget.draft.description ?? 'No Description Added',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -146,8 +146,12 @@ class _DetailsState extends State<Details> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return AddDraft(this.widget.draft,'Edit note');
-            }));
+              return WriteDraft(this.widget.draft, 'Edit Draft');
+            })).then(
+              (value) {
+                setState(() {});
+              },
+            );
           },
           child: Icon(Icons.edit),
         ),

@@ -84,7 +84,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
- 
     return SafeArea(
       child: Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -116,13 +115,23 @@ class _HomeState extends State<Home> {
                             date: snapshot.data[i].ddate,
                             time: snapshot.data[i].dtime,
                             color: Colors.amber,
-                            ontap: () {},
+                            ontap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext ctx) =>
+                                        Details(draft: snapshot.data[i]),
+                                  )).then(
+                                (value) {
+                                  setState(() {});
+                                },
+                              );
+                            },
                           ),
                         );
                       }
                       return draftItemList;
                     }
-
                     return Column(
                       children: draftList(),
                     );
@@ -134,7 +143,7 @@ class _HomeState extends State<Home> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return AddDraft(
+              return WriteDraft(
                   Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
             })).then(
               (value) {

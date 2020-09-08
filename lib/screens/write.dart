@@ -62,7 +62,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 padding: EdgeInsets.symmetric(vertical: 15),
                 child: TextField(
                   controller: descriptionController,
-                  maxLines: null,
+                  maxLines: 2,
                   keyboardType: TextInputType.multiline,
                   textCapitalization: TextCapitalization.sentences,
                   style: TextStyle(),

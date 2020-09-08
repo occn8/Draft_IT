@@ -18,7 +18,11 @@ class _HomeState extends State<Home> {
         // widget: getPriorityIcon(this.drafts[i].priority),
         color: getPriorityColor(this.drafts[i].priority),
         // ontap1: () => _delete(context, drafts[i]),
-        ontap2: () => navigateToDetail(this.drafts[i], 'Edit draft'),
+        ontap2: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext ctx) => Details(draft: this.drafts[i]),
+            )),
         key: Key(this.drafts[i].toString()),
         setstateRemove: () => this.drafts.removeAt(i),
         setstateUndo: () => this.drafts.insert(i, drafts[i]),
@@ -91,8 +95,6 @@ class _HomeState extends State<Home> {
           child: ListView(
             children: [
               customAppBar(),
-              CustomAppBar(
-                  title: 'Home', leadOnTap: () {}, leadIcon: Icons.home),
               SearchBox(),
               CategorySelector(
                 colors: [Color(0xffe1e1e6), Color(0xffe1e1e6)],
@@ -105,14 +107,12 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton.extended(
+        floatingActionButton: FloatingActionButton(
           onPressed: () {
             navigateToDetail(Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
           },
-          label: Text('Add'),
           elevation: 4,
-          icon: Icon(Icons.add),
-          backgroundColor: Colors.grey,
+          child: Icon(Icons.add),
         ),
         drawer: CustomDrawer(),
       ),

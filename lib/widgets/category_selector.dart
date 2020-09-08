@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CategorySelector extends StatefulWidget {
-  final List<Color> colors;
-  CategorySelector({@required this.colors});
+  final List<String> text;
+  CategorySelector({@required this.text});
   @override
   _CategorySelectorState createState() => _CategorySelectorState();
 }
@@ -14,11 +14,11 @@ class _CategorySelectorState extends State<CategorySelector> {
   List<Widget> categorySelector() {
     List<Widget> categoryItemList = List();
 
-    for (int i = 0; i < widget.colors.length; i++) {
+    for (int i = 0; i < widget.text.length; i++) {
       isSelected = currentIndex == i;
 
       categoryItemList.add(categoryItem(
-        color: widget.colors[i],
+        text: widget.text[i],
         isSelected: isSelected,
         ontap: () {
           setState(() {
@@ -30,30 +30,49 @@ class _CategorySelectorState extends State<CategorySelector> {
     return categoryItemList;
   }
 
-  Widget categoryItem({Color color, bool isSelected, Function ontap}) {
+  Widget categoryItem({String text, bool isSelected, Function ontap}) {
     return GestureDetector(
       onTap: ontap,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(5.0),
         child: Container(
-          width: 50,
-          height: 30,
+          // width: 90,
+          height: 35,
+          
           decoration: BoxDecoration(
               border: Border.all(
                   color: isSelected ? Colors.white : Colors.transparent,
-                  width: 4),
-              shape: BoxShape.circle),
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration:
-                BoxDecoration(color: color, shape: BoxShape.circle, boxShadow: [
-              BoxShadow(
-                color: Colors.black38,
-                offset: Offset(0, 5.0),
-                blurRadius: 5.0,
+                  width: 0),
+              shape: BoxShape.rectangle),
+          child: Column(
+            children: [
+              Container(
+                // width: double.infinity,
+                // height: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 5,vertical: 4),
+                decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    shape: BoxShape.rectangle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black38,
+                        offset: Offset(0, 5.0),
+                        blurRadius: 5.0,
+                      ),
+                    ]),
+                child: Text(text,style: TextStyle(fontSize: 12,fontWeight: FontWeight.w800),),
               ),
-            ]),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 150),
+                margin: EdgeInsets.symmetric(horizontal: 8.0),
+                height: 8.0,
+                width: isSelected ? 24.0 : 16.0,
+                decoration: BoxDecoration(
+                  color: isSelected ? Colors.blue[800] : Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+              ),
+            ],
           ),
         ),
       ),

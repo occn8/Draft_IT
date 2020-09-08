@@ -6,8 +6,17 @@ class Draft {
       this._isStarred, this._isArchived, this._isTrash, this._isDone,
       [this._description]);
 
-  Draft.withId(this._id, this._title, this._mdate, this._ddate,this._dtime, this._priority,
-      this._isStarred, this._isArchived, this._isTrash, this._isDone,
+  Draft.withId(
+      this._id,
+      this._title,
+      this._mdate,
+      this._ddate,
+      this._dtime,
+      this._priority,
+      this._isStarred,
+      this._isArchived,
+      this._isTrash,
+      this._isDone,
       [this._description]);
 
   int get id => _id;
@@ -16,6 +25,10 @@ class Draft {
   String get mdate => _mdate;
   String get ddate => _ddate;
   String get dtime => _dtime;
+  int get isStarred => _isStarred;
+  int get isArchived => _isArchived;
+  int get isTrash => _isTrash;
+  int get isDone => _isDone;
   int get priority => _priority;
 
   set title(String newTitle) {

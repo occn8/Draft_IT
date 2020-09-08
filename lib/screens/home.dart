@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
               customAppBar(),
               SearchBox(),
               CategorySelector(
-                colors: [Color(0xffe1e1e6), Color(0xffe1e1e6)],
+                text: ['Active', 'All','Done'],
               ),
               Container(
                 color: Colors.amber,

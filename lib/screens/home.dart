@@ -154,6 +154,7 @@ class _HomeState extends State<Home> {
             );
             // navigateToDetail(Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
           },
+          backgroundColor: Theme.of(context).primaryColor,
           elevation: 4,
           child: Icon(Icons.add),
         ),
@@ -181,7 +182,7 @@ class _HomeState extends State<Home> {
                     color: Colors.white10,
                     borderRadius: BorderRadius.circular(10)),
                 child: new Icon(Icons.menu,
-                    size: 25, color: Theme.of(context).accentColor),
+                    size: 25, color: Theme.of(context).primaryColorDark),
               ),
             ),
           ),
@@ -197,7 +198,7 @@ class _HomeState extends State<Home> {
                     color: Colors.white10,
                     borderRadius: BorderRadius.circular(10)),
                 child: new Icon(Icons.notifications,
-                    size: 25, color: Theme.of(context).accentColor),
+                    size: 25, color: Theme.of(context).primaryColorDark),
               ),
             ),
           ),

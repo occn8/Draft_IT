@@ -60,11 +60,11 @@ class _DetailsState extends State<Details> {
                         // margin: new EdgeInsets.all(5),
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white60,
+                          color: Colors.white10,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: new Icon(Icons.arrow_back_ios,
-                            size: 25, color: Colors.black),
+                            size: 25, color: Theme.of(context).primaryColorDark),
                       ),
                     ),
                   ),
@@ -79,11 +79,12 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white60,
+                              color: Colors.white10,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.star_border,
-                                size: 25, color: Colors.black),
+                                size: 25,
+                                color: Theme.of(context).primaryColorDark),
                           ),
                         ),
                       ),
@@ -96,11 +97,12 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white60,
+                              color: Colors.white10,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.share,
-                                size: 25, color: Colors.black),
+                                size: 25,
+                                color: Theme.of(context).primaryColorDark),
                           ),
                         ),
                       ),
@@ -113,11 +115,12 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white60,
+                              color: Colors.white10,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.folder_open,
-                                size: 25, color: Colors.black),
+                                size: 25,
+                                color: Theme.of(context).primaryColorDark),
                           ),
                         ),
                       ),
@@ -130,11 +133,12 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white60,
+                              color: Colors.white10,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.delete_outline,
-                                size: 25, color: Colors.black),
+                                size: 25,
+                                color: Theme.of(context).primaryColorDark),
                           ),
                         ),
                       ),
@@ -156,6 +160,7 @@ class _DetailsState extends State<Details> {
               },
             );
           },
+          backgroundColor: Theme.of(context).primaryColor,
           child: Icon(Icons.edit),
         ),
       ),

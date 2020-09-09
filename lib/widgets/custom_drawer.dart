@@ -22,7 +22,7 @@ class CustomDrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        child: Icon(Icons.person),
+                        child: Icon(Icons.person,color: Theme.of(context).primaryColor,),
                       ),
                       SizedBox(width: 5),
                       Text('occn lary'),
@@ -39,14 +39,14 @@ class CustomDrawer extends StatelessWidget {
                           child: Icon(
                             Icons.brightness_4,
                             size: 28,
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).primaryColor,
                           )),
                     ),
                     SizedBox(width: 15),
                     Icon(
                       Icons.calendar_today,
                       size: 28,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                     SizedBox(width: 15),
                     InkWell(
@@ -60,7 +60,7 @@ class CustomDrawer extends StatelessWidget {
                         child: Icon(
                           Icons.settings,
                           size: 28,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).primaryColor,
                         )),
                     SizedBox(width: 5),
                   ],

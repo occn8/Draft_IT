@@ -62,7 +62,7 @@ class _SearchBoxState extends State<SearchBox> {
               hintStyle: TextStyle(color: Colors.grey[600]),
               prefixIcon: Hero(
                   tag: 'ico',
-                  child: Icon(Icons.search, size: 28, color: Theme.of(context).accentColor))),
+                  child: Icon(Icons.search, size: 28, color: Theme.of(context).primaryColor))),
         ),
       ),
     );

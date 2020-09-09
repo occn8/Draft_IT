@@ -49,11 +49,10 @@ class _WriteDraftState extends State<WriteDraft> {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
         child: ListView(
           children: <Widget>[
             Container(
-              margin: new EdgeInsets.all(5),
               height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,26 +65,29 @@ class _WriteDraftState extends State<WriteDraft> {
                       child: Container(
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Colors.white60,
+                            color: Colors.white10,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.arrow_back_ios,
-                            size: 25, color: Theme.of(context).accentColor),
+                            size: 25, color: Theme.of(context).primaryColorDark),
                       ),
                     ),
                   ),
-                  Text(appBarTitle),
+                  Text(
+                    appBarTitle,
+                    style: TextStyle(fontSize: 16),
+                  ),
                   Builder(
                     builder: (context) => InkWell(
                       splashColor: Theme.of(context).accentColor,
                       borderRadius: BorderRadius.circular(10),
-                      onTap: (){},
+                      onTap: () {},
                       child: Container(
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Colors.white60,
+                            color: Colors.white10,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.more_horiz,
-                            size: 25, color: Theme.of(context).accentColor),
+                            size: 25, color: Theme.of(context).primaryColorDark),
                       ),
                     ),
                   ),

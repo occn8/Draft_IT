@@ -64,7 +64,7 @@ class _PgStateSelectorState extends State<PgStateSelector> {
                       ? TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w800,
-                          color: Theme.of(context).accentColor)
+                          color: Theme.of(context).primaryColor)
                       : TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -78,7 +78,7 @@ class _PgStateSelectorState extends State<PgStateSelector> {
                 width: isSelected ? 24.0 : 16.0,
                 decoration: BoxDecoration(
                   color:
-                      isSelected ? Theme.of(context).accentColor : Colors.grey,
+                      isSelected ? Theme.of(context).primaryColor : Colors.grey,
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
               ),

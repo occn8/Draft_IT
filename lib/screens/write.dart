@@ -68,13 +68,14 @@ class _WriteDraftState extends State<WriteDraft> {
                             color: Colors.white10,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.arrow_back_ios,
-                            size: 25, color: Theme.of(context).primaryColorDark),
+                            size: 25,
+                            color: Theme.of(context).primaryColorDark),
                       ),
                     ),
                   ),
                   Text(
                     appBarTitle,
-                    style: TextStyle(fontSize: 16,fontWeight: FontWeight.w800),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                   ),
                   Builder(
                     builder: (context) => InkWell(
@@ -87,7 +88,8 @@ class _WriteDraftState extends State<WriteDraft> {
                             color: Colors.white10,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.more_horiz,
-                            size: 25, color: Theme.of(context).primaryColorDark),
+                            size: 25,
+                            color: Theme.of(context).primaryColorDark),
                       ),
                     ),
                   ),
@@ -107,6 +109,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 decoration: InputDecoration(
                   labelText: 'Draft Title',
                   hintText: 'Enter',
+                  prefixIcon: Icon(Icons.title),
                   labelStyle: TextStyle(fontWeight: FontWeight.w800),
                   border: UnderlineInputBorder(),
                 ),
@@ -137,6 +140,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 controller: notesController,
                 focusNode: _noteFocus,
                 maxLines: null,
+                minLines: 3,
                 keyboardType: TextInputType.multiline,
                 textCapitalization: TextCapitalization.sentences,
                 style: TextStyle(),
@@ -289,7 +293,10 @@ class _WriteDraftState extends State<WriteDraft> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
+                      flex: 4,
                       child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
                           color: Theme.of(context).primaryColor,
                           child: Text(
                             'Save',
@@ -303,15 +310,18 @@ class _WriteDraftState extends State<WriteDraft> {
                     ),
                     SizedBox(width: 5),
                     Expanded(
+                      flex: 2,
                       child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
                           color: Theme.of(context).primaryColor,
                           child: Text(
-                            'Delete',
+                            'Cancel',
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
                             setState(() {
-                              _delete();
+                              Navigator.pop(context);
                             });
                           }),
                     )
@@ -373,20 +383,20 @@ class _WriteDraftState extends State<WriteDraft> {
     }
   }
 
-  void _delete() async {
-    Navigator.pop(context, true);
+  // void _delete() async {
+  //   Navigator.pop(context, true);
 
-    if (draft.id != null) {
-      // _showAlartDialog('status', 'no Note  deleted');
-      return;
-    }
-    int result = await helper.deleteDraft(draft.id);
-    if (result != 0) {
-      // _showAlartDialog('status', 'Note deleted successfully');
-    } else {
-      // _showAlartDialog('status', 'Error occured deleting note');
-    }
-  }
+  //   if (draft.id != null) {
+  //     // _showAlartDialog('status', 'no Note  deleted');
+  //     return;
+  //   }
+  //   int result = await helper.deleteDraft(draft.id);
+  //   if (result != 0) {
+  //     // _showAlartDialog('status', 'Note deleted successfully');
+  //   } else {
+  //     // _showAlartDialog('status', 'Error occured deleting note');
+  //   }
+  // }
 
   // void _showAlartDialog(String title, String message) {
   //   AlertDialog alartDialog = AlertDialog(

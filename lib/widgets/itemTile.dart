@@ -28,7 +28,7 @@ class ItemTile extends StatelessWidget {
             onTap: ontap,
             borderRadius: BorderRadius.circular(5),
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.93,
+              width: MediaQuery.of(context).size.width * 0.935,
               // padding: EdgeInsets.all(5),
               child: Card(
                 color: Theme.of(context).cardColor,
@@ -53,13 +53,13 @@ class ItemTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.75,
+                            width: MediaQuery.of(context).size.width * 0.77,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.45,
+                                      MediaQuery.of(context).size.width * 0.50,
                                   child: Text(
                                     title ?? 'No Title Added',
                                     overflow: TextOverflow.ellipsis,
@@ -77,13 +77,13 @@ class ItemTile extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.76,
+                            width: MediaQuery.of(context).size.width * 0.77,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
                                     width: MediaQuery.of(context).size.width *
-                                        0.56,
+                                        0.58,
                                     child: Text(
                                       subtitle ?? 'No Description Added',
                                       style: TextStyle(

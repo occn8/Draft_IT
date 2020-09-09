@@ -39,6 +39,9 @@ class _DetailsState extends State<Details> {
                     ),
                   ),
                 ),
+                // Row(
+                //   children: <Widget>[]..addAll(organizersSection(widget.draft)),
+                // ),
               ],
             ),
             Container(
@@ -155,6 +158,44 @@ class _DetailsState extends State<Details> {
           },
           child: Icon(Icons.edit),
         ),
+      ),
+    );
+  }
+
+  // List<Widget> organizersSection(Draft todo) {
+  //   return todo.todos.map((td) => OrgSection(td.title, td.isDone)).toList();
+  // }
+}
+
+class OrgSection extends StatelessWidget {
+  final String orgName;
+  final int orgImg;
+  OrgSection(
+    this.orgName,
+    this.orgImg,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: new EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(),
+              child: Text(orgImg.toString()),
+            ),
+          ),
+          SizedBox(width: 10),
+          Text(orgName,
+              style: TextStyle(
+                fontSize: 13,
+              )),
+        ],
       ),
     );
   }

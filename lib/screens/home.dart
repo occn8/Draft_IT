@@ -96,7 +96,7 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   PgStateSelector(
-                    pgStates: ['Active', 'All','Done'],
+                    pgStates: ['Active', 'All', 'Done'],
                   ),
                 ],
               ),
@@ -137,6 +137,7 @@ class _HomeState extends State<Home> {
                       }
                       return draftItemList;
                     }
+
                     return Column(
                       children: draftList(),
                     );
@@ -182,7 +183,8 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                     color: Colors.white60,
                     borderRadius: BorderRadius.circular(10)),
-                child: new Icon(Icons.menu, size: 25, color: Theme.of(context).accentColor),
+                child: new Icon(Icons.menu,
+                    size: 25, color: Theme.of(context).accentColor),
               ),
             ),
           ),
@@ -192,7 +194,8 @@ class _HomeState extends State<Home> {
             padding: new EdgeInsets.all(8),
             decoration: BoxDecoration(
                 color: Colors.white60, borderRadius: BorderRadius.circular(10)),
-            child: new Icon(Icons.notifications, size: 25, color: Theme.of(context).accentColor),
+            child: new Icon(Icons.notifications,
+                size: 25, color: Theme.of(context).accentColor),
           ),
         ],
       ),

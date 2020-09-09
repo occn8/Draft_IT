@@ -3,7 +3,12 @@ class Todo {
   int draftId;
   String title;
   int isDone;
-  Todo({this.id, this.draftId, this.title, this.isDone});
+  Todo({
+    this.id,
+    this.draftId,
+    this.title,
+    this.isDone,
+  });
 
   int get todoId => id;
   int get todoDraftId => draftId;

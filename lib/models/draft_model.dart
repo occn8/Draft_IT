@@ -4,7 +4,7 @@ class Draft {
 
   Draft(this._title, this._mdate, this._ddate, this._dtime, this._priority,
       this._isStarred, this._isArchived, this._isTrash, this._isDone,
-      [this._description,this._notes]);
+      [this._description, this._notes]);
 
   Draft.withId(
       this._id,
@@ -17,7 +17,8 @@ class Draft {
       this._isArchived,
       this._isTrash,
       this._isDone,
-      [this._description,this._notes]);
+      [this._description,
+      this._notes]);
 
   int get id => _id;
   String get title => _title;
@@ -43,6 +44,7 @@ class Draft {
       this._description = newDescription;
     }
   }
+
   set notes(String newNotes) {
     if (newNotes.length <= 255) {
       this._notes = newNotes;
@@ -108,7 +110,6 @@ class Draft {
     map['isArchived'] = _isArchived;
     map['isTrash'] = _isTrash;
     map['isDone'] = _isDone;
-
     return map;
   }
 

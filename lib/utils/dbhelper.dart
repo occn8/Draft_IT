@@ -28,9 +28,12 @@ class DataBaseHelper {
   }
 
   void _createDb(Database db, int newVersion) async {
-    await db.execute('''CREATE TABLE draftstable(id INTEGER PRIMARY KEY, 
-        title TEXT,description TEXT, notes TEXT, priority INTEGER, mdate Text, ddate Text, dtime Text, 
-        isStarred INTEGER, isArchived INTEGER, isTrash INTEGER, isDone INTEGER )''');
+    await db.execute('''
+    CREATE TABLE draftstable(id INTEGER PRIMARY KEY, 
+        title TEXT,description TEXT, notes TEXT, priority INTEGER, 
+        mdate Text, ddate Text, dtime Text, isStarred INTEGER, 
+        isArchived INTEGER, isTrash INTEGER, isDone INTEGER)
+        ''');
     await db.execute(
         'CREATE TABLE todos(id INTEGER PRIMARY KEY, draftId INTEGER, title TEXT, isDone INTEGER)');
     await db.execute('CREATE TABLE tags(id INTEGER PRIMARY KEY, name TEXT)');
@@ -89,18 +92,18 @@ class DataBaseHelper {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<List<Todo>> getTodo(int taskId) async {
-    Database db = await this.database;
-    List<Map<String, dynamic>> todoMap =
-        await db.rawQuery("SELECT * FROM todos WHERE taskId = $taskId");
-    return List.generate(todoMap.length, (index) {
-      return Todo(
-          id: todoMap[index]['id'],
-          title: todoMap[index]['title'],
-          draftId: todoMap[index]['taskId'],
-          isDone: todoMap[index]['isDone']);
-    });
-  }
+  // Future<List<Todo>> getTodo(int taskId) async {
+  //   Database db = await this.database;
+  //   List<Map<String, dynamic>> todoMap =
+  //       await db.rawQuery("SELECT * FROM todos WHERE taskId = $taskId");
+  //   return List.generate(todoMap.length, (index) {
+  //     return Todo(
+  //         // id: todoMap[index]['id'],
+  //         title: todoMap[index]['title'],
+  //         // draftId: todoMap[index]['taskId'],
+  //         isDone: todoMap[index]['isDone']);
+  //   });
+  // }
 
   Future<void> updateTodoDone(int id, int isDone) async {
     Database db = await this.database;

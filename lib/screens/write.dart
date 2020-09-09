@@ -141,105 +141,105 @@ class _WriteDraftState extends State<WriteDraft> {
                     });
                   }),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FutureBuilder(
-                future: helper.getTodo(draft.id),
-                initialData: [],
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return Container(
-                    height: 100,
-                    child: Scrollbar(
-                      child: ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                              onTap: () async {
-                                if (snapshot.data[index].isDone == 0) {
-                                  await helper.updateTodoDone(
-                                      snapshot.data[index].id, 1);
-                                } else {
-                                  await helper.updateTodoDone(
-                                      snapshot.data[index].id, 0);
-                                }
-                                setState(() {});
-                              },
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 24.0,
-                                  vertical: 8.0,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 20.0,
-                                      height: 20.0,
-                                      margin: EdgeInsets.only(
-                                        right: 12.0,
-                                      ),
-                                      decoration: BoxDecoration(
-                                          color: snapshot.data[index].isDone
-                                              ? Color(0xFF7349FE)
-                                              : Colors.transparent,
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
-                                          border: snapshot.data[index].isDone
-                                              ? null
-                                              : Border.all(
-                                                  color: Color(0xFF86829D),
-                                                  width: 1.5)),
-                                      child: Icon(Icons.check_box),
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        snapshot.data[index].title ?? "(Unnamed Todo)",
-                                        style: TextStyle(
-                                          color: snapshot.data[index].isDone
-                                              ? Color(0xFF211551)
-                                              : Color(0xFF86829D),
-                                          fontSize: 16.0,
-                                          fontWeight:
-                                              snapshot.data[index].isDone
-                                                  ? FontWeight.bold
-                                                  : FontWeight.w500,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ));
-                        },
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            TextField(
-              focusNode: _todoFocus,
-              controller: todoController,
-              onSubmitted: (value) async {
-                if (value != "") {
-                  if (draft.id != null) {
-                    Todo _newTodo = Todo(
-                      draftId: draft.id,
-                      title: value,
-                      isDone: 0,
-                    );
-                    await helper.insertTodo(_newTodo);
-                    setState(() {});
-                    print("Task exist");
-                    // _todoFocus.requestFocus();
-                  } else {
-                    print("Task doesn't exist");
-                  }
-                }
-              },
-              decoration: InputDecoration(
-                hintText: "Enter Todo item...",
-                border: InputBorder.none,
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: FutureBuilder(
+            //     future: helper.getTodo(draft.id),
+            //     initialData: [],
+            //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+            //       return Container(
+            //         height: 100,
+            //         child: Scrollbar(
+            //           child: ListView.builder(
+            //             itemCount: snapshot.data.length,
+            //             itemBuilder: (BuildContext context, int index) {
+            //               return GestureDetector(
+            //                   onTap: () async {
+            //                     if (snapshot.data[index].isDone == 0) {
+            //                       await helper.updateTodoDone(
+            //                           snapshot.data[index].id, 1);
+            //                     } else {
+            //                       await helper.updateTodoDone(
+            //                           snapshot.data[index].id, 0);
+            //                     }
+            //                     setState(() {});
+            //                   },
+            //                   child: Container(
+            //                     padding: EdgeInsets.symmetric(
+            //                       horizontal: 24.0,
+            //                       vertical: 8.0,
+            //                     ),
+            //                     child: Row(
+            //                       children: [
+            //                         Container(
+            //                           width: 20.0,
+            //                           height: 20.0,
+            //                           margin: EdgeInsets.only(
+            //                             right: 12.0,
+            //                           ),
+            //                           decoration: BoxDecoration(
+            //                               color: snapshot.data[index].isDone
+            //                                   ? Color(0xFF7349FE)
+            //                                   : Colors.transparent,
+            //                               borderRadius:
+            //                                   BorderRadius.circular(6.0),
+            //                               border: snapshot.data[index].isDone
+            //                                   ? null
+            //                                   : Border.all(
+            //                                       color: Color(0xFF86829D),
+            //                                       width: 1.5)),
+            //                           child: Icon(Icons.check_box),
+            //                         ),
+            //                         Flexible(
+            //                           child: Text(
+            //                             snapshot.data[index].title ?? "(Unnamed Todo)",
+            //                             style: TextStyle(
+            //                               color: snapshot.data[index].isDone
+            //                                   ? Color(0xFF211551)
+            //                                   : Color(0xFF86829D),
+            //                               fontSize: 16.0,
+            //                               fontWeight:
+            //                                   snapshot.data[index].isDone
+            //                                       ? FontWeight.bold
+            //                                       : FontWeight.w500,
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ));
+            //             },
+            //           ),
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
+            // TextField(
+            //   focusNode: _todoFocus,
+            //   controller: todoController,
+            //   onSubmitted: (value) async {
+            //     if (value != "") {
+            //       if (draft.id != null) {
+            //         Todo _newTodo = Todo(
+            //           draftId: draft.id,
+            //           title: value,
+            //           isDone: 0,
+            //         );
+            //         await helper.insertTodo(_newTodo);
+            //         setState(() {});
+            //         print("Task exist");
+            //         // _todoFocus.requestFocus();
+            //       } else {
+            //         print("Task doesn't exist");
+            //       }
+            //     }
+            //   },
+            //   decoration: InputDecoration(
+            //     hintText: "Enter Todo item...",
+            //     border: InputBorder.none,
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

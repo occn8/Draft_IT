@@ -1,10 +1,10 @@
 class Draft {
   int _id, _priority, _isStarred, _isArchived, _isTrash, _isDone;
-  String _title, _description, _mdate, _ddate, _dtime;
+  String _title, _description, _notes, _mdate, _ddate, _dtime;
 
   Draft(this._title, this._mdate, this._ddate, this._dtime, this._priority,
       this._isStarred, this._isArchived, this._isTrash, this._isDone,
-      [this._description]);
+      [this._description,this._notes]);
 
   Draft.withId(
       this._id,
@@ -17,11 +17,12 @@ class Draft {
       this._isArchived,
       this._isTrash,
       this._isDone,
-      [this._description]);
+      [this._description,this._notes]);
 
   int get id => _id;
   String get title => _title;
   String get description => _description;
+  String get notes => _notes;
   String get mdate => _mdate;
   String get ddate => _ddate;
   String get dtime => _dtime;
@@ -42,10 +43,39 @@ class Draft {
       this._description = newDescription;
     }
   }
+  set notes(String newNotes) {
+    if (newNotes.length <= 255) {
+      this._notes = newNotes;
+    }
+  }
 
   set priority(int newPriority) {
     if (newPriority >= 1 && newPriority <= 2) {
       this._priority = newPriority;
+    }
+  }
+
+  set isStarred(int newisStarred) {
+    if (newisStarred == 1 || newisStarred == 0) {
+      this._isStarred = newisStarred;
+    }
+  }
+
+  set isArchived(int newisArchived) {
+    if (newisArchived >= 1 && newisArchived <= 2) {
+      this._isArchived = newisArchived;
+    }
+  }
+
+  set isTrash(int newisTrash) {
+    if (newisTrash >= 1 && newisTrash <= 2) {
+      this._isTrash = newisTrash;
+    }
+  }
+
+  set isDone(int newisDone) {
+    if (newisDone >= 1 && newisDone <= 2) {
+      this._isDone = newisDone;
     }
   }
 
@@ -69,6 +99,7 @@ class Draft {
     }
     map['title'] = _title;
     map['description'] = _description;
+    map['notes'] = _notes;
     map['priority'] = _priority;
     map['mdate'] = _mdate;
     map['ddate'] = _ddate;
@@ -85,6 +116,7 @@ class Draft {
     this._id = map['id'];
     this._title = map['title'];
     this._description = map['description'];
+    this._notes = map['notes'];
     this._priority = map['priority'];
     this._mdate = map['mdate'];
     this._ddate = map['ddate'];

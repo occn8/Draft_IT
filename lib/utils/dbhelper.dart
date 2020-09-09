@@ -29,10 +29,10 @@ class DataBaseHelper {
 
   void _createDb(Database db, int newVersion) async {
     await db.execute('''CREATE TABLE draftstable(id INTEGER PRIMARY KEY, 
-        title TEXT,description TEXT, priority INTEGER, mdate Text, ddate Text, dtime Text, 
+        title TEXT,description TEXT, notes TEXT, priority INTEGER, mdate Text, ddate Text, dtime Text, 
         isStarred INTEGER, isArchived INTEGER, isTrash INTEGER, isDone INTEGER )''');
     await db.execute(
-        'CREATE TABLE todos(id INTEGER PRIMARY KEY, taskId INTEGER, title TEXT, isDone INTEGER)');
+        'CREATE TABLE todos(id INTEGER PRIMARY KEY, draftId INTEGER, title TEXT, isDone INTEGER)');
     await db.execute('CREATE TABLE tags(id INTEGER PRIMARY KEY, name TEXT)');
   }
 

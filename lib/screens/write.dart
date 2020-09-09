@@ -12,19 +12,40 @@ class WriteDraft extends StatefulWidget {
 
 class _WriteDraftState extends State<WriteDraft> {
   DataBaseHelper helper = DataBaseHelper();
-
+  FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
   String appBarTitle;
   Draft draft;
-  _WriteDraftState(this.appBarTitle, this.draft);
-
-  static var _priorities = ['High', 'Normal'];
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController notesController = TextEditingController();
+  TextEditingController todoController = TextEditingController();
+  static var _priorities = ['High', 'Normal'];
+
+  _WriteDraftState(this.appBarTitle, this.draft);
+
+  @override
+  void initState() {
+    super.initState();
+    _titleFocus = FocusNode();
+    _descriptionFocus = FocusNode();
+    _todoFocus = FocusNode();
+    _noteFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _titleFocus.dispose();
+    _descriptionFocus.dispose();
+    _todoFocus.dispose();
+    _noteFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     titleController.text = draft.title;
     descriptionController.text = draft.description;
+    notesController.text = draft.notes;
 
     return Scaffold(
       appBar: AppBar(
@@ -42,6 +63,7 @@ class _WriteDraftState extends State<WriteDraft> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: TextField(
+                focusNode: _titleFocus,
                 controller: titleController,
                 textCapitalization: TextCapitalization.sentences,
                 style: TextStyle(),
@@ -50,6 +72,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 },
                 decoration: InputDecoration(
                   labelText: 'Draft Title',
+                  hintText: 'Enter',
                   labelStyle: TextStyle(fontWeight: FontWeight.w800),
                   border: UnderlineInputBorder(),
                 ),
@@ -58,6 +81,7 @@ class _WriteDraftState extends State<WriteDraft> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: TextField(
+                focusNode: _descriptionFocus,
                 controller: descriptionController,
                 maxLines: null,
                 keyboardType: TextInputType.text,
@@ -76,7 +100,8 @@ class _WriteDraftState extends State<WriteDraft> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: TextField(
-                // controller: descriptionController,
+                controller: notesController,
+                focusNode: _noteFocus,
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
                 textCapitalization: TextCapitalization.sentences,
@@ -115,6 +140,115 @@ class _WriteDraftState extends State<WriteDraft> {
                       updatePriorityAsInt(valueSelectedByUser);
                     });
                   }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FutureBuilder(
+                future: helper.getTodo(draft.id),
+                initialData: [],
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return Container(
+                    height: 100,
+                    child: Scrollbar(
+                      child: ListView.builder(
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GestureDetector(
+                              onTap: () async {
+                                if (snapshot.data[index].isDone == 0) {
+                                  await helper.updateTodoDone(
+                                      snapshot.data[index].id, 1);
+                                } else {
+                                  await helper.updateTodoDone(
+                                      snapshot.data[index].id, 0);
+                                }
+                                setState(() {});
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 24.0,
+                                  vertical: 8.0,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 20.0,
+                                      height: 20.0,
+                                      margin: EdgeInsets.only(
+                                        right: 12.0,
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: snapshot.data[index].isDone
+                                              ? Color(0xFF7349FE)
+                                              : Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: snapshot.data[index].isDone
+                                              ? null
+                                              : Border.all(
+                                                  color: Color(0xFF86829D),
+                                                  width: 1.5)),
+                                      child: Icon(Icons.check_box),
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        snapshot.data[index].title ?? "(Unnamed Todo)",
+                                        style: TextStyle(
+                                          color: snapshot.data[index].isDone
+                                              ? Color(0xFF211551)
+                                              : Color(0xFF86829D),
+                                          fontSize: 16.0,
+                                          fontWeight:
+                                              snapshot.data[index].isDone
+                                                  ? FontWeight.bold
+                                                  : FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ));
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            TextField(
+              focusNode: _todoFocus,
+              controller: todoController,
+              onSubmitted: (value) async {
+                if (value != "") {
+                  if (draft.id != null) {
+                    Todo _newTodo = Todo(
+                      draftId: draft.id,
+                      title: value,
+                      isDone: 0,
+                    );
+                    await helper.insertTodo(_newTodo);
+                    setState(() {});
+                    print("Task exist");
+                    // _todoFocus.requestFocus();
+                  } else {
+                    print("Task doesn't exist");
+                  }
+                }
+              },
+              decoration: InputDecoration(
+                hintText: "Enter Todo item...",
+                border: InputBorder.none,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text('Time'),
+                  SizedBox(width: 5),
+                  Text('Day'),
+                ],
+              ),
             ),
             Padding(
                 padding: EdgeInsets.symmetric(vertical: 15),

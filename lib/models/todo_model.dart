@@ -5,6 +5,29 @@ class Todo {
   int isDone;
   Todo({this.id, this.draftId, this.title, this.isDone});
 
+  int get todoId => id;
+  int get todoDraftId => draftId;
+  String get todoTitle => title;
+  int get todoisDone => isDone;
+
+  set todoDraftId(int draftId) {
+    if (draftId >= 1 && draftId <= 2) {
+      this.id = draftId;
+    }
+  }
+
+  set todoTitle(String title) {
+    if (title.length <= 255) {
+      this.title = title;
+    }
+  }
+
+  set todoisDone(int isdone) {
+    if (isdone >= 1 && isdone <= 2) {
+      this.isDone = isdone;
+    }
+  }
+
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
 
@@ -14,7 +37,7 @@ class Todo {
 
     map['draftId'] = draftId;
     map['title'] = title;
-    map['priority'] = isDone;
+    map['isDone'] = isDone;
 
     return map;
   }

@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
-class CategorySelector extends StatefulWidget {
-  final List<String> text;
-  CategorySelector({@required this.text});
+class PgStateSelector extends StatefulWidget {
+  final List<String> pgStates;
+  PgStateSelector({@required this.pgStates});
   @override
-  _CategorySelectorState createState() => _CategorySelectorState();
+  _PgStateSelectorState createState() => _PgStateSelectorState();
 }
 
-class _CategorySelectorState extends State<CategorySelector> {
+class _PgStateSelectorState extends State<PgStateSelector> {
   int currentIndex = 0;
   bool isSelected;
 
   List<Widget> categorySelector() {
-    List<Widget> categoryItemList = List();
+    List<Widget> pgStateItemList = List();
 
-    for (int i = 0; i < widget.text.length; i++) {
+    for (int i = 0; i < widget.pgStates.length; i++) {
       isSelected = currentIndex == i;
 
-      categoryItemList.add(categoryItem(
-        text: widget.text[i],
+      pgStateItemList.add(pgStateItem(
+        state: widget.pgStates[i],
         isSelected: isSelected,
         ontap: () {
           setState(() {
@@ -27,10 +27,10 @@ class _CategorySelectorState extends State<CategorySelector> {
         },
       ));
     }
-    return categoryItemList;
+    return pgStateItemList;
   }
 
-  Widget categoryItem({String text, bool isSelected, Function ontap}) {
+  Widget pgStateItem({String state, bool isSelected, Function ontap}) {
     return GestureDetector(
       onTap: ontap,
       child: Padding(
@@ -39,9 +39,7 @@ class _CategorySelectorState extends State<CategorySelector> {
           // width: 90,
           height: 35,
           decoration: BoxDecoration(
-              border: Border.all(
-                  color: isSelected ? Colors.white : Colors.transparent,
-                  width: 0),
+              border: Border.all(color: Colors.transparent, width: 0),
               shape: BoxShape.rectangle),
           child: Column(
             children: [
@@ -61,12 +59,12 @@ class _CategorySelectorState extends State<CategorySelector> {
                   // ],
                 ),
                 child: Text(
-                  text,
+                  state,
                   style: isSelected
                       ? TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w800,
-                          color: Color.fromARGB(255, 0, 77, 128))
+                          color: Theme.of(context).accentColor)
                       : TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -79,9 +77,8 @@ class _CategorySelectorState extends State<CategorySelector> {
                 height: 8.0,
                 width: isSelected ? 24.0 : 16.0,
                 decoration: BoxDecoration(
-                  color: isSelected
-                      ? Color.fromARGB(255, 0, 77, 128)
-                      : Colors.white,
+                  color:
+                      isSelected ? Theme.of(context).accentColor : Colors.grey,
                   borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
               ),

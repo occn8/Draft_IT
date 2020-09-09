@@ -95,8 +95,8 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CategorySelector(
-                    text: ['Active', 'All','Done'],
+                  PgStateSelector(
+                    pgStates: ['Active', 'All','Done'],
                   ),
                 ],
               ),

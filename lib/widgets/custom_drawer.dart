@@ -36,10 +36,18 @@ class CustomDrawer extends StatelessWidget {
                           onTap: () {
                             notifier.toggleTheme();
                           },
-                          child: Icon(Icons.brightness_4, size: 28)),
+                          child: Icon(
+                            Icons.brightness_4,
+                            size: 28,
+                            color: Theme.of(context).accentColor,
+                          )),
                     ),
                     SizedBox(width: 15),
-                    Icon(Icons.calendar_today, size: 28),
+                    Icon(
+                      Icons.calendar_today,
+                      size: 28,
+                      color: Theme.of(context).accentColor,
+                    ),
                     SizedBox(width: 15),
                     InkWell(
                         onTap: () {
@@ -49,7 +57,11 @@ class CustomDrawer extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (BuildContext ctx) => Settings()));
                         },
-                        child: Icon(Icons.settings, size: 28)),
+                        child: Icon(
+                          Icons.settings,
+                          size: 28,
+                          color: Theme.of(context).accentColor,
+                        )),
                     SizedBox(width: 5),
                   ],
                 ),

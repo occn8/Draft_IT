@@ -101,7 +101,7 @@ class _HomeState extends State<Home> {
                 ],
               ),
               Container(
-                color: Colors.amber,
+                color: Colors.grey,
                 height: 1,
               ),
               FutureBuilder<List<Draft>>(
@@ -182,7 +182,7 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                     color: Colors.white60,
                     borderRadius: BorderRadius.circular(10)),
-                child: new Icon(Icons.menu, size: 25, color: Colors.black),
+                child: new Icon(Icons.menu, size: 25, color: Theme.of(context).accentColor),
               ),
             ),
           ),
@@ -192,7 +192,7 @@ class _HomeState extends State<Home> {
             padding: new EdgeInsets.all(8),
             decoration: BoxDecoration(
                 color: Colors.white60, borderRadius: BorderRadius.circular(10)),
-            child: new Icon(Icons.notifications, size: 25, color: Colors.black),
+            child: new Icon(Icons.notifications, size: 25, color: Theme.of(context).accentColor),
           ),
         ],
       ),

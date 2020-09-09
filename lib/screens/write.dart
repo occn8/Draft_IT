@@ -6,7 +6,8 @@ class WriteDraft extends StatefulWidget {
   final Draft draft;
   WriteDraft(this.draft, this.appBarTitle);
   @override
-  _WriteDraftState createState() => _WriteDraftState(this.appBarTitle, this.draft);
+  _WriteDraftState createState() =>
+      _WriteDraftState(this.appBarTitle, this.draft);
 }
 
 class _WriteDraftState extends State<WriteDraft> {
@@ -25,119 +26,130 @@ class _WriteDraftState extends State<WriteDraft> {
     titleController.text = draft.title;
     descriptionController.text = draft.description;
 
-    return WillPopScope(
-      onWillPop: () {
-        Navigator.pop(context, true);
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text(appBarTitle)),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context, true);
-              }),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
-          child: ListView(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: TextField(
-                  controller: titleController,
-                  textCapitalization: TextCapitalization.sentences,
-                  style: TextStyle(),
-                  onChanged: (value) {
-                    updateTitle();
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'title',
-                    labelStyle: TextStyle(),
-                    border: UnderlineInputBorder(),
-                  ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text(appBarTitle)),
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context, true);
+            }),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: TextField(
+                controller: titleController,
+                textCapitalization: TextCapitalization.sentences,
+                style: TextStyle(),
+                onChanged: (value) {
+                  updateTitle();
+                },
+                decoration: InputDecoration(
+                  labelText: 'Draft Title',
+                  labelStyle: TextStyle(fontWeight: FontWeight.w800),
+                  border: UnderlineInputBorder(),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: TextField(
-                  controller: descriptionController,
-                  maxLines: null,
-                  keyboardType: TextInputType.multiline,
-                  textCapitalization: TextCapitalization.sentences,
-                  style: TextStyle(),
-                  onChanged: (value) {
-                    updateDescription();
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Description',
-                    labelStyle: TextStyle(),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                  ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: TextField(
+                controller: descriptionController,
+                maxLines: null,
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.sentences,
+                style: TextStyle(),
+                onChanged: (value) {
+                  updateDescription();
+                },
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  labelStyle: TextStyle(),
+                  border: UnderlineInputBorder(),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Tag'),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: TextField(
+                // controller: descriptionController,
+                maxLines: null,
+                keyboardType: TextInputType.multiline,
+                textCapitalization: TextCapitalization.sentences,
+                style: TextStyle(),
+                onChanged: (value) {
+                  // updateDescription();
+                },
+                decoration: InputDecoration(
+                  labelText: 'Notes',
+                  labelStyle: TextStyle(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5)),
+                ),
               ),
-              ListTile(
-                title: DropdownButton(
-                    items: _priorities.map((String dropDownStringItem) {
-                      return DropdownMenuItem<String>(
-                        child: Text(
-                          dropDownStringItem,
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        value: dropDownStringItem,
-                      );
-                    }).toList(),
-                    style: TextStyle(),
-                    value: getPriorityAsString(draft.priority),
-                    onChanged: (valueSelectedByUser) {
-                      setState(() {
-                        print(valueSelectedByUser);
-                        updatePriorityAsInt(valueSelectedByUser);
-                      });
-                    }),
-              ),
-              Padding(
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: RaisedButton(
-                            color: Theme.of(context).primaryColor,
-                            child: Text(
-                              'Save',
-                              textScaleFactor: 1.5,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _save();
-                              });
-                            }),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Tag'),
+            ),
+            ListTile(
+              title: DropdownButton(
+                  items: _priorities.map((String dropDownStringItem) {
+                    return DropdownMenuItem<String>(
+                      child: Text(
+                        dropDownStringItem,
+                        style: TextStyle(color: Colors.black),
                       ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Expanded(
-                        child: RaisedButton(
-                            color: Theme.of(context).primaryColor,
-                            child: Text(
-                              'Delete',
-                              textScaleFactor: 1.5,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _delete();
-                              });
-                            }),
-                      )
-                    ],
-                  )),
-            ],
-          ),
+                      value: dropDownStringItem,
+                    );
+                  }).toList(),
+                  style: TextStyle(),
+                  value: getPriorityAsString(draft.priority),
+                  onChanged: (valueSelectedByUser) {
+                    setState(() {
+                      print(valueSelectedByUser);
+                      updatePriorityAsInt(valueSelectedByUser);
+                    });
+                  }),
+            ),
+            Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: RaisedButton(
+                          color: Theme.of(context).primaryColor,
+                          child: Text(
+                            'Save',
+                            textScaleFactor: 1.5,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _save();
+                            });
+                          }),
+                    ),
+                    SizedBox(width: 5),
+                    Expanded(
+                      child: RaisedButton(
+                          color: Theme.of(context).primaryColor,
+                          child: Text(
+                            'Delete',
+                            textScaleFactor: 1.5,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _delete();
+                            });
+                          }),
+                    )
+                  ],
+                )),
+          ],
         ),
       ),
     );

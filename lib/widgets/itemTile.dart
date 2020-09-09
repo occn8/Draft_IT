@@ -70,7 +70,7 @@ class ItemTile extends StatelessWidget {
                                 SizedBox(width: 5),
                                 Text(
                                   date,
-                                  style: TextStyle(fontSize: 12),
+                                  style: TextStyle(fontSize: 10),
                                 ),
                               ],
                             ),

@@ -48,18 +48,50 @@ class _WriteDraftState extends State<WriteDraft> {
     notesController.text = draft.notes;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Center(child: Text(appBarTitle)),
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context, true);
-            }),
-      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 8.0, right: 8, top: 10),
         child: ListView(
           children: <Widget>[
+            Container(
+              margin: new EdgeInsets.all(5),
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Builder(
+                    builder: (context) => InkWell(
+                      splashColor: Theme.of(context).accentColor,
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () => Navigator.pop(context),
+                      child: Container(
+                        padding: new EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Colors.white60,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: new Icon(Icons.arrow_back_ios,
+                            size: 25, color: Theme.of(context).accentColor),
+                      ),
+                    ),
+                  ),
+                  Text(appBarTitle),
+                  Builder(
+                    builder: (context) => InkWell(
+                      splashColor: Theme.of(context).accentColor,
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: (){},
+                      child: Container(
+                        padding: new EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Colors.white60,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: new Icon(Icons.more_horiz,
+                            size: 25, color: Theme.of(context).accentColor),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: TextField(

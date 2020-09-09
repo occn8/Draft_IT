@@ -68,7 +68,7 @@ class _PgStateSelectorState extends State<PgStateSelector> {
                       : TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black),
+                          color: Theme.of(context).primaryColorDark),
                 ),
               ),
               AnimatedContainer(

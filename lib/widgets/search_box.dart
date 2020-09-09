@@ -29,7 +29,7 @@ class _SearchBoxState extends State<SearchBox> {
       margin: new EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       padding: new EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
-        color: Colors.white60,
+        color: Colors.white10,
         borderRadius: BorderRadius.circular(10),
       ),
       child: InkWell(

@@ -178,7 +178,7 @@ class _HomeState extends State<Home> {
                 // margin: new EdgeInsets.all(5),
                 padding: new EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Colors.white60,
+                    color: Colors.white10,
                     borderRadius: BorderRadius.circular(10)),
                 child: new Icon(Icons.menu,
                     size: 25, color: Theme.of(context).accentColor),
@@ -186,13 +186,20 @@ class _HomeState extends State<Home> {
             ),
           ),
           Text('what is your plan?'),
-          Container(
-            margin: new EdgeInsets.all(5),
-            padding: new EdgeInsets.all(8),
-            decoration: BoxDecoration(
-                color: Colors.white60, borderRadius: BorderRadius.circular(10)),
-            child: new Icon(Icons.notifications,
-                size: 25, color: Theme.of(context).accentColor),
+          Builder(
+            builder: (context) => InkWell(
+              splashColor: Theme.of(context).accentColor,
+              borderRadius: BorderRadius.circular(10),
+              onTap: () {},
+              child: Container(
+                padding: new EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    color: Colors.white10,
+                    borderRadius: BorderRadius.circular(10)),
+                child: new Icon(Icons.notifications,
+                    size: 25, color: Theme.of(context).accentColor),
+              ),
+            ),
           ),
         ],
       ),

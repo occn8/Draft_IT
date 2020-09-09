@@ -74,7 +74,7 @@ class _WriteDraftState extends State<WriteDraft> {
                   ),
                   Text(
                     appBarTitle,
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16,fontWeight: FontWeight.w800),
                   ),
                   Builder(
                     builder: (context) => InkWell(

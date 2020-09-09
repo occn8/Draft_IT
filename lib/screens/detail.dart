@@ -64,7 +64,8 @@ class _DetailsState extends State<Details> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: new Icon(Icons.arrow_back_ios,
-                            size: 25, color: Theme.of(context).primaryColorDark),
+                            size: 25,
+                            color: Theme.of(context).primaryColorDark),
                       ),
                     ),
                   ),
@@ -160,8 +161,9 @@ class _DetailsState extends State<Details> {
               },
             );
           },
+          elevation: 4,
           backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(Icons.edit),
+          child: Icon(Icons.edit, color: Theme.of(context).primaryColorDark),
         ),
       ),
     );

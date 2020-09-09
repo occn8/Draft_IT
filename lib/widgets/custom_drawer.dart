@@ -39,14 +39,14 @@ class CustomDrawer extends StatelessWidget {
                           child: Icon(
                             Icons.brightness_4,
                             size: 28,
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).primaryColorDark,
                           )),
                     ),
                     SizedBox(width: 15),
                     Icon(
                       Icons.calendar_today,
                       size: 28,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).primaryColorDark,
                     ),
                     SizedBox(width: 15),
                     InkWell(
@@ -60,7 +60,7 @@ class CustomDrawer extends StatelessWidget {
                         child: Icon(
                           Icons.settings,
                           size: 28,
-                          color: Theme.of(context).primaryColor,
+                          color: Theme.of(context).primaryColorDark,
                         )),
                     SizedBox(width: 5),
                   ],
@@ -98,7 +98,7 @@ class CustomDrawer extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(5),
-            child: Text('TAGS'),
+            child: Text('TAGS',style: TextStyle(color:Theme.of(context).primaryColor),),
           ),
           ListTile(
             leading: Icon(

@@ -31,7 +31,7 @@ class ItemTile extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.93,
               // padding: EdgeInsets.all(5),
               child: Card(
-                color: Colors.white,
+                color: Theme.of(context).cardColor,
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 10),

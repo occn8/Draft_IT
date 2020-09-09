@@ -100,10 +100,6 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              Container(
-                color: Colors.grey,
-                height: 1,
-              ),
               FutureBuilder<List<Draft>>(
                   future: dataBaseHelper.getDraftList(),
                   initialData: [],
@@ -168,6 +164,7 @@ class _HomeState extends State<Home> {
 
   Container customAppBar() {
     return Container(
+      margin: new EdgeInsets.all(5),
       height: 50,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -178,7 +175,7 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.circular(10),
               onTap: () => Scaffold.of(context).openDrawer(),
               child: Container(
-                margin: new EdgeInsets.all(5),
+                // margin: new EdgeInsets.all(5),
                 padding: new EdgeInsets.all(8),
                 decoration: BoxDecoration(
                     color: Colors.white60,

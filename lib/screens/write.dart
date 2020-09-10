@@ -130,6 +130,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 decoration: InputDecoration(
                   labelText: 'Description',
                   labelStyle: TextStyle(),
+                  prefixIcon: Icon(Icons.description),
                   border: UnderlineInputBorder(),
                 ),
               ),

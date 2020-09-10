@@ -156,7 +156,7 @@ class _HomeState extends State<Home> {
           },
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 4,
-          child: Icon(Icons.add, color: Theme.of(context).primaryColorDark),
+          child: Icon(Icons.add, color: Colors.white),
         ),
         drawer: CustomDrawer(),
       ),

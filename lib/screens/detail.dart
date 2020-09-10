@@ -18,6 +18,20 @@ class _DetailsState extends State<Details> {
             ListView(
               children: [
                 SizedBox(height: 50),
+                Row(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 5, left: 5),
+                      child: Text(
+                        widget.draft.ddate ?? 'No Due date',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                   padding: EdgeInsets.all(5),
                   child: Center(
@@ -60,7 +74,7 @@ class _DetailsState extends State<Details> {
                         // margin: new EdgeInsets.all(5),
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white10,
+                          color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: new Icon(Icons.arrow_back_ios,
@@ -80,7 +94,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white10,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.star_border,
@@ -98,7 +112,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white10,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.share,
@@ -116,7 +130,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white10,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.folder_open,
@@ -134,7 +148,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Colors.white10,
+                              color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.delete_outline,
@@ -163,7 +177,7 @@ class _DetailsState extends State<Details> {
           },
           elevation: 4,
           backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(Icons.edit, color: Theme.of(context).primaryColorDark),
+          child: Icon(Icons.edit, color: Theme.of(context).primaryColorLight),
         ),
       ),
     );

@@ -31,56 +31,56 @@ class _HomeState extends State<Home> {
   //   return draftItemList;
   // }
 
-  Widget draftItem({
-    Draft draft,
-    Widget widget,
-    Color color,
-    Function ontap1,
-    Function ontap2,
-    Key key,
-    Function setstateRemove,
-    Function setstateUndo,
-  }) {
-    return Dismissible(
-      direction: DismissDirection.endToStart,
-      key: key,
-      child: ItemTile(
-        title: draft.title,
-        subtitle: draft.description,
-        date: draft.ddate,
-        time: draft.dtime,
-        color: color,
-        ontap: ontap2,
-      ),
-      // onDismissed: (DismissDirection dir) {
-      //   setState(setstateRemove);
-      //   Scaffold.of(context).showSnackBar(
-      //     SnackBar(
-      //       content: Text(dir == DismissDirection.startToEnd
-      //           ? '$item removed.'
-      //           : '$item liked.'),
-      //       action: SnackBarAction(
-      //         label: 'UNDO',
-      //         onPressed: () {
-      //           setState(setstateUndo);
-      //         },
-      //       ),
-      //     ),
-      //   );
-      // },
-      background: Container(
-        color: Colors.red,
-        alignment: Alignment.centerLeft,
-        child: Icon(Icons.delete_outline),
-      ),
-      secondaryBackground: Container(
-        padding: EdgeInsets.all(5),
-        color: Colors.green,
-        alignment: Alignment.centerRight,
-        child: Icon(Icons.archive),
-      ),
-    );
-  }
+  // Widget draftItem({
+  //   Draft draft,
+  //   Widget widget,
+  //   Color color,
+  //   Function ontap1,
+  //   Function ontap2,
+  //   Key key,
+  //   Function setstateRemove,
+  //   Function setstateUndo,
+  // }) {
+  //   return Dismissible(
+  //     direction: DismissDirection.endToStart,
+  //     key: key,
+  //     child: ItemTile(
+  //       title: draft.title,
+  //       subtitle: draft.description,
+  //       date: draft.ddate,
+  //       time: draft.dtime,
+  //       color: color,
+  //       ontap: ontap2,
+  //     ),
+  //     // onDismissed: (DismissDirection dir) {
+  //     //   setState(setstateRemove);
+  //     //   Scaffold.of(context).showSnackBar(
+  //     //     SnackBar(
+  //     //       content: Text(dir == DismissDirection.startToEnd
+  //     //           ? '$item removed.'
+  //     //           : '$item liked.'),
+  //     //       action: SnackBarAction(
+  //     //         label: 'UNDO',
+  //     //         onPressed: () {
+  //     //           setState(setstateUndo);
+  //     //         },
+  //     //       ),
+  //     //     ),
+  //     //   );
+  //     // },
+  //     background: Container(
+  //       color: Colors.red,
+  //       alignment: Alignment.centerLeft,
+  //       child: Icon(Icons.delete_outline),
+  //     ),
+  //     secondaryBackground: Container(
+  //       padding: EdgeInsets.all(5),
+  //       color: Colors.green,
+  //       alignment: Alignment.centerRight,
+  //       child: Icon(Icons.archive),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -176,10 +176,9 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.circular(10),
               onTap: () => Scaffold.of(context).openDrawer(),
               child: Container(
-                // margin: new EdgeInsets.all(5),
                 padding: new EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Colors.white10,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: new Icon(Icons.menu,
                     size: 25, color: Theme.of(context).primaryColorDark),
@@ -195,7 +194,7 @@ class _HomeState extends State<Home> {
               child: Container(
                 padding: new EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Colors.white10,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: new Icon(Icons.notifications,
                     size: 25, color: Theme.of(context).primaryColorDark),

@@ -65,7 +65,7 @@ class _WriteDraftState extends State<WriteDraft> {
                       child: Container(
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Colors.white10,
+                            color:Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.arrow_back_ios,
                             size: 25,
@@ -85,7 +85,7 @@ class _WriteDraftState extends State<WriteDraft> {
                       child: Container(
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Colors.white10,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.more_horiz,
                             size: 25,
@@ -166,7 +166,8 @@ class _WriteDraftState extends State<WriteDraft> {
                     return DropdownMenuItem<String>(
                       child: Text(
                         dropDownStringItem,
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColorDark),
                       ),
                       value: dropDownStringItem,
                     );
@@ -302,6 +303,8 @@ class _WriteDraftState extends State<WriteDraft> {
                           child: Text(
                             'Save',
                             textScaleFactor: 1.5,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
                           ),
                           onPressed: () {
                             setState(() {
@@ -319,6 +322,8 @@ class _WriteDraftState extends State<WriteDraft> {
                           child: Text(
                             'Cancel',
                             textScaleFactor: 1.5,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
                           ),
                           onPressed: () {
                             setState(() {

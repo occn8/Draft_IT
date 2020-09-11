@@ -34,6 +34,8 @@ dependencies:
   google_fonts: ^1.1.0
   provider: ^4.3.2+1
   flappy_search_bar: ^1.7.2
+  flutter_local_notifications: ^1.4.4+4
+  rxdart: ^0.24.1
 
 flutter_icons:
   image_path: "assets/icon.png"

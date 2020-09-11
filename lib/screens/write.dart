@@ -1,4 +1,6 @@
 import 'package:Draft_IT/index.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 
 class WriteDraft extends StatefulWidget {
@@ -11,6 +13,12 @@ class WriteDraft extends StatefulWidget {
 }
 
 class _WriteDraftState extends State<WriteDraft> {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  AndroidInitializationSettings androidInitializationSettings;
+  IOSInitializationSettings iosInitializationSettings;
+  InitializationSettings initializationSettings;
+
   DataBaseHelper helper = DataBaseHelper();
   FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
   String appBarTitle;
@@ -26,6 +34,7 @@ class _WriteDraftState extends State<WriteDraft> {
   @override
   void initState() {
     super.initState();
+    initializing();
     _titleFocus = FocusNode();
     _descriptionFocus = FocusNode();
     _todoFocus = FocusNode();
@@ -39,6 +48,64 @@ class _WriteDraftState extends State<WriteDraft> {
     _todoFocus.dispose();
     _noteFocus.dispose();
     super.dispose();
+  }
+
+  void initializing() async {
+    androidInitializationSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    iosInitializationSettings = IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    initializationSettings = InitializationSettings(
+        androidInitializationSettings, iosInitializationSettings);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  void _showNotifications() async {
+    await notification();
+  }
+
+  // void _showNotificationsAfterSecond() async {
+  //   await notificationAfterSec();
+  // }
+
+  Future<void> notification() async {
+    AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails(
+            'Channel ID', 'Channel title', 'channel body',
+            priority: Priority.High,
+            importance: Importance.Max,
+            ticker: 'test');
+
+    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
+
+    NotificationDetails notificationDetails =
+        NotificationDetails(androidNotificationDetails, iosNotificationDetails);
+    await flutterLocalNotificationsPlugin.show(
+        0, titleController.text, descriptionController.text, notificationDetails);
+  }
+
+  Future onSelectNotification(String payLoad) {
+    if (payLoad != null) {
+      print(payLoad);
+    }
+
+    // we can set navigator to navigate another screen
+  }
+
+  Future onDidReceiveLocalNotification(
+      int id, String title, String body, String payload) async {
+    return CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(body),
+      actions: <Widget>[
+        CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              print("");
+            },
+            child: Text("Okay")),
+      ],
+    );
   }
 
   @override
@@ -288,6 +355,17 @@ class _WriteDraftState extends State<WriteDraft> {
                   SizedBox(width: 5),
                   Text('Day'),
                 ],
+              ),
+            ),
+             FlatButton(
+              color: Colors.blue,
+              onPressed: _showNotifications,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Show Notification",
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                ),
               ),
             ),
             Padding(

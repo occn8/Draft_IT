@@ -24,17 +24,17 @@ class ItemTile extends StatelessWidget {
             color: Colors.transparent,
             child: ActiveStatus(),
           ),
+          SizedBox(width: 2),
           InkWell(
             onTap: ontap,
             borderRadius: BorderRadius.circular(5),
             child: Container(
-              width: MediaQuery.of(context).size.width * 0.935,
-              // padding: EdgeInsets.all(5),
+              width: MediaQuery.of(context).size.width * 0.925,
               child: Card(
                 color: Theme.of(context).cardColor,
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
                   child: Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -53,7 +53,7 @@ class ItemTile extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.77,
+                            width: MediaQuery.of(context).size.width * 0.79,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -77,7 +77,7 @@ class ItemTile extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.77,
+                            width: MediaQuery.of(context).size.width * 0.79,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

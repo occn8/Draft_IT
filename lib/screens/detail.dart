@@ -9,7 +9,7 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-    DataBaseHelper helper = DataBaseHelper();
+  DataBaseHelper helper = DataBaseHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +146,36 @@ class _DetailsState extends State<Details> {
                         builder: (context) => InkWell(
                           splashColor: Theme.of(context).accentColor,
                           borderRadius: BorderRadius.circular(10),
-                          onTap: () {},
+                          onTap: () {
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Dialog title'),
+                                content: Text(
+                                  'Sample alert',
+                                ),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: Text('Cancel'),
+                                    onPressed: () =>
+                                        Navigator.pop(context, 'Cancel'),
+                                  ),
+                                  FlatButton(
+                                    child: Text('OK'),
+                                    onPressed: () =>
+                                        Navigator.pop(context, 'OK'),
+                                  ),
+                                ],
+                              ),
+                            ).then((returnVal) {
+                              if (returnVal != 'Cancel') {
+                                Navigator.pop(context);
+                              }
+                            });
+                            // Navigator.pop(context);
+                            // _delete(context, widget.draft);
+                            // setState(() {});
+                          },
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
@@ -188,12 +217,13 @@ class _DetailsState extends State<Details> {
   void _delete(BuildContext context, Draft draft) async {
     int result = await helper.deleteDraft(draft.id);
     if (result != 0) {
-      // Scaffold.of(context).showSnackBar(
-      //   SnackBar(content: Text('Note deleted successfully')),
-      // );
-      setState(() {
-        
-      });
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Draft deleted successfully',
+          ),
+        ),
+      );
     }
   }
 }

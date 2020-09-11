@@ -65,7 +65,7 @@ class _WriteDraftState extends State<WriteDraft> {
                       child: Container(
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color:Theme.of(context).cardColor,
+                            color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.arrow_back_ios,
                             size: 25,
@@ -291,48 +291,49 @@ class _WriteDraftState extends State<WriteDraft> {
               ),
             ),
             Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 4,
-                      child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          color: Theme.of(context).primaryColor,
-                          child: Text(
-                            'Save',
-                            textScaleFactor: 1.5,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColorLight),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _save();
-                            });
-                          }),
-                    ),
-                    SizedBox(width: 5),
-                    Expanded(
-                      flex: 2,
-                      child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          color: Theme.of(context).primaryColor,
-                          child: Text(
-                            'Cancel',
-                            textScaleFactor: 1.5,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColorLight),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              Navigator.pop(context);
-                            });
-                          }),
-                    )
-                  ],
-                )),
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 4,
+                    child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        color: Theme.of(context).primaryColor,
+                        child: Text(
+                          'Save',
+                          textScaleFactor: 1.5,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _save();
+                          });
+                        }),
+                  ),
+                  SizedBox(width: 5),
+                  Expanded(
+                    flex: 2,
+                    child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        color: Theme.of(context).primaryColor,
+                        child: Text(
+                          'Cancel',
+                          textScaleFactor: 1.5,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorLight),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            Navigator.pop(context);
+                          });
+                        }),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -372,7 +373,7 @@ class _WriteDraftState extends State<WriteDraft> {
   }
 
   void _save() async {
-    Navigator.pop(context, true);
+    Navigator.pop(context);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
     draft.ddate = DateFormat.yMd().format(DateTime(2020, 7, 24));
     draft.dtime = DateFormat.Hm().format(DateTime.now());

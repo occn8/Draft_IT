@@ -56,7 +56,7 @@ class DataBaseHelper {
   Future<int> deleteDraft(int id) async {
     Database db = await this.database;
     int result = await db.rawDelete('DELETE FROM draftstable WHERE id = $id');
-    await db.rawDelete("DELETE FROM todos WHERE taskId = '$id'");
+    // await db.rawDelete("DELETE FROM todos WHERE taskId = '$id'");
     return result;
   }
 

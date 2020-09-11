@@ -51,7 +51,8 @@ class _WriteDraftState extends State<WriteDraft> {
   }
 
   void initializing() async {
-    androidInitializationSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    androidInitializationSettings =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     iosInitializationSettings = IOSInitializationSettings(
         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     initializationSettings = InitializationSettings(
@@ -63,10 +64,6 @@ class _WriteDraftState extends State<WriteDraft> {
   void _showNotifications() async {
     await notification();
   }
-
-  // void _showNotificationsAfterSecond() async {
-  //   await notificationAfterSec();
-  // }
 
   Future<void> notification() async {
     AndroidNotificationDetails androidNotificationDetails =
@@ -80,8 +77,29 @@ class _WriteDraftState extends State<WriteDraft> {
 
     NotificationDetails notificationDetails =
         NotificationDetails(androidNotificationDetails, iosNotificationDetails);
-    await flutterLocalNotificationsPlugin.show(
-        0, titleController.text, descriptionController.text, notificationDetails);
+    await flutterLocalNotificationsPlugin.show(0, titleController.text,
+        descriptionController.text, notificationDetails);
+  }
+
+  void _showNotificationsAfterSecond() async {
+    await notificationAfterSec();
+  }
+
+  Future<void> notificationAfterSec() async {
+    var timeDelayed =DateTime(2020, 9, 11, 22, 15).add(Duration(seconds: 5));
+    AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails(
+            'second channel ID', 'second Channel title', 'second channel body',
+            priority: Priority.High,
+            importance: Importance.Max,
+            ticker: 'test');
+
+    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
+
+    NotificationDetails notificationDetails =
+        NotificationDetails(androidNotificationDetails, iosNotificationDetails);
+    await flutterLocalNotificationsPlugin.schedule(1, 'Hello there',
+        'please subscribe my channel', timeDelayed, notificationDetails);
   }
 
   Future onSelectNotification(String payLoad) {
@@ -357,9 +375,9 @@ class _WriteDraftState extends State<WriteDraft> {
                 ],
               ),
             ),
-             FlatButton(
+            FlatButton(
               color: Colors.blue,
-              onPressed: _showNotifications,
+              onPressed: _showNotificationsAfterSecond,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -453,7 +471,8 @@ class _WriteDraftState extends State<WriteDraft> {
   void _save() async {
     Navigator.pop(context);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
-    draft.ddate = DateFormat.yMd().format(DateTime(2020, 7, 24));
+    draft.ddate =
+        DateFormat.yMd().add_jm().format(DateTime(2020, 7, 24, 22, 1));
     draft.dtime = DateFormat.Hm().format(DateTime.now());
     int result;
     if (draft.id != null) {

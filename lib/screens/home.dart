@@ -145,16 +145,15 @@ class _HomeState extends State<Home> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // showModalBottomSheet(
-                // shape: RoundedRectangleBorder(
-                //     borderRadius: BorderRadius.only(
-                //   topLeft: Radius.circular(10),
-                //   topRight: Radius.circular(10),
-                // )),
-                // context: context,
-                // builder: (ctx) => _buildBottomSheet(ctx));
+            // shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.only(
+            //   topLeft: Radius.circular(10),
+            //   topRight: Radius.circular(10),
+            // )),
+            // context: context,
+            // builder: (ctx) => _buildBottomSheet(ctx));
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return WriteDraft(
-                  Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
+              return WriteDraft(Draft('', '', 2, 0, 0, 0, 0), 'Add draft');
             })).then(
               (value) {
                 setState(() {});

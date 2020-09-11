@@ -2,9 +2,9 @@ class Draft {
   int _id, _priority, _isStarred, _isArchived, _isTrash, _isDone;
   String _title, _description, _notes, _mdate, _ddate, _dtime;
 
-  Draft(this._title, this._mdate, this._ddate, this._dtime, this._priority,
-      this._isStarred, this._isArchived, this._isTrash, this._isDone,
-      [this._description, this._notes]);
+  Draft(this._title, this._mdate, this._priority, this._isStarred,
+      this._isArchived, this._isTrash, this._isDone,
+      [this._description, this._notes, this._ddate, this._dtime]);
 
   Draft.withId(
       this._id,

@@ -206,7 +206,7 @@ class _DetailsState extends State<Details> {
         backgroundColor: Theme.of(context).backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         content: Text(
-          'Do you wish to Continue?',
+          'Continue with Trashing?',
         ),
         actions: <Widget>[
           FlatButton(

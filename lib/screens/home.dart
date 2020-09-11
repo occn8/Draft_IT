@@ -144,15 +144,22 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return WriteDraft(
-                  Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
-            })).then(
-              (value) {
-                setState(() {});
-              },
-            );
-            // navigateToDetail(Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
+            showModalBottomSheet(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                )),
+                context: context,
+                builder: (ctx) => _buildBottomSheet(ctx));
+            // Navigator.push(context, MaterialPageRoute(builder: (context) {
+            //   return WriteDraft(
+            //       Draft('', '', '', '', 2, 0, 0, 0, 0), 'Add draft');
+            // })).then(
+            //   (value) {
+            //     setState(() {});
+            //   },
+            // );
           },
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 4,
@@ -232,8 +239,49 @@ class _HomeState extends State<Home> {
     }
   }
 
-
-
+  Container _buildBottomSheet(BuildContext context) {
+    return Container(
+      height: 150,
+      child: ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, top: 5),
+            child: Text(
+              'Musk',
+              style: TextStyle(),
+            ),
+          ),
+          ListTile(
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Settings()));
+              },
+              leading: Icon(
+                Icons.settings,
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text('Settings', style: TextStyle())),
+          ListTile(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              leading: Icon(
+                Icons.info_outline,
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text('About', style: TextStyle())),
+          // Container(
+          //   child: RaisedButton.icon(
+          //     icon: Icon(Icons.save),
+          //     label: Text('save'),
+          //     onPressed: () => Navigator.pop(context),
+          //   ),
+          // )
+        ],
+      ),
+    );
+  }
   // void navigateToDetail(Draft note, String title) async {
   //   bool result =
   //       await Navigator.push(context, MaterialPageRoute(builder: (context) {

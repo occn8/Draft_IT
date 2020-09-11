@@ -46,10 +46,10 @@ class DataBaseHelper {
     return result;
   }
 
-  Future<int> updateDraft(Draft note) async {
+  Future<int> updateDraft(Draft draft) async {
     Database db = await this.database;
-    var result = await db.update('draftstable', note.toMap(),
-        where: 'id =?', whereArgs: [note.id]);
+    var result = await db.update('draftstable', draft.toMap(),
+        where: 'id =?', whereArgs: [draft.id]);
     return result;
   }
 

@@ -22,7 +22,10 @@ class CustomDrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        child: Icon(Icons.person,color: Theme.of(context).primaryColor,),
+                        child: Icon(
+                          Icons.person,
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                       SizedBox(width: 5),
                       Text('occn lary'),
@@ -69,8 +72,12 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.featured_play_list),
-            title: Text('My Drafts'),
+            leading: Icon(Icons.featured_play_list,
+                color: Theme.of(context).primaryColor),
+            title: Text(
+              'My Drafts',
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
           ),
           ListTile(
             leading: Icon(Icons.star_border),
@@ -98,7 +105,10 @@ class CustomDrawer extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(5),
-            child: Text('TAGS',style: TextStyle(color:Theme.of(context).primaryColor),),
+            child: Text(
+              'TAGS',
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
           ),
           ListTile(
             leading: Icon(

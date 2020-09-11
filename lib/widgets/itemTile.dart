@@ -88,7 +88,7 @@ class ItemTile extends StatelessWidget {
                                       subtitle ?? 'No Description Added',
                                       style: TextStyle(
                                         fontSize: 13,
-                                        color: Colors.grey[600],
+                                        color: Colors.grey[500],
                                       ),
                                       overflow: TextOverflow.ellipsis,
                                     )),

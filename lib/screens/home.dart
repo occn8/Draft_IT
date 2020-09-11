@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
                             subtitle: snapshot.data[i].description,
                             date: snapshot.data[i].ddate,
                             time: snapshot.data[i].dtime,
-                            color: Colors.amber,
+                            color: getPriorityColor(snapshot.data[i].priority),
                             ontap: () {
                               Navigator.push(
                                   context,
@@ -209,13 +209,13 @@ class _HomeState extends State<Home> {
   Color getPriorityColor(int priority) {
     switch (priority) {
       case 1:
-        return Colors.redAccent;
+        return Color(0xfffa5b5d);
         break;
       case 2:
-        return Colors.yellow;
+        return Colors.orangeAccent;
         break;
       default:
-        return Colors.yellow;
+        return Colors.orangeAccent;
     }
   }
 
@@ -232,15 +232,7 @@ class _HomeState extends State<Home> {
     }
   }
 
-  // void _delete(BuildContext context, Draft note) async {
-  //   int result = await dataBaseHelper.deleteDraft(note.id);
-  //   if (result != 0) {
-  //     // Scaffold.of(context).showSnackBar(
-  //     //   SnackBar(content: Text('Note deleted successfully')),
-  //     // );
-  //     updateListView();
-  //   }
-  // }
+
 
   // void navigateToDetail(Draft note, String title) async {
   //   bool result =

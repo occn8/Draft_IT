@@ -9,7 +9,7 @@ class ActiveStatus extends StatelessWidget {
           width: 10,
           height: 10,
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Color(0xff308c98),
             shape: BoxShape.circle,
           ),
         ),
@@ -18,7 +18,7 @@ class ActiveStatus extends StatelessWidget {
           width: 10,
           height: 10,
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: Colors.grey,
             shape: BoxShape.circle,
           ),
         ),

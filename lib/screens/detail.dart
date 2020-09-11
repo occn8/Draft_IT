@@ -147,34 +147,12 @@ class _DetailsState extends State<Details> {
                           splashColor: Theme.of(context).accentColor,
                           borderRadius: BorderRadius.circular(10),
                           onTap: () {
-                            showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text('Dialog title'),
-                                content: Text(
-                                  'Sample alert',
-                                ),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text('Cancel'),
-                                    onPressed: () =>
-                                        Navigator.pop(context, 'Cancel'),
-                                  ),
-                                  FlatButton(
-                                    child: Text('OK'),
-                                    onPressed: () =>
-                                        Navigator.pop(context, 'OK'),
-                                  ),
-                                ],
-                              ),
-                            ).then((returnVal) {
-                              if (returnVal != 'Cancel') {
+                            deleteDialog(context).then((returnVal) async {
+                              if (returnVal == 'OK') {
                                 Navigator.pop(context);
+                                await helper.deleteDraft(widget.draft.id);
                               }
                             });
-                            // Navigator.pop(context);
-                            // _delete(context, widget.draft);
-                            // setState(() {});
                           },
                           child: Container(
                             padding: new EdgeInsets.all(8),
@@ -214,16 +192,33 @@ class _DetailsState extends State<Details> {
     );
   }
 
-  void _delete(BuildContext context, Draft draft) async {
-    int result = await helper.deleteDraft(draft.id);
-    if (result != 0) {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Draft deleted successfully',
-          ),
+  Future<String> deleteDialog(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Center(
+            child: Text(
+          'Delete',
+          style: TextStyle(
+              fontWeight: FontWeight.w800,
+              color: Theme.of(context).primaryColor),
+        )),
+        backgroundColor: Theme.of(context).backgroundColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        content: Text(
+          'Do you wish to Continue?',
         ),
-      );
-    }
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Cancel'),
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+          ),
+          FlatButton(
+            child: Text('OK'),
+            onPressed: () => Navigator.pop(context, 'OK'),
+          ),
+        ],
+      ),
+    );
   }
 }

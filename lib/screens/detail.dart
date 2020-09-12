@@ -10,6 +10,7 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   DataBaseHelper helper = DataBaseHelper();
+  bool _checkBoxVal = true;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,22 @@ class _DetailsState extends State<Details> {
                 SizedBox(height: 50),
                 Row(
                   children: [
+                    Checkbox(
+                      onChanged: (bool value) async {
+                        if (value == true && widget.draft.isDone == 0) {
+                          await helper.updateIsDone(widget.draft.id, 1);
+                        } else {
+                          await helper.updateIsDone(widget.draft.isDone, 0);
+                        }
+                        setState(() => this._checkBoxVal = value);
+                        // setState(() {});
+                      },
+                      value: this._checkBoxVal,
+                    ),
                     Container(
                       padding: EdgeInsets.only(top: 5, left: 5),
                       child: Text(
-                        widget.draft.ddate ?? 'No Due date',
+                        widget.draft.isDone.toString() ?? 'No Due date',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

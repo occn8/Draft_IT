@@ -84,6 +84,10 @@ class DataBaseHelper {
     }
     return draftList;
   }
+ Future<void> updateIsDone(int id, int isDone) async {
+   Database db = await this.database;
+    await db.rawUpdate("UPDATE draftstable SET isDone = '$isDone' WHERE id = '$id'");
+  }
 
 //ToDo
   Future<void> insertTodo(Todo todo) async {

@@ -184,7 +184,7 @@ class _HomeState extends State<Home> {
               child: Container(
                 padding: new EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
+                    // color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: new Icon(Icons.menu,
                     size: 25, color: Theme.of(context).primaryColorDark),
@@ -200,7 +200,7 @@ class _HomeState extends State<Home> {
               child: Container(
                 padding: new EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
+                    // color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: new Icon(Icons.notifications,
                     size: 25, color: Theme.of(context).primaryColorDark),

@@ -86,7 +86,7 @@ class _WriteDraftState extends State<WriteDraft> {
   }
 
   Future<void> notificationAfterSec() async {
-    var timeDelayed =DateTime(2020, 9, 11, 22, 15).add(Duration(seconds: 5));
+    var timeDelayed = DateTime(2020, 9, 11, 22, 15).add(Duration(seconds: 5));
     AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
             'second channel ID', 'second Channel title', 'second channel body',
@@ -131,6 +131,7 @@ class _WriteDraftState extends State<WriteDraft> {
     titleController.text = draft.title;
     descriptionController.text = draft.description;
     notesController.text = draft.notes;
+    int _value = 1;
 
     return Scaffold(
       body: Padding(
@@ -150,7 +151,7 @@ class _WriteDraftState extends State<WriteDraft> {
                       child: Container(
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
+                            // color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.arrow_back_ios,
                             size: 25,
@@ -170,7 +171,7 @@ class _WriteDraftState extends State<WriteDraft> {
                       child: Container(
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
+                            // color: Theme.of(context).cardColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: new Icon(Icons.more_horiz,
                             size: 25,
@@ -265,6 +266,38 @@ class _WriteDraftState extends State<WriteDraft> {
                       updatePriorityAsInt(valueSelectedByUser);
                     });
                   }),
+            ),
+            Column(
+              children: <Widget>[
+                for (int i = 1; i <= 5; i++)
+                  Container(
+                    child: Row(
+                      children: [
+                        Container(
+                          child: Text(
+                            'Radio $i',
+                            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                color: i == 5 ? Colors.black38 : Colors.black),
+                          ),
+                        ),
+                        Container(
+                          child: Radio(
+                            value: i,
+                            groupValue: _value,
+                            activeColor: Color(0xFF6200EE),
+                            onChanged: i == 5
+                                ? null
+                                : (int value) {
+                                    setState(() {
+                                      _value = value;
+                                    });
+                                  },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
             ),
             // Padding(
             //   padding: const EdgeInsets.all(8.0),

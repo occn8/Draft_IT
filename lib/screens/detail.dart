@@ -89,7 +89,7 @@ class _DetailsState extends State<Details> {
                         // margin: new EdgeInsets.all(5),
                         padding: new EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
+                          // color: Theme.of(context).cardColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: new Icon(Icons.arrow_back_ios,
@@ -109,7 +109,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
+                              // color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.star_border,
@@ -127,7 +127,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
+                              // color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.share,
@@ -145,7 +145,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
+                              // color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.folder_open,
@@ -170,7 +170,7 @@ class _DetailsState extends State<Details> {
                           child: Container(
                             padding: new EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
+                              // color: Theme.of(context).cardColor,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: new Icon(Icons.delete_outline,

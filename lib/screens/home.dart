@@ -1,4 +1,5 @@
 import 'package:Draft_IT/index.dart';
+import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -6,8 +7,26 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final GlobalKey<ScaffoldState> _sfkey = GlobalKey<ScaffoldState>();
   List<Draft> drafts;
-  DataBaseHelper dataBaseHelper = DataBaseHelper();
+  DataBaseHelper dbhelper = DataBaseHelper();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  FocusNode _titleFocus, _descriptionFocus;
+
+  @override
+  void initState() {
+    super.initState();
+    _titleFocus = FocusNode();
+    _descriptionFocus = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _titleFocus.dispose();
+    _descriptionFocus.dispose();
+    super.dispose();
+  }
 
   // List<Widget> draftList() {
   //   List<Widget> draftItemList = List();
@@ -86,6 +105,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: this._sfkey,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Scrollbar(
           child: ListView(
@@ -101,7 +121,7 @@ class _HomeState extends State<Home> {
                 ],
               ),
               FutureBuilder<List<Draft>>(
-                  future: dataBaseHelper.getDraftList(),
+                  future: dbhelper.getDraftList(),
                   initialData: [],
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     List<Widget> draftList() {
@@ -144,21 +164,35 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // showModalBottomSheet(
-            // shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.only(
-            //   topLeft: Radius.circular(10),
-            //   topRight: Radius.circular(10),
-            // )),
-            // context: context,
-            // builder: (ctx) => _buildBottomSheet(ctx));
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return WriteDraft(Draft('', '', 2, 0, 0, 0, 0), 'Add draft');
-            })).then(
-              (value) {
-                setState(() {});
-              },
-            );
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                // title: const Text('Dialog title'),
+                content: _buildBottomSheet(context),
+                // actions: <Widget>[
+                //   FlatButton(
+                //     child: Text('Cancel'),
+                //     onPressed: () => Navigator.pop(context, 'Cancel'),
+                //   ),
+                //   FlatButton(
+                //     child: Text('OK'),
+                //     onPressed: () => Navigator.pop(context, 'OK'),
+                //   ),
+                // ],
+              ),
+            ).then((returnVal) {
+              setState(() {});
+            });
+            // this._sfkey
+            // .currentState
+            // .showBottomSheet((ctx) => _buildBottomSheet(ctx));
+            // Navigator.push(context, MaterialPageRoute(builder: (context) {
+            //   return WriteDraft(Draft('', '', 2, 0, 0, 0, 0), 'Add draft');
+            // })).then(
+            //   (value) {
+            //     setState(() {});
+            //   },
+            // );
           },
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 4,
@@ -240,47 +274,73 @@ class _HomeState extends State<Home> {
 
   Container _buildBottomSheet(BuildContext context) {
     return Container(
-      height: 150,
+      height: 210,
       child: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, top: 5),
-            child: Text(
-              'Musk',
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: TextField(
+              focusNode: _titleFocus,
+              controller: titleController,
+              textCapitalization: TextCapitalization.sentences,
               style: TextStyle(),
+              onChanged: (value) {
+                // updateTitle();
+              },
+              decoration: InputDecoration(
+                labelText: 'Draft Title',
+                hintText: 'Enter',
+                prefixIcon: Icon(Icons.title),
+                labelStyle: TextStyle(fontWeight: FontWeight.w800),
+                border: UnderlineInputBorder(),
+              ),
             ),
           ),
-          ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Settings()));
-              },
-              leading: Icon(
-                Icons.settings,
-                color: Theme.of(context).primaryColor,
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: TextField(
+              focusNode: _descriptionFocus,
+              controller: descriptionController,
+              maxLines: null,
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.sentences,
+              style: TextStyle(),
+              onChanged: (value) {},
+              decoration: InputDecoration(
+                labelText: 'Description',
+                labelStyle: TextStyle(),
+                prefixIcon: Icon(Icons.description),
+                border: UnderlineInputBorder(),
               ),
-              title: Text('Settings', style: TextStyle())),
-          ListTile(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              leading: Icon(
-                Icons.info_outline,
-                color: Theme.of(context).primaryColor,
+            ),
+          ),
+          RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)),
+              color: Theme.of(context).primaryColor,
+              child: Text(
+                'Create',
+                textScaleFactor: 1.5,
+                style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
-              title: Text('About', style: TextStyle())),
-          // Container(
-          //   child: RaisedButton.icon(
-          //     icon: Icon(Icons.save),
-          //     label: Text('save'),
-          //     onPressed: () => Navigator.pop(context),
-          //   ),
-          // )
+              onPressed: () async {
+                Draft newdraft = Draft(titleController.text,
+                    DateFormat.yMMMd().format(DateTime.now()), 1, 0, 0, 0, 0);
+
+                await dbhelper.insertDraft(newdraft);
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return WriteDraft(newdraft, 'Add draft');
+                })).then(
+                  (value) {
+                    setState(() {});
+                  },
+                );
+              }),
         ],
       ),
     );
   }
+
   // void navigateToDetail(Draft note, String title) async {
   //   bool result =
   //       await Navigator.push(context, MaterialPageRoute(builder: (context) {

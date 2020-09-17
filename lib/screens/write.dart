@@ -269,14 +269,14 @@ class _WriteDraftState extends State<WriteDraft> {
             ),
             Row(
               children: <Widget>[
-                for (int i = 1; i <= 3; i++)
+                for (int i = 0; i <_priorities.length; i++)
                   Container(
                     color: Colors.amber,
                     child: Row(
                       children: [
                         Container(
                           child: Text(
-                            'High',
+                            _priorities[i],
                             style: Theme.of(context)
                                 .textTheme
                                 .subtitle1
@@ -474,13 +474,13 @@ class _WriteDraftState extends State<WriteDraft> {
   void updatePriorityAsInt(String value) {
     switch (value) {
       case 'Low':
-        draft.priority = 1;
+        draft.priority = 0;
         break;
       case 'Normal':
-        draft.priority = 2;
+        draft.priority = 1;
         break;
       case 'High':
-        draft.priority = 3;
+        draft.priority = 2;
         break;
     }
   }
@@ -488,13 +488,13 @@ class _WriteDraftState extends State<WriteDraft> {
   getPriorityAsString(int value) {
     String priority;
     switch (value) {
-      case 1:
+      case 0:
         priority = _priorities[0];
         break;
-      case 2:
+      case 1:
         priority = _priorities[1];
         break;
-      case 3:
+      case 2:
         priority = _priorities[2];
         break;
     }

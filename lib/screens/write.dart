@@ -27,7 +27,8 @@ class _WriteDraftState extends State<WriteDraft> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController notesController = TextEditingController();
   TextEditingController todoController = TextEditingController();
-  static var _priorities = ['High', 'Normal'];
+  static var _priorities = ['Low', 'Normal','High'];
+  int _radiaVal = 1;
 
   _WriteDraftState(this.appBarTitle, this.draft);
 
@@ -131,7 +132,6 @@ class _WriteDraftState extends State<WriteDraft> {
     titleController.text = draft.title;
     descriptionController.text = draft.description;
     notesController.text = draft.notes;
-    int _value = 1;
 
     return Scaffold(
       body: Padding(
@@ -267,31 +267,33 @@ class _WriteDraftState extends State<WriteDraft> {
                     });
                   }),
             ),
-            Column(
+            Row(
               children: <Widget>[
-                for (int i = 1; i <= 5; i++)
+                for (int i = 1; i <= 3; i++)
                   Container(
+                    color: Colors.amber,
                     child: Row(
                       children: [
                         Container(
                           child: Text(
-                            'Radio $i',
-                            style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                color: i == 5 ? Colors.black38 : Colors.black),
+                            'High',
+                            style: Theme.of(context)
+                                .textTheme
+                                .subtitle1
+                                .copyWith(color: Colors.black),
                           ),
                         ),
                         Container(
                           child: Radio(
                             value: i,
-                            groupValue: _value,
+                            groupValue: this._radiaVal,
                             activeColor: Color(0xFF6200EE),
-                            onChanged: i == 5
-                                ? null
-                                : (int value) {
-                                    setState(() {
-                                      _value = value;
-                                    });
-                                  },
+                            onChanged: (int value) {
+                              setState(() {
+                                this._radiaVal = value;
+                                print(_radiaVal);
+                              });
+                            },
                           ),
                         ),
                       ],
@@ -471,11 +473,14 @@ class _WriteDraftState extends State<WriteDraft> {
 
   void updatePriorityAsInt(String value) {
     switch (value) {
-      case 'High':
+      case 'Low':
         draft.priority = 1;
         break;
       case 'Normal':
         draft.priority = 2;
+        break;
+      case 'High':
+        draft.priority = 3;
         break;
     }
   }
@@ -488,6 +493,9 @@ class _WriteDraftState extends State<WriteDraft> {
         break;
       case 2:
         priority = _priorities[1];
+        break;
+      case 3:
+        priority = _priorities[2];
         break;
     }
     return priority;

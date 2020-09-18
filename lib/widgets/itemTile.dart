@@ -69,7 +69,7 @@ class ItemTile extends StatelessWidget {
                                 ),
                                 SizedBox(width: 5),
                                 Text(
-                                  date,
+                                  date ?? '',
                                   style: TextStyle(fontSize: 10),
                                 ),
                               ],
@@ -94,7 +94,7 @@ class ItemTile extends StatelessWidget {
                                     )),
                                 SizedBox(width: 5),
                                 Text(
-                                  time,
+                                  time ?? '',
                                   style: TextStyle(
                                       fontSize: 12, color: Colors.grey[600]),
                                 ),

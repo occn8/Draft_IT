@@ -41,9 +41,11 @@ class DataBaseHelper {
 
 //Drafts
   Future<int> insertDraft(Draft draft) async {
+    int draftId = 0;
     Database db = await this.database;
-    var result = await db.insert('draftstable', draft.toMap());
-    return result;
+    // var result = 
+    await db.insert('draftstable', draft.toMap()).then((value) => draftId==value);
+    return draftId;
   }
 
   Future<int> updateDraft(Draft draft) async {

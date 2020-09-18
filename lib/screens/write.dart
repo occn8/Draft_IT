@@ -183,6 +183,10 @@ class _WriteDraftState extends State<WriteDraft> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(draft.id.toString()),
+            ),
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: TextField(
                 focusNode: _titleFocus,
@@ -194,7 +198,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 },
                 decoration: InputDecoration(
                   labelText: 'Draft Title',
-                  hintText: 'Enter',
+                  hintText: 'Enter Title',
                   prefixIcon: Icon(Icons.title),
                   labelStyle: TextStyle(fontWeight: FontWeight.w800),
                   border: UnderlineInputBorder(),
@@ -215,6 +219,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 },
                 decoration: InputDecoration(
                   labelText: 'Description',
+                  hintText: 'Enter Description',
                   labelStyle: TextStyle(),
                   prefixIcon: Icon(Icons.description),
                   border: UnderlineInputBorder(),
@@ -519,7 +524,7 @@ class _WriteDraftState extends State<WriteDraft> {
     if (draft.id != null) {
       result = await helper.updateDraft(draft);
     } else {
-      result = await helper.insertDraft(draft);
+      // result = await helper.insertDraft(draft);
     }
     if (result != 0) {
       // _showAlartDialog('status', 'Note saved successfully');

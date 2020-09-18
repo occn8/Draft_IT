@@ -324,17 +324,39 @@ class _HomeState extends State<Home> {
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
               onPressed: () async {
-                Draft newdraft = Draft(titleController.text,
-                    DateFormat.yMMMd().format(DateTime.now()), 1, 0, 0, 0, 0);
+                Draft newdraft = Draft(
+                    titleController.text,
+                    descriptionController.text,
+                    DateFormat.yMMMd().format(DateTime.now()),
+                    1,
+                    0,
+                    0,
+                    0,
+                    0);
 
-                await dbhelper.insertDraft(newdraft);
+                var result = await dbhelper.insertDraft(newdraft);
+
+                Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return WriteDraft(newdraft, 'Add draft');
+                  return WriteDraft(
+                      Draft.withId(
+                          result,
+                          titleController.text,
+                          descriptionController.text,
+                          DateFormat.yMMMd().format(DateTime.now()),
+                          1,
+                          0,
+                          0,
+                          0,
+                          0),
+                      'Add draft');
                 })).then(
                   (value) {
                     setState(() {});
                   },
                 );
+                titleController.clear();
+                descriptionController.clear();
               }),
         ],
       ),

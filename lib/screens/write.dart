@@ -27,7 +27,7 @@ class _WriteDraftState extends State<WriteDraft> {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController notesController = TextEditingController();
   TextEditingController todoController = TextEditingController();
-  static var _priorities = ['Low', 'Normal','High'];
+  static var _priorities = ['Low', 'Normal', 'High'];
   int _radiaVal = 1;
 
   _WriteDraftState(this.appBarTitle, this.draft);
@@ -274,9 +274,9 @@ class _WriteDraftState extends State<WriteDraft> {
             ),
             Row(
               children: <Widget>[
-                for (int i = 0; i <_priorities.length; i++)
+                for (int i = 0; i < _priorities.length; i++)
                   Container(
-                    color: Colors.amber,
+                    // color: Colors.amber,
                     child: Row(
                       children: [
                         Container(
@@ -291,12 +291,12 @@ class _WriteDraftState extends State<WriteDraft> {
                         Container(
                           child: Radio(
                             value: i,
-                            groupValue: this._radiaVal,
+                            groupValue: draft.priority,
                             activeColor: Color(0xFF6200EE),
                             onChanged: (int value) {
                               setState(() {
-                                this._radiaVal = value;
-                                print(_radiaVal);
+                                draft.priority = value;
+                                print(draft.priority);
                               });
                             },
                           ),
@@ -517,8 +517,7 @@ class _WriteDraftState extends State<WriteDraft> {
   void _save() async {
     Navigator.pop(context);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
-    draft.ddate =
-        DateFormat.yMd().format(DateTime(2020, 7, 24));
+    draft.ddate = DateFormat.yMd().format(DateTime(2020, 7, 24));
     draft.dtime = DateFormat.Hm().format(DateTime.now());
     int result;
     if (draft.id != null) {

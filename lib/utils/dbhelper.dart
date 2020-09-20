@@ -43,8 +43,11 @@ class DataBaseHelper {
   Future<int> insertDraft(Draft draft) async {
     int draftId = 0;
     Database db = await this.database;
-    // var result = 
-    await db.insert('draftstable', draft.toMap()).then((value) => draftId==value);
+    // var result =
+    await db
+        .insert('draftstable', draft.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.replace)
+        .then((value) => draftId = value);
     return draftId;
   }
 
@@ -86,9 +89,11 @@ class DataBaseHelper {
     }
     return draftList;
   }
- Future<void> updateIsDone(int id, int isDone) async {
-   Database db = await this.database;
-    await db.rawUpdate("UPDATE draftstable SET isDone = '$isDone' WHERE id = '$id'");
+
+  Future<void> updateIsDone(int id, int isDone) async {
+    Database db = await this.database;
+    await db.rawUpdate(
+        "UPDATE draftstable SET isDone = '$isDone' WHERE id = '$id'");
   }
 
 //ToDo

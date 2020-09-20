@@ -9,6 +9,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _sfkey = GlobalKey<ScaffoldState>();
   List<Draft> drafts;
+
   DataBaseHelper dbhelper = DataBaseHelper();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
@@ -323,46 +324,34 @@ class _HomeState extends State<Home> {
                 textScaleFactor: 1.5,
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               ),
-              onPressed: () async {
-                Draft newdraft = Draft(
-                    titleController.text,
-                    descriptionController.text,
-                    DateFormat.yMMMd().format(DateTime.now()),
-                    1,
-                    0,
-                    0,
-                    0,
-                    0);
-
-                var result = await dbhelper.insertDraft(newdraft);
-
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return WriteDraft(
-                      Draft.withId(
-                          result,
-                          titleController.text,
-                          descriptionController.text,
-                          DateFormat.yMMMd().format(DateTime.now()),
-                          1,
-                          0,
-                          0,
-                          0,
-                          0),
-                      'Add draft');
-                })).then(
-                  (value) {
-                    setState(() {});
-                  },
-                );
-                titleController.clear();
-                descriptionController.clear();
+              onPressed: () {
+                create();
               }),
         ],
       ),
     );
   }
 
+  Future<void> create() async {
+    String title = titleController.text;
+    String description = descriptionController.text;
+
+    Draft draft = Draft(title, description,
+        DateFormat.yMMMd().format(DateTime.now()), 1, 0, 0, 0, 0);
+
+    await dbhelper.insertDraft(draft);
+
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return WriteDraft(draft, 'Add draft');
+    })).then(
+      (value) {
+        setState(() {});
+      },
+    );
+    titleController.clear();
+    descriptionController.clear();
+  }
   // void navigateToDetail(Draft note, String title) async {
   //   bool result =
   //       await Navigator.push(context, MaterialPageRoute(builder: (context) {

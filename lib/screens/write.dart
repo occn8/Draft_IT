@@ -518,7 +518,7 @@ class _WriteDraftState extends State<WriteDraft> {
     Navigator.pop(context);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
     draft.ddate =
-        DateFormat.yMd().add_jm().format(DateTime(2020, 7, 24, 22, 1));
+        DateFormat.yMd().add_jm().format(DateTime(2020, 7, 24));
     draft.dtime = DateFormat.Hm().format(DateTime.now());
     int result;
     if (draft.id != null) {

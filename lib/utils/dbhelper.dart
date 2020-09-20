@@ -96,6 +96,24 @@ class DataBaseHelper {
         "UPDATE draftstable SET isDone = '$isDone' WHERE id = '$id'");
   }
 
+  Future<void> updateIsStarred(int id, int isStarred) async {
+    Database db = await this.database;
+    await db.rawUpdate(
+        "UPDATE draftstable SET isStarred = '$isStarred' WHERE id = '$id'");
+  }
+
+  Future<void> updateIsArchived(int id, int isArchived) async {
+    Database db = await this.database;
+    await db.rawUpdate(
+        "UPDATE draftstable SET isArchived = '$isArchived' WHERE id = '$id'");
+  }
+
+  Future<void> updateIsTrash(int id, int isTrash) async {
+    Database db = await this.database;
+    await db.rawUpdate(
+        "UPDATE draftstable SET isTrash = '$isTrash' WHERE id = '$id'");
+  }
+
 //ToDo
   Future<void> insertTodo(Todo todo) async {
     Database db = await this.database;

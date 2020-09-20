@@ -4,7 +4,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var ukey = prefs.getString('usagekey');
-  print(ukey);
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeChanger(),

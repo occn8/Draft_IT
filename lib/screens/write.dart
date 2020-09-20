@@ -6,10 +6,11 @@ import 'package:intl/intl.dart';
 class WriteDraft extends StatefulWidget {
   final String appBarTitle;
   final Draft draft;
-  WriteDraft(this.draft, this.appBarTitle);
+  final int id;
+  WriteDraft(this.draft, this.appBarTitle, this.id);
   @override
   _WriteDraftState createState() =>
-      _WriteDraftState(this.appBarTitle, this.draft);
+      _WriteDraftState(this.appBarTitle, this.draft,this.id);
 }
 
 class _WriteDraftState extends State<WriteDraft> {
@@ -23,6 +24,7 @@ class _WriteDraftState extends State<WriteDraft> {
   FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
   String appBarTitle;
   Draft draft;
+  int id;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController notesController = TextEditingController();
@@ -30,7 +32,7 @@ class _WriteDraftState extends State<WriteDraft> {
   static var _priorities = ['Low', 'Normal','High'];
   int _radiaVal = 1;
 
-  _WriteDraftState(this.appBarTitle, this.draft);
+  _WriteDraftState(this.appBarTitle, this.draft,this.id);
 
   @override
   void initState() {
@@ -184,7 +186,7 @@ class _WriteDraftState extends State<WriteDraft> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(draft.id.toString()),
+              child: Text(id.toString()),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5),

@@ -249,11 +249,14 @@ class _HomeState extends State<Home> {
 
   Color getPriorityColor(int priority) {
     switch (priority) {
-      case 1:
+      case 0:
         return Color(0xfffa5b5d);
         break;
-      case 2:
+      case 1:
         return Colors.orangeAccent;
+        break;
+      case 2:
+        return Colors.lime;
         break;
       default:
         return Colors.orangeAccent;
@@ -339,11 +342,11 @@ class _HomeState extends State<Home> {
     Draft draft = Draft(title, description,
         DateFormat.yMMMd().format(DateTime.now()), 1, 0, 0, 0, 0);
 
-    await dbhelper.insertDraft(draft);
+    var id = await dbhelper.insertDraft(draft);
 
     Navigator.pop(context);
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return WriteDraft(draft, 'Add draft');
+      return WriteDraft(draft, 'Add draft', id);
     })).then(
       (value) {
         setState(() {});

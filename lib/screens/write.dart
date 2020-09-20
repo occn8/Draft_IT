@@ -6,11 +6,10 @@ import 'package:intl/intl.dart';
 class WriteDraft extends StatefulWidget {
   final String appBarTitle;
   final Draft draft;
-  final int id;
-  WriteDraft(this.draft, this.appBarTitle, this.id);
+  WriteDraft(this.draft, this.appBarTitle);
   @override
   _WriteDraftState createState() =>
-      _WriteDraftState(this.appBarTitle, this.draft,this.id);
+      _WriteDraftState(this.appBarTitle, this.draft);
 }
 
 class _WriteDraftState extends State<WriteDraft> {
@@ -24,7 +23,6 @@ class _WriteDraftState extends State<WriteDraft> {
   FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
   String appBarTitle;
   Draft draft;
-  int id;
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController notesController = TextEditingController();
@@ -32,7 +30,7 @@ class _WriteDraftState extends State<WriteDraft> {
   static var _priorities = ['Low', 'Normal','High'];
   int _radiaVal = 1;
 
-  _WriteDraftState(this.appBarTitle, this.draft,this.id);
+  _WriteDraftState(this.appBarTitle, this.draft);
 
   @override
   void initState() {
@@ -186,7 +184,7 @@ class _WriteDraftState extends State<WriteDraft> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(id.toString()),
+              child: Text(draft.id.toString()),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
@@ -269,7 +267,7 @@ class _WriteDraftState extends State<WriteDraft> {
                   value: getPriorityAsString(draft.priority),
                   onChanged: (valueSelectedByUser) {
                     setState(() {
-                      print(valueSelectedByUser);
+                      print(draft.priority);
                       updatePriorityAsInt(valueSelectedByUser);
                     });
                   }),
@@ -520,7 +518,7 @@ class _WriteDraftState extends State<WriteDraft> {
     Navigator.pop(context);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
     draft.ddate =
-        DateFormat.yMd().add_jm().format(DateTime(2020, 7, 24));
+        DateFormat.yMd().format(DateTime(2020, 7, 24));
     draft.dtime = DateFormat.Hm().format(DateTime.now());
     int result;
     if (draft.id != null) {

@@ -342,16 +342,16 @@ class _HomeState extends State<Home> {
     Draft draft = Draft(title, description,
         DateFormat.yMMMd().format(DateTime.now()), 1, 0, 0, 0, 0);
 
-    var id = await dbhelper.insertDraft(draft);
+    await dbhelper.insertDraft(draft);
 
     Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return WriteDraft(draft, 'Add draft', id);
-    })).then(
-      (value) {
-        setState(() {});
-      },
-    );
+    // Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //   return WriteDraft(draft, 'Add draft');
+    // })).then(
+    //   (value) {
+    //     setState(() {});
+    //   },
+    // );
     titleController.clear();
     descriptionController.clear();
   }

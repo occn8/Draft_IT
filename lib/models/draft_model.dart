@@ -52,7 +52,7 @@ class Draft {
   }
 
   set priority(int newPriority) {
-    if (newPriority >= 1 && newPriority <= 2) {
+    if (newPriority >= 0 && newPriority <= 2) {
       this._priority = newPriority;
     }
   }

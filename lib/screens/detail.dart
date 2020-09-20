@@ -190,8 +190,7 @@ class _DetailsState extends State<Details> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return WriteDraft(
-                  this.widget.draft, 'Edit Draft', this.widget.draft.id);
+              return WriteDraft(this.widget.draft, 'Edit Draft');
             })).then(
               (value) {
                 setState(() {});

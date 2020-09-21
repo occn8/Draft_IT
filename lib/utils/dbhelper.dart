@@ -75,8 +75,11 @@ class DataBaseHelper {
 
   Future<List<Map<String, dynamic>>> getDraftMapList() async {
     Database db = await this.database;
-    // var result = await db.rawQuery('SELECT * FROM $noteTable order by $colPriority ASC');
-    var result = await db.query('draftstable', orderBy: 'priority ASC');
+    // var result = await db.rawQuery('SELECT * FROM draftstable order by id DESC, priority ASC');
+    var result = await db.query(
+      'draftstable',
+      orderBy: 'priority DESC, id ASC',
+    );
     return result;
   }
 

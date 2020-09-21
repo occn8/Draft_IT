@@ -64,19 +64,19 @@ class Draft {
   }
 
   set isArchived(int newisArchived) {
-    if (newisArchived >= 1 && newisArchived <= 2) {
+    if (newisArchived == 1 || newisArchived == 0) {
       this._isArchived = newisArchived;
     }
   }
 
   set isTrash(int newisTrash) {
-    if (newisTrash >= 1 && newisTrash <= 2) {
+    if (newisTrash == 1 || newisTrash == 0) {
       this._isTrash = newisTrash;
     }
   }
 
   set isDone(int newisDone) {
-    if (newisDone >= 1 && newisDone <= 2) {
+    if (newisDone == 1 || newisDone == 0) {
       this._isDone = newisDone;
     }
   }

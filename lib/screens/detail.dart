@@ -20,49 +20,48 @@ class _DetailsState extends State<Details> {
             ListView(
               children: [
                 SizedBox(height: 50),
-                Row(
-                  children: [
-                    Switch(
-                      onChanged: (bool value) async {
-                        if (widget.draft.isDone == 0) {
-                          widget.draft.isDone = 1;
-                          // await helper.updateIsDone(widget.draft.id, 1);
-                          print(widget.draft.isDone);
-                        } else {
-                          widget.draft.isDone = 0;
-                          await helper.updateIsDone(widget.draft.id, 0);
-                          widget.draft.isDone = 0;
-                          print(widget.draft.isDone);
-                        }
-                        setState(() {});
-                      },
-                      value: widget.draft.isDone == 0 ? false : true,
-                    ),
-                    Checkbox(
-                      onChanged: (bool value) async {
-                        if (value == false) {
-                          await helper.updateIsDone(widget.draft.id, 1);
-                          print(widget.draft.isDone);
-                        }
-                        if (value == true) {
-                          await helper.updateIsDone(widget.draft.id, 0);
-                          print(widget.draft.isDone);
-                        }
-                        setState(() {});
-                      },
-                      value: getIsDone(widget.draft.isDone),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(top: 5, left: 5),
-                      child: Text(
-                        widget.draft.isDone.toString() ?? 'No Due date',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text('Done'),
+                          Checkbox(
+                            activeColor: Theme.of(context).primaryColor,
+                            checkColor: Theme.of(context).primaryColorLight,
+                            onChanged: (bool value) async {
+                              if (widget.draft.isDone == 0) {
+                                widget.draft.isDone = 1;
+                                await helper.updateIsDone(
+                                    widget.draft.id, widget.draft.isDone);
+                                print(widget.draft.isDone);
+                              } else {
+                                widget.draft.isDone = 0;
+                                await helper.updateIsDone(
+                                    widget.draft.id, widget.draft.isDone);
+                                print(widget.draft.isDone);
+                              }
+                              setState(() {});
+                            },
+                            // value: widget.draft.isDone == 0 ? false : true,
+                            value: getIsDone(widget.draft.isDone),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 5, left: 5),
+                        child: Text(
+                          widget.draft.ddate.toString() ?? 'No Due date',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.only(top: 5, left: 5),

@@ -159,15 +159,35 @@ class _DetailsState extends State<Details> {
                 builder: (context) => InkWell(
                   splashColor: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.circular(10),
-                  onTap: () {},
+                  onTap: () async {
+                    if (widget.draft.isStarred == 0) {
+                      widget.draft.isStarred = 1;
+                      await helper.updateIsStarred(
+                          widget.draft.id, widget.draft.isStarred);
+                      print(widget.draft.isStarred);
+                    } else {
+                      widget.draft.isStarred = 0;
+                      await helper.updateIsStarred(
+                          widget.draft.id, widget.draft.isStarred);
+                      print(widget.draft.isStarred);
+                    }
+                    setState(() {});
+                  },
                   child: Container(
                     padding: new EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       // color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: new Icon(Icons.star_border,
-                        size: 25, color: Theme.of(context).primaryColorDark),
+                    child: new Icon(
+                      widget.draft.isStarred == 0
+                          ? Icons.star_border
+                          : Icons.star,
+                      size: 25,
+                      color: widget.draft.isStarred == 0
+                          ? Theme.of(context).primaryColorDark
+                          : Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
               ),

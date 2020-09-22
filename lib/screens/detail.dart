@@ -10,7 +10,6 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   DataBaseHelper helper = DataBaseHelper();
-  bool _checkBoxVal = true;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +22,35 @@ class _DetailsState extends State<Details> {
                 SizedBox(height: 50),
                 Row(
                   children: [
+                    Switch(
+                      onChanged: (bool value) async {
+                        if (widget.draft.isDone == 0) {
+                          widget.draft.isDone = 1;
+                          // await helper.updateIsDone(widget.draft.id, 1);
+                          print(widget.draft.isDone);
+                        } else {
+                          widget.draft.isDone = 0;
+                          await helper.updateIsDone(widget.draft.id, 0);
+                          widget.draft.isDone = 0;
+                          print(widget.draft.isDone);
+                        }
+                        setState(() {});
+                      },
+                      value: widget.draft.isDone == 0 ? false : true,
+                    ),
                     Checkbox(
                       onChanged: (bool value) async {
-                        if (value == true && widget.draft.isDone == 0) {
+                        if (value == false) {
                           await helper.updateIsDone(widget.draft.id, 1);
-                        } else {
-                          await helper.updateIsDone(widget.draft.isDone, 0);
+                          print(widget.draft.isDone);
                         }
-                        setState(() => this._checkBoxVal = value);
-                        // setState(() {});
+                        if (value == true) {
+                          await helper.updateIsDone(widget.draft.id, 0);
+                          print(widget.draft.isDone);
+                        }
+                        setState(() {});
                       },
-                      value: this._checkBoxVal,
+                      value: getIsDone(widget.draft.isDone),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 5, left: 5),
@@ -235,19 +252,38 @@ class _DetailsState extends State<Details> {
         backgroundColor: Theme.of(context).backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         content: Text(
-          'Continue with Trashing?',
+          'Continue to Trash or Delete?',
         ),
         actions: <Widget>[
           FlatButton(
-            child: Text('Cancel'),
+            child: Text(
+              'Cancel',
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
             onPressed: () => Navigator.pop(context, 'Cancel'),
           ),
           FlatButton(
-            child: Text('OK'),
+            child: Text(
+              'OK',
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
             onPressed: () => Navigator.pop(context, 'OK'),
           ),
         ],
       ),
     );
+  }
+
+  bool getIsDone(int isdone) {
+    switch (isdone) {
+      case 0:
+        return false;
+        break;
+      case 1:
+        return true;
+        break;
+      default:
+        return false;
+    }
   }
 }

@@ -182,7 +182,7 @@ class _DetailsState extends State<Details> {
                     child: new Icon(
                       widget.draft.isStarred == 0
                           ? Icons.star_border
-                          : Icons.star,
+                          : Icons.star_border,
                       size: 25,
                       color: widget.draft.isStarred == 0
                           ? Theme.of(context).primaryColorDark
@@ -213,15 +213,35 @@ class _DetailsState extends State<Details> {
                 builder: (context) => InkWell(
                   splashColor: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.circular(10),
-                  onTap: () {},
+                  onTap: () async {
+                    if (widget.draft.isArchived == 0) {
+                      widget.draft.isArchived = 1;
+                      await helper.updateIsArchived(
+                          widget.draft.id, widget.draft.isArchived);
+                      print(widget.draft.isArchived);
+                    } else {
+                      widget.draft.isArchived = 0;
+                      await helper.updateIsArchived(
+                          widget.draft.id, widget.draft.isArchived);
+                      print(widget.draft.isArchived);
+                    }
+                    setState(() {});
+                  },
                   child: Container(
                     padding: new EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       // color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: new Icon(Icons.folder_open,
-                        size: 25, color: Theme.of(context).primaryColorDark),
+                    child: new Icon(
+                      widget.draft.isArchived == 0
+                          ? Icons.folder_open
+                          : Icons.folder_open,
+                      size: 25,
+                      color: widget.draft.isArchived == 0
+                          ? Theme.of(context).primaryColorDark
+                          : Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
               ),

@@ -252,9 +252,24 @@ class _DetailsState extends State<Details> {
                   borderRadius: BorderRadius.circular(10),
                   onTap: () {
                     deleteDialog(context).then((returnVal) async {
-                      if (returnVal == 'OK') {
+                      if (returnVal == 'Delete') {
                         Navigator.pop(context);
                         await helper.deleteDraft(widget.draft.id);
+                      }
+                      if (returnVal == 'Trash') {
+                        // Navigator.pop(context);
+                        if (widget.draft.isTrash == 0) {
+                          widget.draft.isTrash = 1;
+                          await helper.updateIsTrash(
+                              widget.draft.id, widget.draft.isTrash);
+                          print(widget.draft.isTrash);
+                        } else {
+                          widget.draft.isTrash = 0;
+                          await helper.updateIsTrash(
+                              widget.draft.id, widget.draft.isTrash);
+                          print(widget.draft.isTrash);
+                        }
+                        setState(() {});
                       }
                     });
                   },
@@ -296,17 +311,17 @@ class _DetailsState extends State<Details> {
         actions: <Widget>[
           FlatButton(
             child: Text(
-              'Cancel',
+              'Trash',
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
-            onPressed: () => Navigator.pop(context, 'Cancel'),
+            onPressed: () => Navigator.pop(context, 'Trash'),
           ),
           FlatButton(
             child: Text(
-              'OK',
+              'Delete',
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
-            onPressed: () => Navigator.pop(context, 'OK'),
+            onPressed: () => Navigator.pop(context, 'Delete'),
           ),
         ],
       ),

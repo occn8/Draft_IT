@@ -355,26 +355,4 @@ class _HomeState extends State<Home> {
     titleController.clear();
     descriptionController.clear();
   }
-  // void navigateToDetail(Draft note, String title) async {
-  //   bool result =
-  //       await Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //     return AddDraft(note, title);
-  //   }));
-  //   if (result == true) {
-  //     updateListView();
-  //   }
-  // }
-
-  // void updateListView() {
-  //   final Future<Database> dbFuture = dataBaseHelper.initializeDatabase();
-  //   dbFuture.then((database) {
-  //     Future<List<Draft>> noteListFuture = dataBaseHelper.getDraftList();
-  //     noteListFuture.then((noteList) {
-  //       setState(() {
-  //         this.drafts = noteList;
-  //         // this.count = noteList.length;
-  //       });
-  //     });
-  //   });
-  // }
 }

@@ -83,13 +83,17 @@ class _DetailsState extends State<Details> {
                 Container(
                   padding: EdgeInsets.all(5),
                   child: Center(
-                      child: Text(
+                      child: Row(
+                        children: [
+                          Text(
                     widget.draft.title ?? 'No Title Added',
                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
                     ),
-                  )),
+                  ),
+                        ],
+                      )),
                 ),
                 Container(
                   padding: EdgeInsets.all(5),

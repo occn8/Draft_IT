@@ -18,8 +18,14 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
       child: Scaffold(
         body: ListView(
           children: [
+            CustomAppBar(
+                title: widget.strFilter,
+                leadOnTap: () {
+                  Navigator.pop(context);
+                },
+                leadIcon: Icons.arrow_back_ios),
             FutureBuilder<List<Draft>>(
-                future: dbhelper.getFilteredDraftList('isDone'),
+                future: dbhelper.getFilteredDraftList(widget.strFilter),
                 initialData: [],
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   List<Widget> draftList() {

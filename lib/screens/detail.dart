@@ -34,12 +34,12 @@ class _DetailsState extends State<Details> {
                             onChanged: (bool value) async {
                               if (widget.draft.isDone == 0) {
                                 widget.draft.isDone = 1;
-                                await helper.updateIsDone(
+                                await helper.toggleIsDone(
                                     widget.draft.id, widget.draft.isDone);
                                 print(widget.draft.isDone);
                               } else {
                                 widget.draft.isDone = 0;
-                                await helper.updateIsDone(
+                                await helper.toggleIsDone(
                                     widget.draft.id, widget.draft.isDone);
                                 print(widget.draft.isDone);
                               }
@@ -169,12 +169,12 @@ class _DetailsState extends State<Details> {
                   onTap: () async {
                     if (widget.draft.isStarred == 0) {
                       widget.draft.isStarred = 1;
-                      await helper.updateIsStarred(
+                      await helper.toggleIsStarred(
                           widget.draft.id, widget.draft.isStarred);
                       print(widget.draft.isStarred);
                     } else {
                       widget.draft.isStarred = 0;
-                      await helper.updateIsStarred(
+                      await helper.toggleIsStarred(
                           widget.draft.id, widget.draft.isStarred);
                       print(widget.draft.isStarred);
                     }
@@ -223,12 +223,12 @@ class _DetailsState extends State<Details> {
                   onTap: () async {
                     if (widget.draft.isArchived == 0) {
                       widget.draft.isArchived = 1;
-                      await helper.updateIsArchived(
+                      await helper.toggleIsArchived(
                           widget.draft.id, widget.draft.isArchived);
                       print(widget.draft.isArchived);
                     } else {
                       widget.draft.isArchived = 0;
-                      await helper.updateIsArchived(
+                      await helper.toggleIsArchived(
                           widget.draft.id, widget.draft.isArchived);
                       print(widget.draft.isArchived);
                     }
@@ -267,12 +267,12 @@ class _DetailsState extends State<Details> {
                         // Navigator.pop(context);
                         if (widget.draft.isTrash == 0) {
                           widget.draft.isTrash = 1;
-                          await helper.updateIsTrash(
+                          await helper.toggleIsTrash(
                               widget.draft.id, widget.draft.isTrash);
                           print(widget.draft.isTrash);
                         } else {
                           widget.draft.isTrash = 0;
-                          await helper.updateIsTrash(
+                          await helper.toggleIsTrash(
                               widget.draft.id, widget.draft.isTrash);
                           print(widget.draft.isTrash);
                         }

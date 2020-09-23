@@ -93,25 +93,43 @@ class DataBaseHelper {
     return draftList;
   }
 
-  Future<void> updateIsDone(int id, int isDone) async {
+  Future<List<Map<String, dynamic>>> getFilteredDraftMapList(
+      String isWhat) async {
+    Database db = await this.database;
+    var result =
+        await db.rawQuery("SELECT * FROM draftstable WHERE $isWhat=1");
+    return result;
+  }
+
+  Future<List<Draft>> getFilteredDraftList(String isWhat) async {
+    var draftMapList = await getFilteredDraftMapList(isWhat);
+    int count = draftMapList.length;
+    List<Draft> draftList = List<Draft>();
+    for (int i = 0; i < count; i++) {
+      draftList.add(Draft.fromMapOject(draftMapList[i]));
+    }
+    return draftList;
+  }
+
+  Future<void> toggleIsDone(int id, int isDone) async {
     Database db = await this.database;
     await db.rawUpdate(
         "UPDATE draftstable SET isDone = '$isDone' WHERE id = '$id'");
   }
 
-  Future<void> updateIsStarred(int id, int isStarred) async {
+  Future<void> toggleIsStarred(int id, int isStarred) async {
     Database db = await this.database;
     await db.rawUpdate(
         "UPDATE draftstable SET isStarred = '$isStarred' WHERE id = '$id'");
   }
 
-  Future<void> updateIsArchived(int id, int isArchived) async {
+  Future<void> toggleIsArchived(int id, int isArchived) async {
     Database db = await this.database;
     await db.rawUpdate(
         "UPDATE draftstable SET isArchived = '$isArchived' WHERE id = '$id'");
   }
 
-  Future<void> updateIsTrash(int id, int isTrash) async {
+  Future<void> toggleIsTrash(int id, int isTrash) async {
     Database db = await this.database;
     await db.rawUpdate(
         "UPDATE draftstable SET isTrash = '$isTrash' WHERE id = '$id'");

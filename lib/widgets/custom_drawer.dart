@@ -82,6 +82,9 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.star_border),
             title: Text('Starred'),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>FilteredTemplate()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.notifications_active),
@@ -94,10 +97,6 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.archive),
             title: Text('Archived'),
-          ),
-          ListTile(
-            leading: Icon(Icons.storage),
-            title: Text('Catalog'),
           ),
           ListTile(
             leading: Icon(Icons.attach_money),

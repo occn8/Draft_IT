@@ -188,20 +188,10 @@ class _HomeState extends State<Home> {
             ).then((returnVal) {
               setState(() {});
             });
-            // this._sfkey
-            // .currentState
-            // .showBottomSheet((ctx) => _buildBottomSheet(ctx));
-            // Navigator.push(context, MaterialPageRoute(builder: (context) {
-            //   return WriteDraft(Draft('', '', 2, 0, 0, 0, 0), 'Add draft');
-            // })).then(
-            //   (value) {
-            //     setState(() {});
-            //   },
-            // );
           },
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 4,
-          child: Icon(Icons.add, color: Colors.white),
+          child: Icon(Icons.add, color: Theme.of(context).primaryColorLight),
         ),
         drawer: CustomDrawer(),
       ),

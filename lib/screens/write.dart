@@ -339,17 +339,17 @@ class _WriteDraftState extends State<WriteDraft> {
                 ],
               ),
             ),
-            FlatButton(
-              color: Colors.blue,
-              onPressed: showNotificationsAfterSecond,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Show Notification",
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
-                ),
-              ),
-            ),
+            // FlatButton(
+            //   color: Colors.blue,
+            //   onPressed: showNotificationsAfterSecond,
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(8.0),
+            //     child: Text(
+            //       "Show Notification",
+            //       style: TextStyle(fontSize: 20.0, color: Colors.white),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Row(

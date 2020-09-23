@@ -64,27 +64,10 @@ class _DetailsState extends State<Details> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 5, left: 5),
-                  child: Text(
-                    '''
-                        Priority = ${widget.draft.priority.toString()}
-                        isArchived = ${widget.draft.isArchived.toString()}
-                        isDone = ${widget.draft.isDone.toString()}
-                        isStarred = ${widget.draft.isStarred.toString()}
-                        isTrash = ${widget.draft.isTrash.toString()}
-                        ''' ??
-                        'No Due date',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Container(
                   padding: EdgeInsets.all(5),
                   child: Center(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TagCircle(color: getPriorityColor(widget.draft.priority)),
                       SizedBox(width: 5),
@@ -104,6 +87,23 @@ class _DetailsState extends State<Details> {
                     widget.draft.description ?? 'No Description Added',
                     style: TextStyle(
                       fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 5, left: 5),
+                  child: Text(
+                    '''
+                        Priority = ${widget.draft.priority.toString()}
+                        isArchived = ${widget.draft.isArchived.toString()}
+                        isDone = ${widget.draft.isDone.toString()}
+                        isStarred = ${widget.draft.isStarred.toString()}
+                        isTrash = ${widget.draft.isTrash.toString()}
+                        ''' ??
+                        'No Due date',
+                    style: TextStyle(
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

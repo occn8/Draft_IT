@@ -1,6 +1,6 @@
 import 'package:Draft_IT/index.dart';
+import 'package:Draft_IT/utils/notificationhelper.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 
 class WriteDraft extends StatefulWidget {
@@ -13,11 +13,7 @@ class WriteDraft extends StatefulWidget {
 }
 
 class _WriteDraftState extends State<WriteDraft> {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-  AndroidInitializationSettings androidInitializationSettings;
-  IOSInitializationSettings iosInitializationSettings;
-  InitializationSettings initializationSettings;
+ 
 
   DataBaseHelper helper = DataBaseHelper();
   FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
@@ -28,7 +24,6 @@ class _WriteDraftState extends State<WriteDraft> {
   TextEditingController notesController = TextEditingController();
   TextEditingController todoController = TextEditingController();
   static var _priorities = ['Low', 'Normal', 'High'];
-  int _radiaVal = 1;
 
   _WriteDraftState(this.appBarTitle, this.draft);
 
@@ -51,81 +46,7 @@ class _WriteDraftState extends State<WriteDraft> {
     super.dispose();
   }
 
-  void initializing() async {
-    androidInitializationSettings =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    iosInitializationSettings = IOSInitializationSettings(
-        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
-    initializationSettings = InitializationSettings(
-        androidInitializationSettings, iosInitializationSettings);
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: onSelectNotification);
-  }
-
-  void _showNotifications() async {
-    await notification();
-  }
-
-  Future<void> notification() async {
-    AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-            'Channel ID', 'Channel title', 'channel body',
-            priority: Priority.High,
-            importance: Importance.Max,
-            ticker: 'test');
-
-    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
-
-    NotificationDetails notificationDetails =
-        NotificationDetails(androidNotificationDetails, iosNotificationDetails);
-    await flutterLocalNotificationsPlugin.show(0, titleController.text,
-        descriptionController.text, notificationDetails);
-  }
-
-  void _showNotificationsAfterSecond() async {
-    await notificationAfterSec();
-  }
-
-  Future<void> notificationAfterSec() async {
-    var timeDelayed = DateTime(2020, 9, 11, 22, 15).add(Duration(seconds: 5));
-    AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-            'second channel ID', 'second Channel title', 'second channel body',
-            priority: Priority.High,
-            importance: Importance.Max,
-            ticker: 'test');
-
-    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
-
-    NotificationDetails notificationDetails =
-        NotificationDetails(androidNotificationDetails, iosNotificationDetails);
-    await flutterLocalNotificationsPlugin.schedule(1, 'Hello there',
-        'please subscribe my channel', timeDelayed, notificationDetails);
-  }
-
-  Future onSelectNotification(String payLoad) {
-    if (payLoad != null) {
-      print(payLoad);
-    }
-
-    // we can set navigator to navigate another screen
-  }
-
-  Future onDidReceiveLocalNotification(
-      int id, String title, String body, String payload) async {
-    return CupertinoAlertDialog(
-      title: Text(title),
-      content: Text(body),
-      actions: <Widget>[
-        CupertinoDialogAction(
-            isDefaultAction: true,
-            onPressed: () {
-              print("");
-            },
-            child: Text("Okay")),
-      ],
-    );
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -181,10 +102,6 @@ class _WriteDraftState extends State<WriteDraft> {
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(draft.id.toString()),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
@@ -251,60 +168,67 @@ class _WriteDraftState extends State<WriteDraft> {
               padding: const EdgeInsets.all(8.0),
               child: Text('Tag'),
             ),
-            ListTile(
-              title: DropdownButton(
-                  items: _priorities.map((String dropDownStringItem) {
-                    return DropdownMenuItem<String>(
-                      child: Text(
-                        dropDownStringItem,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColorDark),
+            // ListTile(
+            //   title: DropdownButton(
+            //       items: _priorities.map((String dropDownStringItem) {
+            //         return DropdownMenuItem<String>(
+            //           child: Text(
+            //             dropDownStringItem,
+            //             style: TextStyle(
+            //                 color: Theme.of(context).primaryColorDark),
+            //           ),
+            //           value: dropDownStringItem,
+            //         );
+            //       }).toList(),
+            //       style: TextStyle(),
+            //       value: getPriorityAsString(draft.priority),
+            //       onChanged: (valueSelectedByUser) {
+            //         setState(() {
+            //           print(draft.priority);
+            //           updatePriorityAsInt(valueSelectedByUser);
+            //         });
+            //       }),
+            // ),
+            Container(
+              padding: EdgeInsets.only(left: 8),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                children: <Widget>[
+                  for (int i = 0; i < _priorities.length; i++)
+                    Container(
+                      child: Row(
+                        children: [
+                          Container(
+                            child: Text(
+                              _priorities[i],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1
+                                  .copyWith(
+                                      color:
+                                          Theme.of(context).primaryColorDark),
+                            ),
+                          ),
+                          Container(
+                            child: Radio(
+                              value: i,
+                              groupValue: draft.priority,
+                              activeColor: Theme.of(context).primaryColor,
+                              onChanged: (int value) {
+                                setState(() {
+                                  draft.priority = value;
+                                  print(draft.priority);
+                                });
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                      value: dropDownStringItem,
-                    );
-                  }).toList(),
-                  style: TextStyle(),
-                  value: getPriorityAsString(draft.priority),
-                  onChanged: (valueSelectedByUser) {
-                    setState(() {
-                      print(draft.priority);
-                      updatePriorityAsInt(valueSelectedByUser);
-                    });
-                  }),
-            ),
-            Row(
-              children: <Widget>[
-                for (int i = 0; i < _priorities.length; i++)
-                  Container(
-                    // color: Colors.amber,
-                    child: Row(
-                      children: [
-                        Container(
-                          child: Text(
-                            _priorities[i],
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle1
-                                .copyWith(color: Colors.black),
-                          ),
-                        ),
-                        Container(
-                          child: Radio(
-                            value: i,
-                            groupValue: draft.priority,
-                            activeColor: Color(0xFF6200EE),
-                            onChanged: (int value) {
-                              setState(() {
-                                draft.priority = value;
-                                print(draft.priority);
-                              });
-                            },
-                          ),
-                        ),
-                      ],
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
             // Padding(
             //   padding: const EdgeInsets.all(8.0),
@@ -417,7 +341,7 @@ class _WriteDraftState extends State<WriteDraft> {
             ),
             FlatButton(
               color: Colors.blue,
-              onPressed: _showNotificationsAfterSecond,
+              onPressed: showNotificationsAfterSecond,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(

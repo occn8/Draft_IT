@@ -155,9 +155,37 @@ class _HomeState extends State<Home> {
                       return draftItemList;
                     }
 
-                    return Column(
-                      children: draftList(),
-                    );
+                    return snapshot.data.length == 0
+                        ? Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(
+                                    left: 15, right: 15, top: 40),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 8),
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Center(
+                                  child: Text('No Drafts yet!'),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    left: 15, right: 15, top: 40),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 8),
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context).cardColor,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child:
+                                    Image.asset('assets/images/annotation.png'),
+                              ),
+                            ],
+                          )
+                        : Column(
+                            children: draftList(),
+                          );
                   }),
               // Column(children: draftList()),
             ],

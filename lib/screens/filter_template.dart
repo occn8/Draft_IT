@@ -19,7 +19,13 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
         body: ListView(
           children: [
             CustomAppBar(
-                title: widget.strFilter,
+                title: widget.strFilter == 'isStarred'
+                    ? 'Starred'
+                    : widget.strFilter == 'isArchived'
+                        ? 'Archive'
+                        : widget.strFilter == 'isTrash'
+                            ? 'Trash'
+                            : widget.strFilter,
                 leadOnTap: () {
                   Navigator.pop(context);
                 },
@@ -58,9 +64,46 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                     return draftItemList;
                   }
 
-                  return Column(
-                    children: draftList(),
-                  );
+                  return snapshot.data.length == 0
+                      ? Column(
+                          children: [
+                            Container(
+                              margin:
+                                  EdgeInsets.only(left: 15, right: 15, top: 40),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 8),
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Center(
+                                  child: Text(
+                                widget.strFilter == 'isStarred'
+                                    ? 'Oops Nothing Starred yet!'
+                                    : widget.strFilter == 'isArchived'
+                                        ? 'Oops Nothing Archived yet!'
+                                        : widget.strFilter == 'isTrash'
+                                            ? 'Oops Nothing Trashed yet!'
+                                            : 'Oops Nothing here yet!',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColorDark),
+                              )),
+                            ),
+                            Container(
+                              margin:
+                                  EdgeInsets.only(left: 15, right: 15, top: 40),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 8),
+                              decoration: BoxDecoration(
+                                  color: Theme.of(context).cardColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child:
+                                  Image.asset('assets/images/annotation.png'),
+                            ),
+                          ],
+                        )
+                      : Column(
+                          children: draftList(),
+                        );
                 }),
           ],
         ),

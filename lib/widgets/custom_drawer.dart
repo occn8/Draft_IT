@@ -82,8 +82,14 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.star_border),
             title: Text('Starred'),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (ctx)=>FilteredTemplate()));
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (ctx) => FilteredTemplate(
+                            strFilter: 'isStarred',
+                          )));
             },
           ),
           ListTile(
@@ -97,6 +103,15 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.archive),
             title: Text('Archived'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (ctx) => FilteredTemplate(
+                            strFilter: 'isArchived',
+                          )));
+            },
           ),
           ListTile(
             leading: Icon(Icons.attach_money),
@@ -105,6 +120,15 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.delete_outline),
             title: Text('Trash'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (ctx) => FilteredTemplate(
+                            strFilter: 'isTrash',
+                          )));
+            },
           ),
           Container(
             padding: EdgeInsets.all(5),

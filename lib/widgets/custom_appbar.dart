@@ -36,7 +36,10 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
           ),
-          Text(title),
+          Text(
+            title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+          ),
           Builder(
             builder: (context) => InkWell(
               splashColor: Theme.of(context).accentColor,

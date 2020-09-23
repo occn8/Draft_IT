@@ -68,9 +68,7 @@ class _FutureDraftBuilderState extends State<FutureDraftBuilder> {
                                 ? 'Oops Nothing Archived yet!'
                                 : widget.strFilter == 'isTrash'
                                     ? 'Oops Nothing Trashed yet!'
-                                    : widget.strFilter == 'allDraft'
-                                        ? 'No Drafts created yet!'
-                                        : 'Oops Nothing here yet!',
+                                    : 'Oops Nothing here yet!',
                         style: TextStyle(
                             color: Theme.of(context).primaryColorDark),
                       )),

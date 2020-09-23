@@ -1,5 +1,4 @@
 import 'package:Draft_IT/index.dart';
-import 'package:Draft_IT/widgets/future_draftbuilder.dart';
 
 class FilteredTemplate extends StatefulWidget {
   final String strFilter;

@@ -117,77 +117,14 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   PgStateSelector(
-                    pgStates: ['Active', 'All', 'Done'],
+                    pgStates: ['Active', 'All', 'Overdue'],
                   ),
                 ],
               ),
-              FutureBuilder<List<Draft>>(
-                  future: dbhelper.getDraftList(),
-                  initialData: [],
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    List<Widget> draftList() {
-                      int count = snapshot.data.length;
-                      List<Widget> draftItemList = List();
-
-                      for (int i = 0; i < count; i++) {
-                        draftItemList.add(
-                          ItemTile(
-                            title: snapshot.data[i].title,
-                            subtitle: snapshot.data[i].description,
-                            date: snapshot.data[i].ddate,
-                            time: snapshot.data[i].dtime,
-                            color: getPriorityColor(snapshot.data[i].priority),
-                            ontap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext ctx) =>
-                                        Details(draft: snapshot.data[i]),
-                                  )).then(
-                                (value) {
-                                  setState(() {});
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      }
-                      return draftItemList;
-                    }
-
-                    return snapshot.data.length == 0
-                        ? Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(
-                                    left: 15, right: 15, top: 40),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 8),
-                                decoration: BoxDecoration(
-                                    color: Theme.of(context).cardColor,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                  child: Text('No Drafts yet!'),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                    left: 15, right: 15, top: 40),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 8),
-                                decoration: BoxDecoration(
-                                    color: Theme.of(context).cardColor,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child:
-                                    Image.asset('assets/images/annotation.png'),
-                              ),
-                            ],
-                          )
-                        : Column(
-                            children: draftList(),
-                          );
-                  }),
-              // Column(children: draftList()),
+              FutureDraftBuilder(
+                future: dbhelper.getDraftList(),
+                strFilter: 'allDraft',
+              ),
             ],
           ),
         ),
@@ -199,19 +136,7 @@ class _HomeState extends State<Home> {
                 backgroundColor: Theme.of(context).backgroundColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-
-                // title: const Text('Dialog title'),
                 content: _createDialog(context),
-                // actions: <Widget>[
-                //   FlatButton(
-                //     child: Text('Cancel'),
-                //     onPressed: () => Navigator.pop(context, 'Cancel'),
-                //   ),
-                //   FlatButton(
-                //     child: Text('OK'),
-                //     onPressed: () => Navigator.pop(context, 'OK'),
-                //   ),
-                // ],
               ),
             ).then((returnVal) {
               setState(() {});

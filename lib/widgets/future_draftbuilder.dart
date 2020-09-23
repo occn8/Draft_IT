@@ -4,7 +4,7 @@ class FutureDraftBuilder extends StatefulWidget {
   final Future<List<Draft>> future;
   final String strFilter;
 
-  const FutureDraftBuilder({this.future, this.strFilter});
+  const FutureDraftBuilder({@required this.future, this.strFilter});
   @override
   _FutureDraftBuilderState createState() => _FutureDraftBuilderState(future);
 }
@@ -68,7 +68,9 @@ class _FutureDraftBuilderState extends State<FutureDraftBuilder> {
                                 ? 'Oops Nothing Archived yet!'
                                 : widget.strFilter == 'isTrash'
                                     ? 'Oops Nothing Trashed yet!'
-                                    : 'Oops Nothing here yet!',
+                                    : widget.strFilter == 'allDraft'
+                                        ? 'No Drafts created yet!'
+                                        : 'Oops Nothing here yet!',
                         style: TextStyle(
                             color: Theme.of(context).primaryColorDark),
                       )),

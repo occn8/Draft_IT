@@ -22,6 +22,8 @@ export 'package:Draft_IT/models/tag_model.dart';
 export 'package:Draft_IT/models/todo_model.dart';
 //utils
 export 'package:Draft_IT/utils/dbhelper.dart';
+export 'package:Draft_IT/utils/priority_util.dart';
+
 //widgets
 export 'package:Draft_IT/widgets/custom_drawer.dart';
 export 'package:Draft_IT/widgets/search_box.dart'; 

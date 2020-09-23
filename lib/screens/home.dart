@@ -168,8 +168,12 @@ class _HomeState extends State<Home> {
             showDialog<String>(
               context: context,
               builder: (BuildContext context) => AlertDialog(
+                backgroundColor: Theme.of(context).backgroundColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+
                 // title: const Text('Dialog title'),
-                content: _buildBottomSheet(context),
+                content: _createDialog(context),
                 // actions: <Widget>[
                 //   FlatButton(
                 //     child: Text('Cancel'),
@@ -247,36 +251,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Color getPriorityColor(int priority) {
-    switch (priority) {
-      case 0:
-        return Colors.lime;
-        break;
-      case 1:
-        return Colors.orangeAccent;
-        break;
-      case 2:
-        return Color(0xfffa5b5d);
-        break;
-      default:
-        return Colors.orangeAccent;
-    }
-  }
-
-  Icon getPriorityIcon(int priority) {
-    switch (priority) {
-      case 1:
-        return Icon(Icons.play_arrow);
-        break;
-      case 2:
-        return Icon(Icons.keyboard_arrow_right);
-        break;
-      default:
-        return Icon(Icons.keyboard_arrow_right);
-    }
-  }
-
-  Container _buildBottomSheet(BuildContext context) {
+  Container _createDialog(BuildContext context) {
     return Container(
       height: 210,
       child: ListView(

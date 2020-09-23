@@ -25,6 +25,18 @@ class _DetailsState extends State<Details> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Container(
+                        padding: EdgeInsets.only(top: 5, left: 5),
+                        child: Text(
+                          widget.draft.ddate == null
+                              ? 'No Due date'
+                              : widget.draft.ddate.toString(),
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                       Row(
                         children: [
                           Text('Done'),
@@ -49,16 +61,6 @@ class _DetailsState extends State<Details> {
                             value: getIsDone(widget.draft.isDone),
                           ),
                         ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 5, left: 5),
-                        child: Text(
-                          widget.draft.ddate.toString() ?? 'No Due date',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
                       ),
                     ],
                   ),

@@ -199,19 +199,7 @@ class _HomeState extends State<Home> {
                 backgroundColor: Theme.of(context).backgroundColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-
-                // title: const Text('Dialog title'),
                 content: _createDialog(context),
-                // actions: <Widget>[
-                //   FlatButton(
-                //     child: Text('Cancel'),
-                //     onPressed: () => Navigator.pop(context, 'Cancel'),
-                //   ),
-                //   FlatButton(
-                //     child: Text('OK'),
-                //     onPressed: () => Navigator.pop(context, 'OK'),
-                //   ),
-                // ],
               ),
             ).then((returnVal) {
               setState(() {});

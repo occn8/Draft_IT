@@ -14,6 +14,7 @@ class _HomeState extends State<Home> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   FocusNode _titleFocus, _descriptionFocus;
+  int pgSelect =1;
 
   @override
   void initState() {
@@ -117,7 +118,7 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   PgStateSelector(
-                    pgStates: ['Active', 'All', 'Done'],
+                    pgStates: ['Active', 'All', 'Overdue'],
                   ),
                 ],
               ),

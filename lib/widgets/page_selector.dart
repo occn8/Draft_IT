@@ -11,7 +11,7 @@ class _PgStateSelectorState extends State<PgStateSelector> {
   int currentIndex = 0;
   bool isSelected;
 
-  List<Widget> categorySelector() {
+  List<Widget> pgSelector() {
     List<Widget> pgStateItemList = List();
 
     for (int i = 0; i < widget.pgStates.length; i++) {
@@ -44,19 +44,10 @@ class _PgStateSelectorState extends State<PgStateSelector> {
           child: Column(
             children: [
               Container(
-                // width: double.infinity,
-                // height: double.infinity,
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   shape: BoxShape.rectangle,
-                  // boxShadow: [
-                  //   BoxShadow(
-                  //     color: Colors.black38,
-                  //     offset: Offset(0, 5.0),
-                  //     blurRadius: 5.0,
-                  //   ),
-                  // ],
                 ),
                 child: Text(
                   state,
@@ -92,7 +83,7 @@ class _PgStateSelectorState extends State<PgStateSelector> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: categorySelector(),
+      children: pgSelector(),
     );
   }
 }

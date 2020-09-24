@@ -27,10 +27,9 @@ export 'package:Draft_IT/utils/dbhelper.dart';
 export 'package:Draft_IT/utils/priority_util.dart';
 
 //widgets
-export 'package:Draft_IT/widgets/future_draftbuilder.dart';
 export 'package:Draft_IT/widgets/custom_drawer.dart';
 export 'package:Draft_IT/widgets/search_box.dart'; 
-export 'package:Draft_IT/widgets/category_selector.dart';
+export 'package:Draft_IT/widgets/page_selector.dart';
 export 'package:Draft_IT/widgets/tag_circle.dart';
 export 'package:Draft_IT/widgets/itemTile.dart';
 export 'package:Draft_IT/widgets/active_status.dart';

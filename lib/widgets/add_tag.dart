@@ -54,6 +54,7 @@ class _AddTagState extends State<AddTag> {
                     // Navigator.pop(context);
                     tagController.clear();
                   }),
+             
             ],
           ),
         ),
@@ -61,3 +62,17 @@ class _AddTagState extends State<AddTag> {
     );
   }
 }
+ // FutureBuilder(
+              //   future: dbhelper.getTagList(),
+              //   initialData: [],
+              //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+              //     return ListView.builder(
+              //       itemCount: snapshot.data.length,
+              //       itemBuilder: (BuildContext context, int index) {
+              //         return ListTile(
+              //           title: Text(snapshot.data[index].name),
+              //         );
+              //       },
+              //     );
+              //   },
+              // ),

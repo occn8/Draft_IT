@@ -163,7 +163,7 @@ class DataBaseHelper {
 //Tags
   Future<int> insertTag(Tag tag) async {
     Database db = await this.database;
-    var result = await db.insert('tags', tag.toMap());print(tag);print(result);
+    var result = await db.insert('tags', tag.toMap());
     return result;
   }
 

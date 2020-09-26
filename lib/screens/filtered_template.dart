@@ -81,11 +81,11 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                               child: Center(
                                   child: Text(
                                 widget.strFilter == 'isStarred'
-                                    ? 'Oops Nothing Starred yet!'
+                                    ? 'Oh! Nothing Starred yet'
                                     : widget.strFilter == 'isArchived'
-                                        ? 'Oops Nothing Archived yet!'
+                                        ? 'Oh! Nothing Archived yet'
                                         : widget.strFilter == 'isTrash'
-                                            ? 'Oops Nothing Trashed yet!'
+                                            ? 'Yeaah! Nothing Trashed yet'
                                             : 'Oops Nothing here yet!',
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColorDark),

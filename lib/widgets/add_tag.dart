@@ -7,12 +7,8 @@ class AddTag extends StatefulWidget {
 
 class _AddTagState extends State<AddTag> {
   DataBaseHelper dbhelper = DataBaseHelper();
-
   TextEditingController tagController = TextEditingController();
-
-  TextEditingController descriptionController = TextEditingController();
-
-  FocusNode _tagFocus, _descriptionFocus;
+  FocusNode _tagFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +24,7 @@ class _AddTagState extends State<AddTag> {
                   controller: tagController,
                   textCapitalization: TextCapitalization.sentences,
                   style: TextStyle(),
+                  maxLength: 10,
                   onChanged: (value) {},
                   decoration: InputDecoration(
                     labelText: 'Tag Name',
@@ -54,7 +51,6 @@ class _AddTagState extends State<AddTag> {
                     // Navigator.pop(context);
                     tagController.clear();
                   }),
-             
             ],
           ),
         ),
@@ -62,17 +58,17 @@ class _AddTagState extends State<AddTag> {
     );
   }
 }
- // FutureBuilder(
-              //   future: dbhelper.getTagList(),
-              //   initialData: [],
-              //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-              //     return ListView.builder(
-              //       itemCount: snapshot.data.length,
-              //       itemBuilder: (BuildContext context, int index) {
-              //         return ListTile(
-              //           title: Text(snapshot.data[index].name),
-              //         );
-              //       },
-              //     );
-              //   },
-              // ),
+// FutureBuilder(
+//   future: dbhelper.getTagList(),
+//   initialData: [],
+//   builder: (BuildContext context, AsyncSnapshot snapshot) {
+//     return ListView.builder(
+//       itemCount: snapshot.data.length,
+//       itemBuilder: (BuildContext context, int index) {
+//         return ListTile(
+//           title: Text(snapshot.data[index].name),
+//         );
+//       },
+//     );
+//   },
+// ),

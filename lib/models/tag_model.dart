@@ -1,14 +1,15 @@
 class Tag {
   int id;
   String name;
-  Tag(this.id, this.name);
+  Tag(this.name);
+  Tag.withId(this.id, this.name);
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
     if (id != null) {
       map['id'] = id;
     }
-    map['title'] = name;
+    map['name'] = name;
 
     return map;
   }

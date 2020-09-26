@@ -282,7 +282,7 @@ class _HomeState extends State<Home> {
               },
               decoration: InputDecoration(
                 labelText: 'Draft Title',
-                hintText: 'Enter',
+                hintText: 'Enter Draft Title',
                 prefixIcon: Icon(Icons.title),
                 labelStyle: TextStyle(fontWeight: FontWeight.w800),
                 border: UnderlineInputBorder(),

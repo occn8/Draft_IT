@@ -1,4 +1,5 @@
 import 'package:Draft_IT/index.dart';
+import 'package:Draft_IT/widgets/add_tag.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -154,6 +155,10 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.add_circle),
             title: Text('Add a Tag'),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (ctx) => AddTag()));
+            },
           ),
         ],
       ),

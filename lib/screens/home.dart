@@ -9,12 +9,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _sfkey = GlobalKey<ScaffoldState>();
   List<Draft> drafts;
-
+  final List<String> pgStates = ['Active', 'All', 'Overdue'];
   DataBaseHelper dbhelper = DataBaseHelper();
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   FocusNode _titleFocus, _descriptionFocus;
-  int pgSelect =1;
+  int pgSelect = 1;
 
   @override
   void initState() {
@@ -30,78 +30,77 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
-  // List<Widget> draftList() {
-  //   List<Widget> draftItemList = List();
+  int currentIndex = 1;
+  bool isSelected;
 
-  //   for (int i = 0; i < drafts.length; i++) {
-  //     draftItemList.add(draftItem(
-  //       draft: drafts[i],
-  //       // widget: getPriorityIcon(this.drafts[i].priority),
-  //       color: getPriorityColor(this.drafts[i].priority),
-  //       // ontap1: () => _delete(context, drafts[i]),
-  //       ontap2: () => Navigator.push(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (BuildContext ctx) => Details(draft: this.drafts[i]),
-  //           )),
-  //       key: Key(this.drafts[i].toString()),
-  //       setstateRemove: () => this.drafts.removeAt(i),
-  //       setstateUndo: () => this.drafts.insert(i, drafts[i]),
-  //     ));
-  //   }
-  //   return draftItemList;
-  // }
+  List<Widget> pgSelector() {
+    List<Widget> pgStateItemList = List();
 
-  // Widget draftItem({
-  //   Draft draft,
-  //   Widget widget,
-  //   Color color,
-  //   Function ontap1,
-  //   Function ontap2,
-  //   Key key,
-  //   Function setstateRemove,
-  //   Function setstateUndo,
-  // }) {
-  //   return Dismissible(
-  //     direction: DismissDirection.endToStart,
-  //     key: key,
-  //     child: ItemTile(
-  //       title: draft.title,
-  //       subtitle: draft.description,
-  //       date: draft.ddate,
-  //       time: draft.dtime,
-  //       color: color,
-  //       ontap: ontap2,
-  //     ),
-  //     // onDismissed: (DismissDirection dir) {
-  //     //   setState(setstateRemove);
-  //     //   Scaffold.of(context).showSnackBar(
-  //     //     SnackBar(
-  //     //       content: Text(dir == DismissDirection.startToEnd
-  //     //           ? '$item removed.'
-  //     //           : '$item liked.'),
-  //     //       action: SnackBarAction(
-  //     //         label: 'UNDO',
-  //     //         onPressed: () {
-  //     //           setState(setstateUndo);
-  //     //         },
-  //     //       ),
-  //     //     ),
-  //     //   );
-  //     // },
-  //     background: Container(
-  //       color: Colors.red,
-  //       alignment: Alignment.centerLeft,
-  //       child: Icon(Icons.delete_outline),
-  //     ),
-  //     secondaryBackground: Container(
-  //       padding: EdgeInsets.all(5),
-  //       color: Colors.green,
-  //       alignment: Alignment.centerRight,
-  //       child: Icon(Icons.archive),
-  //     ),
-  //   );
-  // }
+    for (int i = 0; i < pgStates.length; i++) {
+      isSelected = currentIndex == i;
+
+      pgStateItemList.add(pgStateItem(
+        state: pgStates[i],
+        isSelected: isSelected,
+        ontap: () {
+          setState(() {
+            currentIndex = i;
+          });
+        },
+      ));
+    }
+    return pgStateItemList;
+  }
+
+  Widget pgStateItem({String state, bool isSelected, Function ontap}) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          // width: 90,
+          height: 35,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.transparent, width: 0),
+              shape: BoxShape.rectangle),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  shape: BoxShape.rectangle,
+                ),
+                child: Text(
+                  state,
+                  style: isSelected
+                      ? TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                          color: Theme.of(context).primaryColor)
+                      : TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).primaryColorDark),
+                ),
+              ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 150),
+                margin: EdgeInsets.symmetric(horizontal: 8.0),
+                height: 8.0,
+                width: isSelected ? 24.0 : 16.0,
+                decoration: BoxDecoration(
+                  color:
+                      isSelected ? Theme.of(context).primaryColor : Colors.grey,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,16 +113,24 @@ class _HomeState extends State<Home> {
             children: [
               customAppBar(),
               SearchBox(),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     PgStateSelector(
+              //       pgStates: ['Active', 'All', 'Overdue'],
+              //     ),
+              //   ],
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  PgStateSelector(
-                    pgStates: ['Active', 'All', 'Overdue'],
-                  ),
-                ],
+                children: pgSelector(),
               ),
               FutureBuilder<List<Draft>>(
-                  future: dbhelper.getDraftList(),
+                  future: currentIndex == 1
+                      ? dbhelper.getDraftList()
+                      : currentIndex == 2
+                          ? dbhelper.getFilteredDraftList('isDone')
+                          : dbhelper.getFilteredDraftList('isStarred'),
                   initialData: [],
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     List<Widget> draftList() {

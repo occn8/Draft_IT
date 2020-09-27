@@ -161,6 +161,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             title: Text('Personal'),
           ),
+          Column(
+            children: tgList(),
+          ),
           ListTile(
             leading: Icon(Icons.add_circle),
             title: Text('Add a Tag'),
@@ -198,6 +201,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
         );
       },
     );
+  }
+
+  List<Widget> tgList() {
+    List<Widget> tgItemList = List();
+
+    // for (int i = 0; i < tag.length; i++) {
+    //   tgItemList.add(ListTile(title: Text(tag.name),));
+    // }
+    return tgItemList;
   }
 
   Container _tagDialog(BuildContext context) {

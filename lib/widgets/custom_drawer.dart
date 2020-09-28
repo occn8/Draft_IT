@@ -146,22 +146,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ),
-          ListTile(
-            leading: Icon(
-              Icons.fiber_manual_record,
-              color: Colors.blue,
-            ),
-            title: Text('Work'),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.fiber_manual_record,
-              color: Colors.amber,
-            ),
-            title: Text('Personal'),
-          ),
           Container(
-            color: Colors.amber,
+            height: 145,
+            // color: Colors.grey,
             child: tagList(),
           ),
           ListTile(
@@ -196,13 +183,33 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
           for (int i = 0; i < snapshot.data.length; i++) {
             tgItemList.add(ListTile(
+              leading: Icon(Icons.loyalty),
               title: Text(snapshot.data[i].name),
             ));
           }
           return tgItemList;
         }
 
-        return Column(children: tgList());
+        // return Column(children: tgList());
+        return Scrollbar(
+          child: ListView.builder(
+            itemExtent: 50,
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                leading: Icon(
+                  Icons.loyalty,
+                  color: snapshot.data[index].name == 'Work'
+                      ? Colors.amber
+                      : snapshot.data[index].name == 'Personal'
+                          ? Colors.blueAccent
+                          : Theme.of(context).primaryColorDark,
+                ),
+                title: Text(snapshot.data[index].name),
+              );
+            },
+          ),
+        );
       },
     );
   }

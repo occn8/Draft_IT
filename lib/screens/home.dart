@@ -8,7 +8,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _sfkey = GlobalKey<ScaffoldState>();
-  List<Draft> drafts;
+  // List<Draft> drafts;
   final List<String> pgStates = ['Active', 'All', 'Overdue'];
   DataBaseHelper dbhelper = DataBaseHelper();
   TextEditingController titleController = TextEditingController();

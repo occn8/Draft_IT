@@ -140,7 +140,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 8,vertical: 5 ),
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
             child: Text(
               'TAGS',
               style: TextStyle(

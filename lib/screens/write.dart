@@ -13,8 +13,6 @@ class WriteDraft extends StatefulWidget {
 }
 
 class _WriteDraftState extends State<WriteDraft> {
- 
-
   DataBaseHelper helper = DataBaseHelper();
   FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
   String appBarTitle;
@@ -45,8 +43,6 @@ class _WriteDraftState extends State<WriteDraft> {
     _noteFocus.dispose();
     super.dispose();
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +150,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 textCapitalization: TextCapitalization.sentences,
                 style: TextStyle(),
                 onChanged: (value) {
-                  // updateDescription();
+                  updateNotes();
                 },
                 decoration: InputDecoration(
                   labelText: 'Notes',
@@ -168,6 +164,7 @@ class _WriteDraftState extends State<WriteDraft> {
               padding: const EdgeInsets.all(8.0),
               child: Text('Tag'),
             ),
+            
             // ListTile(
             //   title: DropdownButton(
             //       items: _priorities.map((String dropDownStringItem) {
@@ -190,27 +187,17 @@ class _WriteDraftState extends State<WriteDraft> {
             //       }),
             // ),
             Container(
-              padding: EdgeInsets.only(left: 8),
+              padding: EdgeInsets.only(right: 5),
               decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(10)),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   for (int i = 0; i < _priorities.length; i++)
                     Container(
                       child: Row(
                         children: [
-                          Container(
-                            child: Text(
-                              _priorities[i],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1
-                                  .copyWith(
-                                      color:
-                                          Theme.of(context).primaryColorDark),
-                            ),
-                          ),
                           Container(
                             child: Radio(
                               value: i,
@@ -222,6 +209,17 @@ class _WriteDraftState extends State<WriteDraft> {
                                   print(draft.priority);
                                 });
                               },
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              _priorities[i],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1
+                                  .copyWith(
+                                      color:
+                                          Theme.of(context).primaryColorDark),
                             ),
                           ),
                         ],
@@ -436,6 +434,10 @@ class _WriteDraftState extends State<WriteDraft> {
 
   void updateDescription() {
     draft.description = descriptionController.text;
+  }
+
+  void updateNotes() {
+    draft.notes = notesController.text;
   }
 
   void _save() async {

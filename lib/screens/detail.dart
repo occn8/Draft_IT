@@ -94,6 +94,16 @@ class _DetailsState extends State<Details> {
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.all(5),
+                  child: Text(
+                    widget.draft.notes ?? 'No Notes Added',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
                   padding: EdgeInsets.only(top: 5, left: 5),
                   child: Text(
                     '''

@@ -148,11 +148,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   fontWeight: FontWeight.w800),
             ),
           ),
-          Container(
-            height: 145,
-            // color: Colors.grey,
-            child: tagList(),
-          ),
+          tagList(),
           ListTile(
             leading: Icon(
               Icons.add_circle,
@@ -200,24 +196,40 @@ class _CustomDrawerState extends State<CustomDrawer> {
         }
 
         // return Column(children: tgList());
-        return Scrollbar(
-          child: ListView.builder(
-            itemExtent: 50,
-            itemCount: snapshot.data.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                leading: Icon(
-                  Icons.loyalty,
-                  color: snapshot.data[index].name == 'Work'
-                      ? Colors.amber
-                      : snapshot.data[index].name == 'Personal'
-                          ? Colors.blueAccent
-                          : Theme.of(context).primaryColorDark,
+        return Container(
+          height: snapshot.data.length <= 1
+              ? 50
+              : snapshot.data.length == 2 ? 100 : 145,
+          child: snapshot.data.length > 0
+              ? Scrollbar(
+                  child: ListView.builder(
+                    itemExtent: 50,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        leading: Icon(
+                          Icons.loyalty,
+                          color: snapshot.data[index].name == 'Work' ||
+                                  snapshot.data[index].name == 'Work '
+                              ? Colors.amber
+                              : snapshot.data[index].name == 'Personal'
+                                  ? Colors.blueAccent
+                                  : Theme.of(context).primaryColorDark,
+                        ),
+                        title: Text(snapshot.data[index].name),
+                      );
+                    },
+                  ),
+                )
+              : Center(
+                  child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text('No Tags Added yet!')),
                 ),
-                title: Text(snapshot.data[index].name),
-              );
-            },
-          ),
         );
       },
     );

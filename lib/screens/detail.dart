@@ -107,10 +107,6 @@ class _DetailsState extends State<Details> {
                   padding: EdgeInsets.only(top: 5, left: 5),
                   child: Text(
                     '''
-                        Priority = ${widget.draft.priority.toString()}
-                        isArchived = ${widget.draft.isArchived.toString()}
-                        isDone = ${widget.draft.isDone.toString()}
-                        isStarred = ${widget.draft.isStarred.toString()}
                         isTrash = ${widget.draft.isTrash.toString()}
                         ''' ??
                         'No Due date',
@@ -183,12 +179,10 @@ class _DetailsState extends State<Details> {
                       widget.draft.isStarred = 1;
                       await helper.toggleIsStarred(
                           widget.draft.id, widget.draft.isStarred);
-                      print(widget.draft.isStarred);
                     } else {
                       widget.draft.isStarred = 0;
                       await helper.toggleIsStarred(
                           widget.draft.id, widget.draft.isStarred);
-                      print(widget.draft.isStarred);
                     }
                     setState(() {});
                   },
@@ -237,12 +231,10 @@ class _DetailsState extends State<Details> {
                       widget.draft.isArchived = 1;
                       await helper.toggleIsArchived(
                           widget.draft.id, widget.draft.isArchived);
-                      print(widget.draft.isArchived);
                     } else {
                       widget.draft.isArchived = 0;
                       await helper.toggleIsArchived(
                           widget.draft.id, widget.draft.isArchived);
-                      print(widget.draft.isArchived);
                     }
                     setState(() {});
                   },
@@ -281,12 +273,10 @@ class _DetailsState extends State<Details> {
                           widget.draft.isTrash = 1;
                           await helper.toggleIsTrash(
                               widget.draft.id, widget.draft.isTrash);
-                          print(widget.draft.isTrash);
                         } else {
                           widget.draft.isTrash = 0;
                           await helper.toggleIsTrash(
                               widget.draft.id, widget.draft.isTrash);
-                          print(widget.draft.isTrash);
                         }
                         setState(() {});
                       }

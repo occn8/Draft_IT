@@ -1,7 +1,26 @@
 import 'package:Draft_IT/index.dart';
+import 'package:flappy_search_bar/flappy_search_bar.dart';
+import 'package:flappy_search_bar/search_bar_style.dart';
+
+class Post {
+  final String title;
+  final String description;
+
+  Post(this.title, this.description);
+}
 
 class SearchView extends StatelessWidget {
   const SearchView({Key key}) : super(key: key);
+
+  Future<List<Post>> search(String search) async {
+    await Future.delayed(Duration(milliseconds: 1000));
+    return List.generate(search.length, (int index) {
+      return Post(
+        "Title : $search $index",
+        "Description :$search $index",
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,50 +28,34 @@ class SearchView extends StatelessWidget {
       child: Scaffold(
         body: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  InkWell(
-                    borderRadius: BorderRadius.circular(30),
-                    onTap: () => Navigator.pop(context),
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    margin: new EdgeInsets.only(top: 5),
-                    decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(10)),
-                    child: TextField(
-                      style: TextStyle(fontSize: 16),
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(vertical: 10),
-                          border: InputBorder.none,
-                          hintText: 'search',
-                          hintStyle: TextStyle(color: Colors.grey[600]),
-                          prefixIcon: Hero(
-                            tag: 'ico',
-                            child: Icon(Icons.search,
-                                size: 28, color: Colors.black),
-                          )),
-                    ),
-                  ),
-                ],
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SearchBar<Post>(
+              onSearch: search,
+              onItemFound: (Post post, int index) {
+                return ListTile(
+                  title: Text(post.title),
+                  subtitle: Text(post.description),
+                );
+              },
+              // loader: Center(
+              //     child: Theme(
+              //   data: Theme.of(context).copyWith(accentColor: Colors.red),
+              //   child: CircularProgressIndicator(
+              //       // valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              //       ),
+              // )),
+              loader: Center(
+                  child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Color(0xff308c98)),
+              )),
+              minimumChars: 1,
+              searchBarStyle: SearchBarStyle(
+                backgroundColor: Theme.of(context).cardColor,
+                padding: EdgeInsets.all(5),
+                borderRadius: BorderRadius.circular(10),
               ),
-            ],
+            ),
           ),
         ),
       ),

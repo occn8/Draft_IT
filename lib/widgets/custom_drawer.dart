@@ -140,10 +140,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           Container(
-            padding: EdgeInsets.all(5),
+            padding: EdgeInsets.symmetric(horizontal: 8,vertical: 5 ),
             child: Text(
               'TAGS',
-              style: TextStyle(color: Theme.of(context).primaryColor),
+              style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w800),
             ),
           ),
           Container(
@@ -152,8 +154,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
             child: tagList(),
           ),
           ListTile(
-            leading: Icon(Icons.add_circle),
-            title: Text('Add a Tag'),
+            leading: Icon(
+              Icons.add_circle,
+              color: Theme.of(context).primaryColor,
+            ),
+            title: Text(
+              'Add a Tag',
+              style: TextStyle(fontWeight: FontWeight.w800),
+            ),
             onTap: () {
               showDialog<String>(
                 context: context,
@@ -168,6 +176,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               });
             },
           ),
+          SizedBox(height: 5),
         ],
       ),
     );

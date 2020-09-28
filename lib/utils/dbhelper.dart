@@ -160,6 +160,7 @@ class DataBaseHelper {
     await db.rawUpdate("UPDATE todos SET isDone = '$isDone' WHERE id = '$id'");
   }
 
+
 //Tags
   Future<int> insertTag(Tag tag) async {
     Database db = await this.database;

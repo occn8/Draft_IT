@@ -1,5 +1,4 @@
 import 'package:Draft_IT/index.dart';
-import 'package:Draft_IT/widgets/add_tag.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({

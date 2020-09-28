@@ -205,23 +205,23 @@ class _DetailsState extends State<Details> {
                 ),
               ),
               SizedBox(width: 5),
-              Builder(
-                builder: (context) => InkWell(
-                  splashColor: Theme.of(context).accentColor,
-                  borderRadius: BorderRadius.circular(10),
-                  onTap: () {},
-                  child: Container(
-                    padding: new EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      // color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: new Icon(Icons.share,
-                        size: 25, color: Theme.of(context).primaryColorDark),
-                  ),
-                ),
-              ),
-              SizedBox(width: 5),
+              // Builder(
+              //   builder: (context) => InkWell(
+              //     splashColor: Theme.of(context).accentColor,
+              //     borderRadius: BorderRadius.circular(10),
+              //     onTap: () {},
+              //     child: Container(
+              //       padding: new EdgeInsets.all(8),
+              //       decoration: BoxDecoration(
+              //         // color: Theme.of(context).cardColor,
+              //         borderRadius: BorderRadius.circular(10),
+              //       ),
+              //       child: new Icon(Icons.share,
+              //           size: 25, color: Theme.of(context).primaryColorDark),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(width: 5),
               Builder(
                 builder: (context) => InkWell(
                   splashColor: Theme.of(context).accentColor,

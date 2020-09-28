@@ -32,12 +32,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     children: [
                       CircleAvatar(
                         child: Icon(
-                          Icons.person,
+                          Icons.drafts,
                           color: Theme.of(context).primaryColor,
                         ),
                       ),
                       SizedBox(width: 5),
-                      Text('occn lary'),
+                      Text('Draft-It'),
                     ],
                   ),
                 ),
@@ -102,13 +102,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.notifications_active),
+            leading: Icon(Icons.notifications),
             title: Text('Reminders'),
           ),
-          ListTile(
-            leading: Icon(Icons.share),
-            title: Text('Shared'),
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.share),
+          //   title: Text('Shared'),
+          // ),
           ListTile(
             leading: Icon(Icons.archive),
             title: Text('Archived'),

@@ -52,7 +52,7 @@ class SearchView extends StatelessWidget {
               minimumChars: 1,
               searchBarStyle: SearchBarStyle(
                 backgroundColor: Theme.of(context).cardColor,
-                padding: EdgeInsets.all(5),
+                padding: EdgeInsets.symmetric(horizontal: 5,vertical: 2),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

@@ -191,9 +191,7 @@ class _HomeState extends State<Home> {
                               ),
                             ],
                           )
-                        : Column(
-                            children: draftList(),
-                          );
+                        : Column(children: draftList());
                   }),
               // Column(children: draftList()),
             ],
@@ -308,17 +306,16 @@ class _HomeState extends State<Home> {
             ),
           ),
           RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              color: Theme.of(context).primaryColor,
-              child: Text(
-                'Create',
-                textScaleFactor: 1.5,
-                style: TextStyle(color: Theme.of(context).primaryColorLight),
-              ),
-              onPressed: () {
-                create();
-              }),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            color: Theme.of(context).primaryColor,
+            child: Text(
+              'Create',
+              textScaleFactor: 1.5,
+              style: TextStyle(color: Theme.of(context).primaryColorLight),
+            ),
+            onPressed: () => create(),
+          ),
         ],
       ),
     );

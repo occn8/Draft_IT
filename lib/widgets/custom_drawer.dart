@@ -161,8 +161,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
             title: Text('Personal'),
           ),
-          Column(
-            children: tgList(),
+          Container(
+            color: Colors.amber,
+            child: tagList(),
           ),
           ListTile(
             leading: Icon(Icons.add_circle),
@@ -191,25 +192,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
       future: dbhelper.getTagList(),
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return ListView.builder(
-          itemCount: snapshot.data.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(snapshot.data[index].name),
-            );
-          },
-        );
+        List<Widget> tgList() {
+          List<Widget> tgItemList = List();
+
+          for (int i = 0; i < snapshot.data.length; i++) {
+            tgItemList.add(ListTile(
+              title: Text(snapshot.data[i].name),
+            ));
+          }
+          return tgItemList;
+        }
+
+        return Column(children: tgList());
       },
     );
-  }
-
-  List<Widget> tgList() {
-    List<Widget> tgItemList = List();
-
-    // for (int i = 0; i < tag.length; i++) {
-    //   tgItemList.add(ListTile(title: Text(tag.name),));
-    // }
-    return tgItemList;
   }
 
   Container _tagDialog(BuildContext context) {

@@ -104,9 +104,7 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                             ),
                           ],
                         )
-                      : Column(
-                          children: draftList(),
-                        );
+                      : Column(children: draftList());
                 }),
           ],
         ),

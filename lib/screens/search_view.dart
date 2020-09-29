@@ -2,13 +2,6 @@ import 'package:Draft_IT/index.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flappy_search_bar/search_bar_style.dart';
 
-// class Post {
-//   final String title;
-//   final String description;
-
-//   Post(this.title, this.description);
-// }
-
 class SearchView extends StatefulWidget {
   // SearchView({Key key}) : super(key: key);
   @override
@@ -19,7 +12,7 @@ class _SearchViewState extends State<SearchView> {
   DataBaseHelper dbhelper = DataBaseHelper();
 
   // Future<List<Draft>> search(String search) async {
-  //   await Future.delayed(Duration(milliseconds: 1000));
+  //   await Future.delayed(Duration(milliseconds: 200));
   //   return List.generate(search.length, (int index) {
   //     return Draft(
   //       "Title : $search $index",
@@ -29,15 +22,6 @@ class _SearchViewState extends State<SearchView> {
   // }
 
   Future<List<Draft>> _getALlPosts(String text) async {
-    // await dbhelper.getDraftList();
-    // // if (isReplay) return [Draft("Replaying !", "Replaying body")];
-    // // if (text.length == 5) throw Error();
-    // // if (text.length == 6) return [];
-    // List<Draft> posts = [];
-
-    // for (int i = 0; i < 10; i++) {
-    //   posts.add(Post("$text $i", "body random number : ${random.nextInt(100)}"));
-    // }
     return await dbhelper.getDraftList();
   }
 
@@ -72,6 +56,10 @@ class _SearchViewState extends State<SearchView> {
               minimumChars: 1,
               placeHolder: Image.asset('assets/images/search.png'),
               cancellationWidget: Text('Ok'),
+              onCancelled: () {
+                // Navigator.pop(context);
+                print("Cancelled triggered");
+              },
               searchBarStyle: SearchBarStyle(
                 backgroundColor: Theme.of(context).cardColor,
                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),

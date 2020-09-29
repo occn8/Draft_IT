@@ -45,7 +45,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).primaryColorDark)),
+                                      color:
+                                          Theme.of(context).primaryColorDark)),
                               TextSpan(text: '-'),
                               TextSpan(
                                   text: 'It',
@@ -230,10 +231,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       return ListTile(
                         leading: Icon(
                           Icons.loyalty,
-                          color: snapshot.data[index].name == 'Work' ||
-                                  snapshot.data[index].name == 'Work '
+                          color: snapshot.data[index].name.toLowerCase().contains('work')
                               ? Colors.amber
-                              : snapshot.data[index].name == 'Personal'
+                              : snapshot.data[index].name.toLowerCase()==('personal')
                                   ? Colors.blueAccent
                                   : Theme.of(context).primaryColorDark,
                         ),

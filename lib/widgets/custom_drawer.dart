@@ -37,7 +37,28 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ),
                       ),
                       SizedBox(width: 5),
-                      Text('Draft-It'),
+                      RichText(
+                        text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: 'Draft',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).primaryColorDark)),
+                              TextSpan(text: '-'),
+                              TextSpan(
+                                  text: 'It',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).primaryColor)),
+                            ],
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).primaryColorDark)),
+                      ),
                     ],
                   ),
                 ),

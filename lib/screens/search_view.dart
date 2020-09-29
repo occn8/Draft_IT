@@ -45,6 +45,7 @@ class SearchView extends StatelessWidget {
               //       // valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               //       ),
               // )),
+              textStyle: TextStyle(color: Theme.of(context).primaryColorDark),
               loader: Center(
                   child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(Color(0xff308c98)),
@@ -52,7 +53,7 @@ class SearchView extends StatelessWidget {
               minimumChars: 1,
               searchBarStyle: SearchBarStyle(
                 backgroundColor: Theme.of(context).cardColor,
-                padding: EdgeInsets.symmetric(horizontal: 5,vertical: 2),
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

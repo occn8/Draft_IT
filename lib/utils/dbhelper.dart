@@ -37,6 +37,8 @@ class DataBaseHelper {
     await db.execute(
         'CREATE TABLE todos(id INTEGER PRIMARY KEY, draftId INTEGER, title TEXT, isDone INTEGER)');
     await db.execute('CREATE TABLE tags(id INTEGER PRIMARY KEY, name TEXT)');
+    await db.execute(
+        'CREATE TABLE notifications(id INTEGER PRIMARY KEY, title TEXT, body TEXT)');
   }
 
 //Drafts
@@ -96,8 +98,7 @@ class DataBaseHelper {
   Future<List<Map<String, dynamic>>> getFilteredDraftMapList(
       String isWhat) async {
     Database db = await this.database;
-    var result =
-        await db.rawQuery("SELECT * FROM draftstable WHERE $isWhat=1");
+    var result = await db.rawQuery("SELECT * FROM draftstable WHERE $isWhat=1");
     return result;
   }
 
@@ -160,7 +161,6 @@ class DataBaseHelper {
     await db.rawUpdate("UPDATE todos SET isDone = '$isDone' WHERE id = '$id'");
   }
 
-
 //Tags
   Future<int> insertTag(Tag tag) async {
     Database db = await this.database;
@@ -195,5 +195,41 @@ class DataBaseHelper {
       tagList.add(Tag.fromMapOject(tagMapList[i]));
     }
     return tagList;
+  }
+
+  //Notifications
+  Future<int> insertNF(NotificationsModel nf) async {
+    Database db = await this.database;
+    var result = await db.insert('notifications', nf.toMap());
+    return result;
+  }
+
+  Future<int> updateNF(NotificationsModel nf) async {
+    Database db = await this.database;
+    var result = await db.update('notifications', nf.toMap(),
+        where: 'id =?', whereArgs: [nf.id]);
+    return result;
+  }
+
+  Future<int> deleteNF(NotificationsModel id) async {
+    Database db = await this.database;
+    int result = await db.rawDelete('DELETE FROM notifications WHERE id = $id');
+    return result;
+  }
+
+  Future<List<Map<String, dynamic>>> getNFMapList() async {
+    Database db = await this.database;
+    var result = await db.query('notifications');
+    return result;
+  }
+
+  Future<List<Tag>> getNFList() async {
+    var nfMapList = await getNFMapList();
+    int count = nfMapList.length;
+    List<Tag> nfList = List<Tag>();
+    for (int i = 0; i < count; i++) {
+      nfList.add(Tag.fromMapOject(nfMapList[i]));
+    }
+    return nfList;
   }
 }

@@ -1,6 +1,4 @@
 import 'package:Draft_IT/index.dart';
-import 'package:Draft_IT/utils/notificationhelper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 class WriteDraft extends StatefulWidget {

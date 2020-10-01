@@ -231,9 +231,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       return ListTile(
                         leading: Icon(
                           Icons.loyalty,
-                          color: snapshot.data[index].name.toLowerCase().contains('work')
+                          color: snapshot.data[index].name
+                                      .toLowerCase()
+                                      .contains('work') &&
+                                  snapshot.data[index].name.length <= 5
                               ? Colors.amber
-                              : snapshot.data[index].name.toLowerCase()==('personal')
+                              : snapshot.data[index].name
+                                          .toLowerCase()
+                                          .contains('personal') &&
+                                      snapshot.data[index].name.length <= 9
                                   ? Colors.blueAccent
                                   : Theme.of(context).primaryColorDark,
                         ),

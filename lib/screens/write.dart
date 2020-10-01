@@ -14,6 +14,7 @@ class WriteDraft extends StatefulWidget {
 
 class _WriteDraftState extends State<WriteDraft> {
   DataBaseHelper helper = DataBaseHelper();
+  NotificationHelper notifyHelper;
   FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
   String appBarTitle;
   Draft draft;
@@ -28,7 +29,7 @@ class _WriteDraftState extends State<WriteDraft> {
   @override
   void initState() {
     super.initState();
-    initializing();
+    notifyHelper.initializing();
     _titleFocus = FocusNode();
     _descriptionFocus = FocusNode();
     _todoFocus = FocusNode();
@@ -164,7 +165,7 @@ class _WriteDraftState extends State<WriteDraft> {
               padding: const EdgeInsets.all(8.0),
               child: Text('Tag'),
             ),
-            
+
             // ListTile(
             //   title: DropdownButton(
             //       items: _priorities.map((String dropDownStringItem) {

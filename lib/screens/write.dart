@@ -21,6 +21,8 @@ class _WriteDraftState extends State<WriteDraft> {
   TextEditingController notesController = TextEditingController();
   TextEditingController todoController = TextEditingController();
   static var _priorities = ['Low', 'Normal', 'High'];
+  static final _formKey = new GlobalKey<FormState>();
+  String _title, _body;
 
   _WriteDraftState(this.appBarTitle, this.draft);
 
@@ -326,6 +328,26 @@ class _WriteDraftState extends State<WriteDraft> {
             //     border: InputBorder.none,
             //   ),
             // ),
+            _buildForm(),
+            Container(
+              width: double.infinity,
+              child: RaisedButton(
+                padding: EdgeInsets.all(15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(30.0),
+                ),
+                onPressed: () {
+                  _submit(notifyHelper);
+                },
+                color: Theme.of(context).accentColor,
+                textColor: Colors.white,
+                highlightColor: Theme.of(context).primaryColor,
+                child: Text(
+                  'Add Medicine'.toUpperCase(),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -395,6 +417,62 @@ class _WriteDraftState extends State<WriteDraft> {
         ),
       ),
     );
+  }
+
+  Form _buildForm() {
+    TextStyle labelsStyle =
+        TextStyle(fontWeight: FontWeight.w400, fontSize: 25);
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          TextFormField(
+            style: TextStyle(fontSize: 25),
+            decoration: InputDecoration(
+              labelText: 'Name',
+              labelStyle: labelsStyle,
+            ),
+            validator: (input) => (input.length < 5) ? 'Name is short' : null,
+            onSaved: (input) => _title = input,
+          ),
+          TextFormField(
+            style: TextStyle(fontSize: 25),
+            decoration: InputDecoration(
+              labelText: 'Dose',
+              labelStyle: labelsStyle,
+            ),
+            validator: (input) => (input.length > 50) ? 'Dose is long' : null,
+            onSaved: (input) => _body = input,
+          )
+        ],
+      ),
+    );
+  }
+    void _submit(NotificationHelper nfhelper) async {
+    if (_formKey.currentState.validate()) {
+      // form is validated
+      _formKey.currentState.save();
+      print(_title);
+      print(_body);
+      //show the time picker dialog
+      showTimePicker(
+        initialTime: TimeOfDay.now(),
+        context: context,
+      ).then((selectedTime) async {
+        int hour = selectedTime.hour;
+        int minute = selectedTime.minute;
+        print(selectedTime);
+        // insert into database
+        var nFId = await helper.insertNF(
+            NotificationsModel(_body, _title));
+        // sehdule the notification
+        nfhelper.showNotificationDaily(nFId, _title, _body, hour, minute);
+        // The medicine Id and Notitfaciton Id are the same
+        print('New Med id' + nFId.toString());
+        // go back
+        Navigator.pop(context, nFId);
+      });
+    }
   }
 
   void updatePriorityAsInt(String value) {

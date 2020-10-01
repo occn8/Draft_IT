@@ -199,9 +199,13 @@ class DataBaseHelper {
 
   //Notifications
   Future<int> insertNF(NotificationsModel nf) async {
+    int nfId = 0;
     Database db = await this.database;
-    var result = await db.insert('notifications', nf.toMap());
-    return result;
+    await db
+        .insert('notifications', nf.toMap(),
+            conflictAlgorithm: ConflictAlgorithm.replace)
+        .then((value) => nfId = value);
+    return nfId;
   }
 
   Future<int> updateNF(NotificationsModel nf) async {

@@ -29,7 +29,7 @@ class NotificationHelper {
             'channel ID', 'Channel title', 'channel body',
             priority: Priority.High,
             importance: Importance.Max,
-            ticker: 'test');
+            ticker: 'draft nf');
 
     IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
 
@@ -38,9 +38,9 @@ class NotificationHelper {
     return notificationDetails;
   }
 
-  void showNotifications() async {
-    await notification();
-  }
+  // void showNotifications() async {
+  //   await notification();
+  // }
 
   Future<void> notification() async {
     await flutterLocalNotificationsPlugin.show(0, 'titleController.text',
@@ -53,8 +53,7 @@ class NotificationHelper {
 
   Future<void> notificationSchedule(
       int id, String title, String body, int hour, int minute) async {
-    var timeDate =
-        DateTime(2020, 9, 11, hour, minute).add(Duration(seconds: 5));
+    var timeDate = DateTime(2020, 10, 1, hour, minute);
 
     await flutterLocalNotificationsPlugin.schedule(
         id, title, body, timeDate, getPlatformChannelSpecfics());

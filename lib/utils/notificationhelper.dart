@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationHelper {
-  NotificationHelper() {
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    initializing();
-  }
-
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   AndroidInitializationSettings androidInitializationSettings;
   IOSInitializationSettings iosInitializationSettings;
   InitializationSettings initializationSettings;
+
+  NotificationHelper() {
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    initializing();
+  }
 
   void initializing() async {
     androidInitializationSettings =
@@ -21,10 +21,6 @@ class NotificationHelper {
         androidInitializationSettings, iosInitializationSettings);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
-  }
-
-  void showNotifications() async {
-    await notification();
   }
 
   getPlatformChannelSpecfics() {
@@ -42,24 +38,26 @@ class NotificationHelper {
     return notificationDetails;
   }
 
+  void showNotifications() async {
+    await notification();
+  }
+
   Future<void> notification() async {
     await flutterLocalNotificationsPlugin.show(0, 'titleController.text',
         'descriptionController.text', getPlatformChannelSpecfics());
   }
 
-  void showNotificationsAfterSecond() async {
-    await notificationAfterSec();
-  }
+  // void showNotificationsAfterSecond() async {
+  //   await notificationAfterSec();
+  // }
 
-  Future<void> notificationAfterSec() async {
-    var timeDelayed = DateTime(2020, 9, 11, 22, 15).add(Duration(seconds: 5));
+  Future<void> notificationAfterSec(
+      int id, String title, String body, int hour, int minute) async {
+    var timeDate =
+        DateTime(2020, 9, 11, hour, minute).add(Duration(seconds: 5));
 
     await flutterLocalNotificationsPlugin.schedule(
-        1,
-        'Hello there',
-        'please subscribe my channel',
-        timeDelayed,
-        getPlatformChannelSpecfics());
+        id, title, body, timeDate, getPlatformChannelSpecfics());
   }
 
   void showNotificationDaily(

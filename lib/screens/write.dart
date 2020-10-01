@@ -29,7 +29,7 @@ class _WriteDraftState extends State<WriteDraft> {
   @override
   void initState() {
     super.initState();
-    notifyHelper.initializing();
+    // notifyHelper.initializing();
     _titleFocus = FocusNode();
     _descriptionFocus = FocusNode();
     _todoFocus = FocusNode();

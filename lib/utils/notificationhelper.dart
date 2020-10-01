@@ -51,7 +51,7 @@ class NotificationHelper {
   //   await notificationAfterSec();
   // }
 
-  Future<void> notificationAfterSec(
+  Future<void> notificationSchedule(
       int id, String title, String body, int hour, int minute) async {
     var timeDate =
         DateTime(2020, 9, 11, hour, minute).add(Duration(seconds: 5));

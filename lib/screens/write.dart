@@ -371,7 +371,8 @@ class _WriteDraftState extends State<WriteDraft> {
                   var nFId =
                       await helper.insertNF(NotificationsModel(_body, _title));
                   // sehdule the notification
-                  notification();
+                  showNotificationDaily(
+                      draft.id, draft.title, draft.description, hour, minute);
                   // The medicine Id and Notitfaciton Id are the same
                   print('New Med id' + nFId.toString());
                   // go back

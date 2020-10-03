@@ -55,7 +55,7 @@ Future<void> notification() async {
 
 Future<void> notificationSchedule(
     int id, String title, String body, int hour, int minute) async {
-  var timeDate = DateTime(2020, 10, 1, hour, minute);
+  var timeDate = DateTime(2020, 10, 3, hour, minute);
 
   await flutterLocalNotificationsPlugin.schedule(
       id, title, body, timeDate, getPlatformChannelSpecfics());
@@ -66,7 +66,7 @@ void showNotificationDaily(
   var time = new Time(hour, minute, 0);
   await flutterLocalNotificationsPlugin.showDailyAtTime(
       id, title, body, time, getPlatformChannelSpecfics());
-  print('Notification Succesfully Scheduled at ${time.toString()}');
+  print('Notification Succesfully Scheduled at ${time.hour.toString()}'+title);
 }
 
 Future onSelectNotification(String payLoad) {

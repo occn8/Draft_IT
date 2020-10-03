@@ -350,15 +350,62 @@ class _WriteDraftState extends State<WriteDraft> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Time'),
+                  Row(
+                    children: [
+                      Text('Time'),
+                      Container(
+                        child: IconButton(
+                            icon: Icon(Icons.calendar_today),
+                            onPressed: () {
+                              showTimePicker(
+                                initialTime: TimeOfDay.now(),
+                                context: context,
+                                initialEntryMode: TimePickerEntryMode.dial,
+                              ).then((selectedTime) async {
+                                int hour = selectedTime.hour;
+                                int minute = selectedTime.minute;
+
+                                print(selectedTime);
+
+                                Navigator.pop(context);
+                              });
+                            }),
+                      ),
+                    ],
+                  ),
                   SizedBox(width: 5),
-                  Text('Day'),
+                  Row(
+                    children: [
+                      Text('Day'),
+                      Container(
+                        child: IconButton(
+                            icon: Icon(Icons.calendar_today),
+                            onPressed: () {
+                              showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2018),
+                                      lastDate: DateTime(2025))
+                                  .then((selectedDate) async {
+                                int year = selectedDate.year;
+                                int month = selectedDate.month;
+                                int day = selectedDate.day;
+
+                                print(selectedDate);
+
+                                Navigator.pop(context, 'ok');
+                              });
+                            }),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
             FlatButton(
-              color: Colors.blue,
+              color: Colors.grey,
               onPressed: () {
                 showTimePicker(
                   initialTime: TimeOfDay.now(),
@@ -367,23 +414,21 @@ class _WriteDraftState extends State<WriteDraft> {
                   int hour = selectedTime.hour;
                   int minute = selectedTime.minute;
                   print(selectedTime);
-                  // insert into database
+
                   var nFId =
                       await helper.insertNF(NotificationsModel(_body, _title));
-                  // sehdule the notification
-                  showNotificationDaily(
+
+                  notificationSchedule(
                       draft.id, draft.title, draft.description, hour, minute);
-                  // The medicine Id and Notitfaciton Id are the same
-                  print('New Med id' + nFId.toString());
-                  // go back
+                  print('New notification id' + nFId.toString());
                   Navigator.pop(context, nFId);
                 });
               },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Show Notification",
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  "Shedule Notification",
+                  style: TextStyle(fontSize: 14.0, color: Colors.white),
                 ),
               ),
             ),

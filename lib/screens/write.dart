@@ -12,7 +12,6 @@ class WriteDraft extends StatefulWidget {
 
 class _WriteDraftState extends State<WriteDraft> {
   DataBaseHelper helper = DataBaseHelper();
-  NotificationHelper notifyHelper;
   FocusNode _titleFocus, _descriptionFocus, _todoFocus, _noteFocus;
   String appBarTitle;
   Draft draft;
@@ -328,26 +327,26 @@ class _WriteDraftState extends State<WriteDraft> {
             //     border: InputBorder.none,
             //   ),
             // ),
-            _buildForm(),
-            Container(
-              width: double.infinity,
-              child: RaisedButton(
-                padding: EdgeInsets.all(15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
-                ),
-                onPressed: () {
-                  _submit(notifyHelper);
-                },
-                color: Theme.of(context).accentColor,
-                textColor: Colors.white,
-                highlightColor: Theme.of(context).primaryColor,
-                child: Text(
-                  'Add Medicine'.toUpperCase(),
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
+            // _buildForm(),
+            // Container(
+            //   width: double.infinity,
+            //   child: RaisedButton(
+            //     padding: EdgeInsets.all(15),
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: new BorderRadius.circular(30.0),
+            //     ),
+            //     onPressed: () {
+            //       _submit(notifyHelper);
+            //     },
+            //     color: Theme.of(context).accentColor,
+            //     textColor: Colors.white,
+            //     highlightColor: Theme.of(context).primaryColor,
+            //     child: Text(
+            //       'Add NF'.toUpperCase(),
+            //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -358,17 +357,35 @@ class _WriteDraftState extends State<WriteDraft> {
                 ],
               ),
             ),
-            // FlatButton(
-            //   color: Colors.blue,
-            //   onPressed: showNotificationsAfterSecond,
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(8.0),
-            //     child: Text(
-            //       "Show Notification",
-            //       style: TextStyle(fontSize: 20.0, color: Colors.white),
-            //     ),
-            //   ),
-            // ),
+            FlatButton(
+              color: Colors.blue,
+              onPressed: () {
+                showTimePicker(
+                  initialTime: TimeOfDay.now(),
+                  context: context,
+                ).then((selectedTime) async {
+                  int hour = selectedTime.hour;
+                  int minute = selectedTime.minute;
+                  print(selectedTime);
+                  // insert into database
+                  var nFId =
+                      await helper.insertNF(NotificationsModel(_body, _title));
+                  // sehdule the notification
+                  notification();
+                  // The medicine Id and Notitfaciton Id are the same
+                  print('New Med id' + nFId.toString());
+                  // go back
+                  Navigator.pop(context, nFId);
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Show Notification",
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Row(
@@ -448,7 +465,8 @@ class _WriteDraftState extends State<WriteDraft> {
       ),
     );
   }
-    void _submit(NotificationHelper nfhelper) async {
+
+  void _submit() async {
     if (_formKey.currentState.validate()) {
       // form is validated
       _formKey.currentState.save();
@@ -463,10 +481,9 @@ class _WriteDraftState extends State<WriteDraft> {
         int minute = selectedTime.minute;
         print(selectedTime);
         // insert into database
-        var nFId = await helper.insertNF(
-            NotificationsModel(_body, _title));
+        var nFId = await helper.insertNF(NotificationsModel(_body, _title));
         // sehdule the notification
-        nfhelper.showNotificationDaily(nFId, _title, _body, hour, minute);
+        showNotificationDaily(nFId, _title, _body, hour, minute);
         // The medicine Id and Notitfaciton Id are the same
         print('New Med id' + nFId.toString());
         // go back

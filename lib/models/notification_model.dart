@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class NotificationsModel {
   int id;
   String title, body;
@@ -20,4 +22,18 @@ class NotificationsModel {
     this.title = map['title'];
     this.body = map['body'];
   }
+}
+
+class ReceivedNotification {
+  final int id;
+  final String title;
+  final String body;
+  final String payload;
+
+  ReceivedNotification({
+    @required this.id,
+    @required this.title,
+    @required this.body,
+    @required this.payload,
+  });
 }

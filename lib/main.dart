@@ -1,7 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'index.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  notificationAppLaunchDetails =
+      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+
+  await initNotifications(flutterLocalNotificationsPlugin);
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var ukey = prefs.getString('usagekey');
   runApp(

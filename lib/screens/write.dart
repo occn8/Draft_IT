@@ -354,7 +354,7 @@ class _WriteDraftState extends State<WriteDraft> {
                 children: [
                   Row(
                     children: [
-                      Text('Time'),
+                      Text('Due Time'),
                       Container(
                         child: IconButton(
                             icon: Icon(Icons.calendar_today),
@@ -362,7 +362,7 @@ class _WriteDraftState extends State<WriteDraft> {
                               showTimePicker(
                                 initialTime: TimeOfDay.now(),
                                 context: context,
-                                initialEntryMode: TimePickerEntryMode.dial,
+                                initialEntryMode: TimePickerEntryMode.input,
                               ).then((selectedTime) async {
                                 int hour = selectedTime.hour;
                                 int minute = selectedTime.minute;
@@ -378,7 +378,7 @@ class _WriteDraftState extends State<WriteDraft> {
                   SizedBox(width: 5),
                   Row(
                     children: [
-                      Text('Day'),
+                      Text('Due Day'),
                       Container(
                         child: IconButton(
                             icon: Icon(Icons.calendar_today),
@@ -421,7 +421,7 @@ class _WriteDraftState extends State<WriteDraft> {
                   notificationSchedule(
                       draft.id, draft.title, draft.description, hour, minute);
                   print('New notification id' + nFId.toString());
-                  Navigator.pop(context, nFId);
+                  // Navigator.pop(context, nFId);
                 });
               },
               child: Padding(

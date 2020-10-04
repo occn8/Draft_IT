@@ -364,12 +364,13 @@ class _WriteDraftState extends State<WriteDraft> {
                                 context: context,
                                 initialEntryMode: TimePickerEntryMode.input,
                               ).then((selectedTime) async {
-                                int hour = selectedTime.hour;
-                                int minute = selectedTime.minute;
+                                var hour = selectedTime.hour;
+                                var minute = selectedTime.minute;
+                                draft.dtime = DateFormat.Hm()
+                                    .format(DateTime(0, 0, 0, hour, minute));
+                                print(draft.dtime);
 
-                                print(selectedTime);
-
-                                Navigator.pop(context);
+                                // Navigator.pop(context);
                               });
                             }),
                       ),
@@ -392,10 +393,11 @@ class _WriteDraftState extends State<WriteDraft> {
                                 int year = selectedDate.year;
                                 int month = selectedDate.month;
                                 int day = selectedDate.day;
+                                draft.ddate = DateFormat.yMd()
+                                    .format(DateTime(year, month, day));
+                                print(draft.ddate);
 
-                                print(selectedDate);
-
-                                Navigator.pop(context, 'ok');
+                                // Navigator.pop(context, 'ok');
                               });
                             }),
                       ),
@@ -583,8 +585,8 @@ class _WriteDraftState extends State<WriteDraft> {
   void _save() async {
     Navigator.pop(context);
     draft.mdate = DateFormat.yMMMd().format(DateTime.now());
-    draft.ddate = DateFormat.yMd().format(DateTime(2020, 7, 24));
-    draft.dtime = DateFormat.Hm().format(DateTime.now());
+    // draft.ddate = DateFormat.yMd().format(DateTime(2020, 7, 24));
+    // draft.dtime = DateFormat.Hm().format(DateTime.now());
     int result;
     if (draft.id != null) {
       result = await helper.updateDraft(draft);

@@ -30,9 +30,11 @@ class _DetailsState extends State<Details> {
                         child: Text(
                           widget.draft.ddate == null
                               ? 'No Due date'
-                              : widget.draft.ddate.toString(),
+                              : widget.draft.ddate.toString() +
+                                  ' at ' +
+                                  widget.draft.dtime.toString(),
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 10,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

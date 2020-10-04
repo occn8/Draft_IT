@@ -39,6 +39,8 @@ class DataBaseHelper {
     await db.execute('CREATE TABLE tags(id INTEGER PRIMARY KEY, name TEXT)');
     await db.execute(
         'CREATE TABLE notifications(id INTEGER PRIMARY KEY, title TEXT, body TEXT)');
+
+    await db.rawInsert('INSERT INTO tags(id, name) VALUES(1, "Work")');
   }
 
 //Drafts
@@ -82,6 +84,7 @@ class DataBaseHelper {
       'draftstable',
       orderBy: 'priority DESC, id ASC',
       where: 'isTrash=0',
+      // whereArgs: ['isTrash=0','isStarred=0']
     );
     return result;
   }
@@ -99,8 +102,10 @@ class DataBaseHelper {
   Future<List<Map<String, dynamic>>> getFilteredDraftMapList(
       String isWhat) async {
     Database db = await this.database;
-    var result =
-        await db.rawQuery("SELECT * FROM draftstable WHERE $isWhat=1");
+    var result = isWhat == 'isTrash'
+        ? await db.rawQuery("SELECT * FROM draftstable WHERE $isWhat=1")
+        : await db.rawQuery(
+            "SELECT * FROM draftstable WHERE $isWhat=1 AND isTrash=0");
     return result;
   }
 

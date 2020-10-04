@@ -13,9 +13,9 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
           children: [
             ListView(
               children: [
@@ -26,19 +26,63 @@ class _DetailsState extends State<Details> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 5, left: 5),
-                        child: Text(
-                          widget.draft.ddate == null
-                              ? 'No Due date'
-                              : widget.draft.ddate.toString() +
-                                  ' at ' +
-                                  widget.draft.dtime.toString(),
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
+                          padding: EdgeInsets.only(top: 5, left: 5),
+                          child: RichText(
+                            text: widget.draft.ddate == null
+                                ? TextSpan(
+                                    children: [
+                                        TextSpan(
+                                          text: 'No Due date',
+                                        ),
+                                      ],
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color:
+                                            Theme.of(context).primaryColorDark))
+                                : TextSpan(
+                                    children: [
+                                        TextSpan(
+                                            text: 'Due: ',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context)
+                                                    .primaryColor)),
+                                        TextSpan(
+                                            text: widget.draft.ddate.toString(),
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                color: Theme.of(context)
+                                                    .primaryColorDark)),
+                                        TextSpan(text: ' at '),
+                                        TextSpan(
+                                            text: widget.draft.dtime.toString(),
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context)
+                                                    .primaryColor)),
+                                      ],
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context)
+                                            .primaryColorDark)),
+                          )
+                          // Text(
+                          //   widget.draft.ddate == null
+                          //       ? 'No Due date'
+                          //       : widget.draft.ddate.toString() +
+                          //           ' at ' +
+                          //           widget.draft.dtime.toString(),
+                          //   style: TextStyle(
+                          //     fontSize: 10,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
                           ),
-                        ),
-                      ),
                       Row(
                         children: [
                           Text('Done'),
@@ -126,20 +170,20 @@ class _DetailsState extends State<Details> {
             customAppBar(),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return WriteDraft(this.widget.draft, 'Edit Draft');
-            })).then(
-              (value) {
-                setState(() {});
-              },
-            );
-          },
-          elevation: 4,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(Icons.edit, color: Theme.of(context).primaryColorLight),
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return WriteDraft(this.widget.draft, 'Edit Draft');
+          })).then(
+            (value) {
+              setState(() {});
+            },
+          );
+        },
+        elevation: 4,
+        backgroundColor: Theme.of(context).primaryColor,
+        child: Icon(Icons.edit, color: Theme.of(context).primaryColorLight),
       ),
     );
   }

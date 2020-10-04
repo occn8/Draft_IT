@@ -14,9 +14,9 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: ListView(
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
           children: [
             CustomAppBar(
               title: widget.strFilter == 'isStarred'

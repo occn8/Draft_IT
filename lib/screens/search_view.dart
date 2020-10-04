@@ -27,9 +27,9 @@ class _SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: GestureDetector(
+    return Scaffold(
+      body: SafeArea(
+        child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),

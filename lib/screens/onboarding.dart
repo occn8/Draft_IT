@@ -48,9 +48,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: AnnotatedRegion<SystemUiOverlayStyle>(
+    return Scaffold(
+      body: SafeArea(
+        child: AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.light,
           child: Container(
             decoration: BoxDecoration(
@@ -74,12 +74,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     alignment: Alignment.centerRight,
                     child: FlatButton(
                       onPressed: () {
-                         _pageController.animateToPage(3,
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.bounceIn);
-                          setState(() {
-                            _currentPage=3;
-                          });
+                        _pageController.animateToPage(3,
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.bounceIn);
+                        setState(() {
+                          _currentPage = 3;
+                        });
                       },
                       child: Text(
                         'Skip',
@@ -255,38 +255,38 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
         ),
-        bottomSheet: _currentPage == _numPages - 1
-            ? Container(
-                height: 80.0,
-                width: double.infinity,
-                color: Colors.white,
-                child: GestureDetector(
-                  onTap: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (BuildContext ctx) => Home()),
-                    );
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.setString('usagekey', 'times');
-                  },
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 30.0),
-                      child: Text(
-                        'Get started',
-                        style: TextStyle(
-                          color: Color(0xFF5B16D0),
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+      ),
+      bottomSheet: _currentPage == _numPages - 1
+          ? Container(
+              height: 80.0,
+              width: double.infinity,
+              color: Colors.white,
+              child: GestureDetector(
+                onTap: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext ctx) => Home()),
+                  );
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  prefs.setString('usagekey', 'times');
+                },
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 30.0),
+                    child: Text(
+                      'Get started',
+                      style: TextStyle(
+                        color: Color(0xFF5B16D0),
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
-              )
-            : Text(''),
-      ),
+              ),
+            )
+          : Text(''),
     );
   }
 }

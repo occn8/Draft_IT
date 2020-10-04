@@ -104,11 +104,11 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        key: this._sfkey,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: Scrollbar(
+    return Scaffold(
+      key: this._sfkey,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: SafeArea(
+        child: Scrollbar(
           child: ListView(
             children: [
               customAppBar(),
@@ -197,26 +197,26 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                backgroundColor: Theme.of(context).backgroundColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                content: _createDialog(context),
-              ),
-            ).then((returnVal) {
-              setState(() {});
-            });
-          },
-          backgroundColor: Theme.of(context).primaryColor,
-          elevation: 4,
-          child: Icon(Icons.add, color: Theme.of(context).primaryColorLight),
-        ),
-        drawer: CustomDrawer(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              backgroundColor: Theme.of(context).backgroundColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              content: _createDialog(context),
+            ),
+          ).then((returnVal) {
+            setState(() {});
+          });
+        },
+        backgroundColor: Theme.of(context).primaryColor,
+        elevation: 4,
+        child: Icon(Icons.add, color: Theme.of(context).primaryColorLight),
+      ),
+      drawer: CustomDrawer(),
     );
   }
 

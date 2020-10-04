@@ -51,434 +51,437 @@ class _WriteDraftState extends State<WriteDraft> {
     notesController.text = draft.notes;
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-        child: ListView(
-          children: <Widget>[
-            Container(
-              height: 50,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Builder(
-                    builder: (context) => InkWell(
-                      splashColor: Theme.of(context).accentColor,
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () => Navigator.pop(context),
-                      child: Container(
-                        padding: new EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            // color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: new Icon(Icons.arrow_back_ios,
-                            size: 25,
-                            color: Theme.of(context).primaryColorDark),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+          child: ListView(
+            children: <Widget>[
+              Container(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Builder(
+                      builder: (context) => InkWell(
+                        splashColor: Theme.of(context).accentColor,
+                        borderRadius: BorderRadius.circular(10),
+                        onTap: () => Navigator.pop(context),
+                        child: Container(
+                          padding: new EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              // color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: new Icon(Icons.arrow_back_ios,
+                              size: 25,
+                              color: Theme.of(context).primaryColorDark),
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    appBarTitle,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
-                  ),
-                  Builder(
-                    builder: (context) => InkWell(
-                      splashColor: Theme.of(context).accentColor,
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () {},
-                      child: Container(
-                        padding: new EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            // color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: new Icon(Icons.more_horiz,
-                            size: 25,
-                            color: Theme.of(context).primaryColorDark),
+                    Text(
+                      appBarTitle,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+                    ),
+                    Builder(
+                      builder: (context) => InkWell(
+                        splashColor: Theme.of(context).accentColor,
+                        borderRadius: BorderRadius.circular(10),
+                        onTap: () {},
+                        child: Container(
+                          padding: new EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                              // color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: new Icon(Icons.more_horiz,
+                              size: 25,
+                              color: Theme.of(context).primaryColorDark),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-              child: TextField(
-                focusNode: _titleFocus,
-                controller: titleController,
-                textCapitalization: TextCapitalization.sentences,
-                style: TextStyle(),
-                onChanged: (value) {
-                  updateTitle();
-                },
-                decoration: InputDecoration(
-                  labelText: 'Draft Title',
-                  hintText: 'Enter Title',
-                  prefixIcon: Icon(Icons.title),
-                  labelStyle: TextStyle(fontWeight: FontWeight.w800),
-                  border: UnderlineInputBorder(),
+                  ],
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-              child: TextField(
-                focusNode: _descriptionFocus,
-                controller: descriptionController,
-                maxLines: null,
-                keyboardType: TextInputType.text,
-                textCapitalization: TextCapitalization.sentences,
-                style: TextStyle(),
-                onChanged: (value) {
-                  updateDescription();
-                },
-                decoration: InputDecoration(
-                  labelText: 'Description',
-                  hintText: 'Enter Description',
-                  labelStyle: TextStyle(),
-                  prefixIcon: Icon(Icons.description),
-                  border: UnderlineInputBorder(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                child: TextField(
+                  focusNode: _titleFocus,
+                  controller: titleController,
+                  textCapitalization: TextCapitalization.sentences,
+                  style: TextStyle(),
+                  onChanged: (value) {
+                    updateTitle();
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Draft Title',
+                    hintText: 'Enter Title',
+                    prefixIcon: Icon(Icons.title),
+                    labelStyle: TextStyle(fontWeight: FontWeight.w800),
+                    border: UnderlineInputBorder(),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: TextField(
-                controller: notesController,
-                focusNode: _noteFocus,
-                maxLines: null,
-                minLines: 3,
-                keyboardType: TextInputType.multiline,
-                textCapitalization: TextCapitalization.sentences,
-                style: TextStyle(),
-                onChanged: (value) {
-                  updateNotes();
-                },
-                decoration: InputDecoration(
-                  labelText: 'Notes',
-                  labelStyle: TextStyle(),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5)),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 5),
+                child: TextField(
+                  focusNode: _descriptionFocus,
+                  controller: descriptionController,
+                  maxLines: null,
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.sentences,
+                  style: TextStyle(),
+                  onChanged: (value) {
+                    updateDescription();
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    hintText: 'Enter Description',
+                    labelStyle: TextStyle(),
+                    prefixIcon: Icon(Icons.description),
+                    border: UnderlineInputBorder(),
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Tag'),
-            ),
-
-            // ListTile(
-            //   title: DropdownButton(
-            //       items: _priorities.map((String dropDownStringItem) {
-            //         return DropdownMenuItem<String>(
-            //           child: Text(
-            //             dropDownStringItem,
-            //             style: TextStyle(
-            //                 color: Theme.of(context).primaryColorDark),
-            //           ),
-            //           value: dropDownStringItem,
-            //         );
-            //       }).toList(),
-            //       style: TextStyle(),
-            //       value: getPriorityAsString(draft.priority),
-            //       onChanged: (valueSelectedByUser) {
-            //         setState(() {
-            //           print(draft.priority);
-            //           updatePriorityAsInt(valueSelectedByUser);
-            //         });
-            //       }),
-            // ),
-            Container(
-              padding: EdgeInsets.only(right: 5),
-              decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  for (int i = 0; i < _priorities.length; i++)
-                    Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            child: Radio(
-                              value: i,
-                              groupValue: draft.priority,
-                              activeColor: Theme.of(context).primaryColor,
-                              onChanged: (int value) {
-                                setState(() {
-                                  draft.priority = value;
-                                  print(draft.priority);
-                                });
-                              },
-                            ),
-                          ),
-                          Container(
-                            child: Text(
-                              _priorities[i],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1
-                                  .copyWith(
-                                      color:
-                                          Theme.of(context).primaryColorDark),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: FutureBuilder(
-            //     future: helper.getTodo(draft.id),
-            //     initialData: [],
-            //     builder: (BuildContext context, AsyncSnapshot snapshot) {
-            //       return Container(
-            //         height: 100,
-            //         child: Scrollbar(
-            //           child: ListView.builder(
-            //             itemCount: snapshot.data.length,
-            //             itemBuilder: (BuildContext context, int index) {
-            //               return GestureDetector(
-            //                   onTap: () async {
-            //                     if (snapshot.data[index].isDone == 0) {
-            //                       await helper.updateTodoDone(
-            //                           snapshot.data[index].id, 1);
-            //                     } else {
-            //                       await helper.updateTodoDone(
-            //                           snapshot.data[index].id, 0);
-            //                     }
-            //                     setState(() {});
-            //                   },
-            //                   child: Container(
-            //                     padding: EdgeInsets.symmetric(
-            //                       horizontal: 24.0,
-            //                       vertical: 8.0,
-            //                     ),
-            //                     child: Row(
-            //                       children: [
-            //                         Container(
-            //                           width: 20.0,
-            //                           height: 20.0,
-            //                           margin: EdgeInsets.only(
-            //                             right: 12.0,
-            //                           ),
-            //                           decoration: BoxDecoration(
-            //                               color: snapshot.data[index].isDone
-            //                                   ? Color(0xFF7349FE)
-            //                                   : Colors.transparent,
-            //                               borderRadius:
-            //                                   BorderRadius.circular(6.0),
-            //                               border: snapshot.data[index].isDone
-            //                                   ? null
-            //                                   : Border.all(
-            //                                       color: Color(0xFF86829D),
-            //                                       width: 1.5)),
-            //                           child: Icon(Icons.check_box),
-            //                         ),
-            //                         Flexible(
-            //                           child: Text(
-            //                             snapshot.data[index].title ?? "(Unnamed Todo)",
-            //                             style: TextStyle(
-            //                               color: snapshot.data[index].isDone
-            //                                   ? Color(0xFF211551)
-            //                                   : Color(0xFF86829D),
-            //                               fontSize: 16.0,
-            //                               fontWeight:
-            //                                   snapshot.data[index].isDone
-            //                                       ? FontWeight.bold
-            //                                       : FontWeight.w500,
-            //                             ),
-            //                           ),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                   ));
-            //             },
-            //           ),
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // ),
-            // TextField(
-            //   focusNode: _todoFocus,
-            //   controller: todoController,
-            //   onSubmitted: (value) async {
-            //     if (value != "") {
-            //       if (draft.id != null) {
-            //         Todo _newTodo = Todo(
-            //           draftId: draft.id,
-            //           title: value,
-            //           isDone: 0,
-            //         );
-            //         await helper.insertTodo(_newTodo);
-            //         setState(() {});
-            //         print("Task exist");
-            //         // _todoFocus.requestFocus();
-            //       } else {
-            //         print("Task doesn't exist");
-            //       }
-            //     }
-            //   },
-            //   decoration: InputDecoration(
-            //     hintText: "Enter Todo item...",
-            //     border: InputBorder.none,
-            //   ),
-            // ),
-            // _buildForm(),
-            // Container(
-            //   width: double.infinity,
-            //   child: RaisedButton(
-            //     padding: EdgeInsets.all(15),
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: new BorderRadius.circular(30.0),
-            //     ),
-            //     onPressed: () {
-            //       _submit(notifyHelper);
-            //     },
-            //     color: Theme.of(context).accentColor,
-            //     textColor: Colors.white,
-            //     highlightColor: Theme.of(context).primaryColor,
-            //     child: Text(
-            //       'Add NF'.toUpperCase(),
-            //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            //     ),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text('Due Time'),
-                      Container(
-                        child: IconButton(
-                            icon: Icon(Icons.calendar_today),
-                            onPressed: () {
-                              showTimePicker(
-                                initialTime: TimeOfDay.now(),
-                                context: context,
-                                initialEntryMode: TimePickerEntryMode.input,
-                              ).then((selectedTime) async {
-                                var hour = selectedTime.hour;
-                                var minute = selectedTime.minute;
-                                draft.dtime = DateFormat.Hm()
-                                    .format(DateTime(0, 0, 0, hour, minute));
-                                print(draft.dtime);
-
-                                // Navigator.pop(context);
-                              });
-                            }),
-                      ),
-                    ],
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: TextField(
+                  controller: notesController,
+                  focusNode: _noteFocus,
+                  maxLines: null,
+                  minLines: 3,
+                  keyboardType: TextInputType.multiline,
+                  textCapitalization: TextCapitalization.sentences,
+                  style: TextStyle(),
+                  onChanged: (value) {
+                    updateNotes();
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Notes',
+                    labelStyle: TextStyle(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5)),
                   ),
-                  SizedBox(width: 5),
-                  Row(
-                    children: [
-                      Text('Due Day'),
-                      Container(
-                        child: IconButton(
-                            icon: Icon(Icons.calendar_today),
-                            onPressed: () {
-                              showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2018),
-                                      lastDate: DateTime(2025))
-                                  .then((selectedDate) async {
-                                int year = selectedDate.year;
-                                int month = selectedDate.month;
-                                int day = selectedDate.day;
-                                draft.ddate = DateFormat.yMd()
-                                    .format(DateTime(year, month, day));
-                                print(draft.ddate);
-
-                                // Navigator.pop(context, 'ok');
-                              });
-                            }),
-                      ),
-                    ],
-                  ),
-                ],
+                ),
               ),
-            ),
-            FlatButton(
-              color: Colors.grey,
-              onPressed: () {
-                showTimePicker(
-                  initialTime: TimeOfDay.now(),
-                  context: context,
-                ).then((selectedTime) async {
-                  int hour = selectedTime.hour;
-                  int minute = selectedTime.minute;
-                  print(selectedTime);
-
-                  var nFId =
-                      await helper.insertNF(NotificationsModel(_body, _title));
-
-                  notificationSchedule(
-                      draft.id, draft.title, draft.description, hour, minute);
-                  print('New notification id' + nFId.toString());
-                  // Navigator.pop(context, nFId);
-                });
-              },
-              child: Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Shedule Notification",
-                  style: TextStyle(fontSize: 14.0, color: Colors.white),
+                child: Text('Tag'),
+              ),
+
+              // ListTile(
+              //   title: DropdownButton(
+              //       items: _priorities.map((String dropDownStringItem) {
+              //         return DropdownMenuItem<String>(
+              //           child: Text(
+              //             dropDownStringItem,
+              //             style: TextStyle(
+              //                 color: Theme.of(context).primaryColorDark),
+              //           ),
+              //           value: dropDownStringItem,
+              //         );
+              //       }).toList(),
+              //       style: TextStyle(),
+              //       value: getPriorityAsString(draft.priority),
+              //       onChanged: (valueSelectedByUser) {
+              //         setState(() {
+              //           print(draft.priority);
+              //           updatePriorityAsInt(valueSelectedByUser);
+              //         });
+              //       }),
+              // ),
+              Container(
+                padding: EdgeInsets.only(right: 5),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    for (int i = 0; i < _priorities.length; i++)
+                      Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Radio(
+                                value: i,
+                                groupValue: draft.priority,
+                                activeColor: Theme.of(context).primaryColor,
+                                onChanged: (int value) {
+                                  setState(() {
+                                    draft.priority = value;
+                                    print(draft.priority);
+                                  });
+                                },
+                              ),
+                            ),
+                            Container(
+                              child: Text(
+                                _priorities[i],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    .copyWith(
+                                        color:
+                                            Theme.of(context).primaryColorDark),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 4,
-                    child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        color: Theme.of(context).primaryColor,
-                        child: Text(
-                          'Save',
-                          textScaleFactor: 1.5,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColorLight),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: FutureBuilder(
+              //     future: helper.getTodo(draft.id),
+              //     initialData: [],
+              //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+              //       return Container(
+              //         height: 100,
+              //         child: Scrollbar(
+              //           child: ListView.builder(
+              //             itemCount: snapshot.data.length,
+              //             itemBuilder: (BuildContext context, int index) {
+              //               return GestureDetector(
+              //                   onTap: () async {
+              //                     if (snapshot.data[index].isDone == 0) {
+              //                       await helper.updateTodoDone(
+              //                           snapshot.data[index].id, 1);
+              //                     } else {
+              //                       await helper.updateTodoDone(
+              //                           snapshot.data[index].id, 0);
+              //                     }
+              //                     setState(() {});
+              //                   },
+              //                   child: Container(
+              //                     padding: EdgeInsets.symmetric(
+              //                       horizontal: 24.0,
+              //                       vertical: 8.0,
+              //                     ),
+              //                     child: Row(
+              //                       children: [
+              //                         Container(
+              //                           width: 20.0,
+              //                           height: 20.0,
+              //                           margin: EdgeInsets.only(
+              //                             right: 12.0,
+              //                           ),
+              //                           decoration: BoxDecoration(
+              //                               color: snapshot.data[index].isDone
+              //                                   ? Color(0xFF7349FE)
+              //                                   : Colors.transparent,
+              //                               borderRadius:
+              //                                   BorderRadius.circular(6.0),
+              //                               border: snapshot.data[index].isDone
+              //                                   ? null
+              //                                   : Border.all(
+              //                                       color: Color(0xFF86829D),
+              //                                       width: 1.5)),
+              //                           child: Icon(Icons.check_box),
+              //                         ),
+              //                         Flexible(
+              //                           child: Text(
+              //                             snapshot.data[index].title ?? "(Unnamed Todo)",
+              //                             style: TextStyle(
+              //                               color: snapshot.data[index].isDone
+              //                                   ? Color(0xFF211551)
+              //                                   : Color(0xFF86829D),
+              //                               fontSize: 16.0,
+              //                               fontWeight:
+              //                                   snapshot.data[index].isDone
+              //                                       ? FontWeight.bold
+              //                                       : FontWeight.w500,
+              //                             ),
+              //                           ),
+              //                         ),
+              //                       ],
+              //                     ),
+              //                   ));
+              //             },
+              //           ),
+              //         ),
+              //       );
+              //     },
+              //   ),
+              // ),
+              // TextField(
+              //   focusNode: _todoFocus,
+              //   controller: todoController,
+              //   onSubmitted: (value) async {
+              //     if (value != "") {
+              //       if (draft.id != null) {
+              //         Todo _newTodo = Todo(
+              //           draftId: draft.id,
+              //           title: value,
+              //           isDone: 0,
+              //         );
+              //         await helper.insertTodo(_newTodo);
+              //         setState(() {});
+              //         print("Task exist");
+              //         // _todoFocus.requestFocus();
+              //       } else {
+              //         print("Task doesn't exist");
+              //       }
+              //     }
+              //   },
+              //   decoration: InputDecoration(
+              //     hintText: "Enter Todo item...",
+              //     border: InputBorder.none,
+              //   ),
+              // ),
+              // _buildForm(),
+              // Container(
+              //   width: double.infinity,
+              //   child: RaisedButton(
+              //     padding: EdgeInsets.all(15),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: new BorderRadius.circular(30.0),
+              //     ),
+              //     onPressed: () {
+              //       _submit(notifyHelper);
+              //     },
+              //     color: Theme.of(context).accentColor,
+              //     textColor: Colors.white,
+              //     highlightColor: Theme.of(context).primaryColor,
+              //     child: Text(
+              //       'Add NF'.toUpperCase(),
+              //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              //     ),
+              //   ),
+              // ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text('Due Time'),
+                        Container(
+                          child: IconButton(
+                              icon: Icon(Icons.calendar_today),
+                              onPressed: () {
+                                showTimePicker(
+                                  initialTime: TimeOfDay.now(),
+                                  context: context,
+                                  initialEntryMode: TimePickerEntryMode.input,
+                                ).then((selectedTime) async {
+                                  var hour = selectedTime.hour;
+                                  var minute = selectedTime.minute;
+                                  draft.dtime = DateFormat.Hm()
+                                      .format(DateTime(0, 0, 0, hour, minute));
+                                  print(draft.dtime);
+
+                                  // Navigator.pop(context);
+                                });
+                              }),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            _save();
-                          });
-                        }),
-                  ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    flex: 2,
-                    child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        color: Theme.of(context).primaryColor,
-                        child: Text(
-                          'Cancel',
-                          textScaleFactor: 1.5,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColorLight),
+                      ],
+                    ),
+                    SizedBox(width: 5),
+                    Row(
+                      children: [
+                        Text('Due Day'),
+                        Container(
+                          child: IconButton(
+                              icon: Icon(Icons.calendar_today),
+                              onPressed: () {
+                                showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(2018),
+                                        lastDate: DateTime(2025))
+                                    .then((selectedDate) async {
+                                  int year = selectedDate.year;
+                                  int month = selectedDate.month;
+                                  int day = selectedDate.day;
+                                  draft.ddate = DateFormat.yMd()
+                                      .format(DateTime(year, month, day));
+                                  print(draft.ddate);
+
+                                  // Navigator.pop(context, 'ok');
+                                });
+                              }),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            Navigator.pop(context);
-                          });
-                        }),
-                  )
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              FlatButton(
+                color: Colors.grey,
+                onPressed: () {
+                  showTimePicker(
+                    initialTime: TimeOfDay.now(),
+                    context: context,
+                  ).then((selectedTime) async {
+                    int hour = selectedTime.hour;
+                    int minute = selectedTime.minute;
+                    print(selectedTime);
+
+                    var nFId = await helper
+                        .insertNF(NotificationsModel(_body, _title));
+
+                    notificationSchedule(
+                        draft.id, draft.title, draft.description, hour, minute);
+                    print('New notification id' + nFId.toString());
+                    // Navigator.pop(context, nFId);
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Shedule Notification",
+                    style: TextStyle(fontSize: 14.0, color: Colors.white),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 4,
+                      child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          color: Theme.of(context).primaryColor,
+                          child: Text(
+                            'Save',
+                            textScaleFactor: 1.5,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _save();
+                            });
+                          }),
+                    ),
+                    SizedBox(width: 5),
+                    Expanded(
+                      flex: 2,
+                      child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          color: Theme.of(context).primaryColor,
+                          child: Text(
+                            'Cancel',
+                            textScaleFactor: 1.5,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              Navigator.pop(context);
+                            });
+                          }),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

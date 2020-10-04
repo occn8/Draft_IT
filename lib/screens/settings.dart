@@ -26,13 +26,13 @@ class _SettingsState extends State<Settings> {
     final _colorPalettes =
         charts.MaterialPalette.getOrderedPalettes(this._data.length);
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('settings'),
-          centerTitle: true,
-        ),
-        body: ListView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('settings'),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: ListView(
           children: [
             Container(
               height: 300,

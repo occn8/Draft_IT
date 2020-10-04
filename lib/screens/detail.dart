@@ -335,7 +335,10 @@ class _DetailsState extends State<Details> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: new Icon(Icons.delete_outline,
-                        size: 25, color: Theme.of(context).primaryColorDark),
+                        size: 25,
+                        color: widget.draft.isTrash == 0
+                            ? Theme.of(context).primaryColorDark
+                            : Theme.of(context).primaryColor),
                   ),
                 ),
               ),

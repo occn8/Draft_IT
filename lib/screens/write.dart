@@ -356,7 +356,7 @@ class _WriteDraftState extends State<WriteDraft> {
                   children: [
                     Row(
                       children: [
-                        Text('Due Time'),
+                        Text('Due Time:'),
                         Container(
                           child: IconButton(
                               icon: Icon(Icons.calendar_today),
@@ -381,7 +381,7 @@ class _WriteDraftState extends State<WriteDraft> {
                     SizedBox(width: 5),
                     Row(
                       children: [
-                        Text('Due Day'),
+                        Text('Due Day:'),
                         Container(
                           child: IconButton(
                               icon: Icon(Icons.calendar_today),

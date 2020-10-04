@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-ThemeData dark = ThemeData(
+ThemeData night = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'Gilroy',
   primaryColor: Color(0xff00adb2),

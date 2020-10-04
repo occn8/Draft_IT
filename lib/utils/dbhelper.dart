@@ -81,6 +81,7 @@ class DataBaseHelper {
     var result = await db.query(
       'draftstable',
       orderBy: 'priority DESC, id ASC',
+      where: 'isTrash=0',
     );
     return result;
   }
@@ -98,7 +99,8 @@ class DataBaseHelper {
   Future<List<Map<String, dynamic>>> getFilteredDraftMapList(
       String isWhat) async {
     Database db = await this.database;
-    var result = await db.rawQuery("SELECT * FROM draftstable WHERE $isWhat=1");
+    var result =
+        await db.rawQuery("SELECT * FROM draftstable WHERE $isWhat=1");
     return result;
   }
 

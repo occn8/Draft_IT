@@ -19,7 +19,7 @@ Future<void> main() async {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Draft-IT',
-            theme: notifier.darkTheme ? darkl : light,
+            theme: notifier.darkTheme ? dark : light,
             home: ukey == null ? OnboardingScreen() : Home(),
           );
         },

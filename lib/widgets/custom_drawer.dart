@@ -1,4 +1,5 @@
 import 'package:Draft_IT/index.dart';
+import 'package:Draft_IT/screens/profile.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
@@ -68,7 +69,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Consumer<ThemeChanger>(
                       builder: (context, notifier, child) => InkWell(
                           onTap: () {
-                            notifier.toggleTheme();
+                            // notifier.toggleTheme();
                           },
                           child: Icon(
                             Icons.brightness_4,
@@ -126,6 +127,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Reminders'),
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (ctx) => Profile()));
+            },
           ),
           // ListTile(
           //   leading: Icon(Icons.share),

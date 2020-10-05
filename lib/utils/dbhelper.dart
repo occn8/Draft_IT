@@ -40,7 +40,8 @@ class DataBaseHelper {
     await db.execute(
         'CREATE TABLE notifications(id INTEGER PRIMARY KEY, title TEXT, body TEXT)');
 
-    await db.rawInsert('INSERT INTO tags(id, name) VALUES(1, "Work")');
+    await db.rawInsert(
+        'INSERT INTO tags(id, name) VALUES(1, "Work"),VALUES(2, "Personal")');
   }
 
 //Drafts
@@ -84,7 +85,6 @@ class DataBaseHelper {
       'draftstable',
       orderBy: 'priority DESC, id ASC',
       where: 'isTrash=0',
-      // whereArgs: ['isTrash=0','isStarred=0']
     );
     return result;
   }

@@ -40,8 +40,7 @@ class DataBaseHelper {
     await db.execute(
         'CREATE TABLE notifications(id INTEGER PRIMARY KEY, title TEXT, body TEXT)');
 
-    await db.rawInsert(
-        'INSERT INTO tags(id, name) VALUES(1, "Work"),VALUES(2, "Personal")');
+    await db.rawInsert('INSERT INTO tags(id, name) VALUES(1, "Work")');
   }
 
 //Drafts

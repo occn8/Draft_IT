@@ -3,38 +3,34 @@ import 'package:Draft_IT/themes/night.dart';
 
 class ThemeChanger with ChangeNotifier {
   ThemeData _themeData;
- 
   final _kThemePreference = "theme_preference";
 
- ThemeChanger() {
-   _loadTheme();
- }
+  ThemeChanger() {
+    _loadTheme();
+  }
 
- void _loadTheme() {
-   debugPrint("Entered loadTheme()");
-   SharedPreferences.getInstance().then((prefs) {
-     int preferredTheme = prefs.getInt(_kThemePreference) ?? 0;
-     _themeData = themesData[Themes.values[preferredTheme]];
-     // Once theme is loaded - notify listeners to update UI
-     notifyListeners();
-   });
- }
+  void _loadTheme() {
+    debugPrint("Entered loadTheme()");
+    SharedPreferences.getInstance().then((prefs) {
+      int preferredTheme = prefs.getInt(_kThemePreference) ?? 0;
+      _themeData = themesData[Themes.values[preferredTheme]];
+      notifyListeners();
+    });
+  }
 
- ThemeData get themeData {
-   if (_themeData == null) {
-     _themeData = themesData[Themes.Light];
-   }
-   return _themeData;
- }
+  ThemeData get themeData {
+    if (_themeData == null) {
+      _themeData = themesData[Themes.Light];
+    }
+    return _themeData;
+  }
 
- /// Sets theme and notifies listeners about change. 
- setTheme(Themes theme) async {
-   _themeData = themesData[theme];
-   notifyListeners();
-   var prefs = await SharedPreferences.getInstance();
-   prefs.setInt(_kThemePreference, Themes.values.indexOf(theme));
- }
-  
+  setTheme(Themes theme) async {
+    _themeData = themesData[theme];
+    notifyListeners();
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setInt(_kThemePreference, Themes.values.indexOf(theme));
+  }
 }
 
 enum Themes { Light, Night, Dark }
@@ -46,5 +42,5 @@ final themesData = {
 };
 
 String enumName(Themes themeEnum) {
- return themeEnum.toString().split('.')[1];
+  return themeEnum.toString().split('.')[1];
 }

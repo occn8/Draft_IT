@@ -8,30 +8,34 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        itemCount: Themes.values.length,
-        itemBuilder: (BuildContext context, int index) {
-          final theme = Themes.values[index];
-          return Card(
-            color: themesData[theme].primaryColor,
-            child: Consumer<ThemeChanger>(
-              builder: (context, notifier, child) => InkWell(
-                  onTap: () {
-                    notifier.setTheme(theme);
-                  },
-                  child: ListTile(
-                    // onTap: () {
-                    //   Provider.of(context).setTheme(theme);
-                    // },
-                    title: Text(
-                      enumName(theme),
-                      style: themesData[theme].textTheme.bodyText1,
-                    ),
-                  )),
-            ),
-          );
-        },
+    return Scaffold(
+          body: SafeArea(
+            child: Container(
+          child: ListView.builder(
+            itemCount: Themes.values.length,
+            itemBuilder: (BuildContext context, int index) {
+              final theme = Themes.values[index];
+              return Card(
+                color: themesData[theme].primaryColor,
+                child: Consumer<ThemeChanger>(
+                  builder: (context, notifier, child) => InkWell(
+                      onTap: () {
+                        notifier.setTheme(theme);
+                      },
+                      child: ListTile(
+                        // onTap: () {
+                        //   Provider.of(context).setTheme(theme);
+                        // },
+                        title: Text(
+                          enumName(theme),
+                          style: themesData[theme].textTheme.bodyText1,
+                        ),
+                      )),
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

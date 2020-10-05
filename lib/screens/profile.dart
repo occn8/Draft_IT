@@ -23,9 +23,6 @@ class _ProfileState extends State<Profile> {
                         notifier.setTheme(theme);
                       },
                       child: ListTile(
-                        // onTap: () {
-                        //   Provider.of(context).setTheme(theme);
-                        // },
                         title: Text(
                           enumName(theme),
                           style: themesData[theme].textTheme.bodyText1,

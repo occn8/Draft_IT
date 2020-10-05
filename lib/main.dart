@@ -1,5 +1,3 @@
-import 'package:Draft_IT/themes/night.dart';
-import 'package:flutter/cupertino.dart';
 import 'index.dart';
 
 Future<void> main() async {
@@ -11,7 +9,7 @@ Future<void> main() async {
   await initNotifications(flutterLocalNotificationsPlugin);
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var ukey = prefs.getString('usagekey');
+  var key = prefs.getString('usagekey');
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeChanger(),
@@ -21,7 +19,7 @@ Future<void> main() async {
             debugShowCheckedModeBanner: false,
             title: 'Draft-IT',
             theme: notifier.themeData,
-            home: ukey == null ? OnboardingScreen() : Home(),
+            home: key == null ? OnboardingScreen() : Home(),
           );
         },
       ),

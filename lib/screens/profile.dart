@@ -9,8 +9,8 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          body: SafeArea(
-            child: Container(
+      body: SafeArea(
+        child: Container(
           child: ListView.builder(
             itemCount: Themes.values.length,
             itemBuilder: (BuildContext context, int index) {

@@ -10,16 +10,7 @@ class SearchBox extends StatefulWidget {
 }
 
 class _SearchBoxState extends State<SearchBox> {
-  List<Draft> drafts;
-  // _MySearchDelegate _delegate;
-
-  _SearchBoxState():super();
-
-  @override
-  void initState() {
-    super.initState();
-    // _delegate = _MySearchDelegate(drafts);
-  }
+  _SearchBoxState() : super();
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +31,6 @@ class _SearchBoxState extends State<SearchBox> {
         child: TextField(
           readOnly: true,
           onTap: () async {
-            // final String selected = await showSearch<String>(
-            //     context: context,
-            //     delegate: _delegate,
-            //   );
-            //   if (selected != null) {
-            //     Scaffold.of(context).showSnackBar(
-            //       SnackBar(
-            //         content: Text('You have selected the word: $selected'),
-            //       ),
-            //     );
-            //   }
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => SearchView()));
           },
@@ -62,7 +42,8 @@ class _SearchBoxState extends State<SearchBox> {
               hintStyle: TextStyle(color: Colors.grey[600]),
               prefixIcon: Hero(
                   tag: 'ico',
-                  child: Icon(Icons.search, size: 28, color: Theme.of(context).primaryColor))),
+                  child: Icon(Icons.search,
+                      size: 28, color: Theme.of(context).primaryColor))),
         ),
       ),
     );

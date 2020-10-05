@@ -17,6 +17,7 @@ export 'package:Draft_IT/screens/search_view.dart';
 export 'package:Draft_IT/screens/onboarding.dart';
 export 'package:Draft_IT/screens/settings.dart';
 export 'package:Draft_IT/screens/filtered_template.dart';
+export 'package:Draft_IT/screens/profile.dart';
 
 //models
 export 'package:Draft_IT/models/draft_model.dart';
@@ -29,7 +30,7 @@ export 'package:Draft_IT/utils/priority_util.dart';
 export 'package:Draft_IT/utils/nfhelper.dart';
 //widgets
 export 'package:Draft_IT/widgets/custom_drawer.dart';
-export 'package:Draft_IT/widgets/search_box.dart'; 
+export 'package:Draft_IT/widgets/search_box.dart';
 export 'package:Draft_IT/widgets/page_selector.dart';
 export 'package:Draft_IT/widgets/tag_circle.dart';
 export 'package:Draft_IT/widgets/itemTile.dart';
@@ -38,5 +39,6 @@ export 'package:Draft_IT/widgets/custom_appbar.dart';
 //theme
 export 'package:Draft_IT/themes/light.dart';
 export 'package:Draft_IT/themes/dark.dart';
+export 'package:Draft_IT/themes/night.dart';
 //providers
 export 'package:Draft_IT/providers/themeprovider.dart';

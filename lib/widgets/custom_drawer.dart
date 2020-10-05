@@ -1,5 +1,4 @@
 import 'package:Draft_IT/index.dart';
-import 'package:Draft_IT/screens/profile.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
@@ -187,8 +186,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
             leading: Icon(Icons.notifications),
             title: Text('Reminders'),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (ctx) => Profile()));
+              // Navigator.push(
+              //     context, MaterialPageRoute(builder: (ctx) => Reminders()));
             },
           ),
           // ListTile(

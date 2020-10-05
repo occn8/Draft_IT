@@ -28,27 +28,11 @@ class _DetailsState extends State<Details> {
                       Container(
                           padding: EdgeInsets.only(top: 5, left: 5),
                           child: RichText(
-                            text: widget.draft.ddate == null
+                            text: widget.draft.ddate != null &&
+                                    widget.draft.dtime != null
                                 ? TextSpan(
                                     children: [
-                                        TextSpan(
-                                          text: 'No Due date',
-                                        ),
-                                      ],
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color:
-                                            Theme.of(context).primaryColorDark))
-                                : TextSpan(
-                                    children: [
-                                        TextSpan(
-                                            text: 'Due: ',
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .primaryColor)),
+                                        TextSpan(text: 'Due: '),
                                         TextSpan(
                                             text: widget.draft.ddate.toString(),
                                             style: TextStyle(
@@ -63,13 +47,47 @@ class _DetailsState extends State<Details> {
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
                                                 color: Theme.of(context)
-                                                    .primaryColor)),
+                                                    .primaryColorDark)),
                                       ],
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .primaryColorDark)),
+                                        color: Theme.of(context).primaryColor))
+                                : widget.draft.ddate != null
+                                    ? TextSpan(
+                                        children: [
+                                            TextSpan(
+                                                text: 'Due: ',
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Theme.of(context)
+                                                        .primaryColor)),
+                                            TextSpan(
+                                                text: widget.draft.ddate
+                                                    .toString(),
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark)),
+                                          ],
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: Theme.of(context)
+                                                .primaryColorDark))
+                                    : TextSpan(
+                                        children: [
+                                            TextSpan(
+                                              text: 'No Due date',
+                                            ),
+                                          ],
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: Theme.of(context)
+                                                .primaryColorDark)),
                           )
                           // Text(
                           //   widget.draft.ddate == null
@@ -364,12 +382,14 @@ class _DetailsState extends State<Details> {
         backgroundColor: Theme.of(context).backgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         content: Text(
-          'Continue to Trash or Delete?',
+          widget.draft.isTrash != 1
+              ? 'Continue to Trash or Delete?'
+              : 'Continue to Restore or Delete?',
         ),
         actions: <Widget>[
           FlatButton(
             child: Text(
-              'Trash',
+              widget.draft.isTrash != 1 ? 'Trash' : 'Restore',
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
             onPressed: () => Navigator.pop(context, 'Trash'),

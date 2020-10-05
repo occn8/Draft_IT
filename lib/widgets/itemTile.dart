@@ -69,7 +69,7 @@ class ItemTile extends StatelessWidget {
                                 ),
                                 SizedBox(width: 5),
                                 Text(
-                                  date ?? '',
+                                  date ?? 'No due date',
                                   style: TextStyle(fontSize: 10),
                                 ),
                               ],
@@ -83,7 +83,7 @@ class ItemTile extends StatelessWidget {
                               children: [
                                 Container(
                                     width: MediaQuery.of(context).size.width *
-                                        0.58,
+                                        0.50,
                                     child: Text(
                                       subtitle ?? 'No Description Added',
                                       style: TextStyle(
@@ -94,9 +94,10 @@ class ItemTile extends StatelessWidget {
                                     )),
                                 SizedBox(width: 5),
                                 Text(
-                                  time ?? '',
+                                  time ?? 'No due time',
                                   style: TextStyle(
-                                      fontSize: 12, color: Colors.grey[600]),
+                                      fontSize: time == null ? 11 : 12,
+                                      color: Colors.grey[600]),
                                 ),
                               ],
                             ),

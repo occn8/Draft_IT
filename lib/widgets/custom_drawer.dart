@@ -185,18 +185,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Reminders'),
-            onTap: () {
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (ctx) => Reminders()));
-            },
-          ),
-          // ListTile(
-          //   leading: Icon(Icons.share),
-          //   title: Text('Shared'),
-          // ),
-          ListTile(
             leading: Icon(Icons.archive),
             title: Text('Archived'),
             onTap: () {
@@ -206,6 +194,27 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   MaterialPageRoute(
                       builder: (ctx) => FilteredTemplate(
                             strFilter: 'isArchived',
+                          )));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.notifications),
+            title: Text('Reminders'),
+            onTap: () {
+              // Navigator.push(
+              //     context, MaterialPageRoute(builder: (ctx) => Reminders()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.done),
+            title: Text('Complete'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (ctx) => FilteredTemplate(
+                            strFilter: 'isDone',
                           )));
             },
           ),

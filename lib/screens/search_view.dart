@@ -81,7 +81,7 @@ class _SearchViewState extends State<SearchView> {
                     'No search results!',
                     style: TextStyle(fontSize: 16),
                   ))),
-              cancellationWidget: Text('Ok'),
+              cancellationWidget: Text('Back'),
               onCancelled: () {
                 // Navigator.pop(context);
                 print("Cancelled triggered");

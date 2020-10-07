@@ -130,52 +130,59 @@ class _DetailsState extends State<Details> {
                   ),
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10)),
                   padding: EdgeInsets.all(5),
                   child: Center(
                       child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       TagCircle(color: getPriorityColor(widget.draft.priority)),
-                      SizedBox(width: 5),
+                      SizedBox(width: 10),
                       Text(
                         widget.draft.title ?? 'No Title Added',
                         style: TextStyle(
+                          decoration: widget.draft.isDone == 1
+                              ? TextDecoration.lineThrough
+                              : null,
                           fontSize: 16,
                           fontWeight: FontWeight.w800,
+                          color: widget.draft.title == null
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).primaryColorDark,
                         ),
                       ),
                     ],
                   )),
                 ),
+                SizedBox(height: 5),
                 Container(
+                  // color: Theme.of(context).cardColor,
                   padding: EdgeInsets.all(5),
                   child: Text(
                     widget.draft.description ?? 'No Description Added',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
+                      color: widget.draft.description == null
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).primaryColorDark,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      color: Colors.white10,
+                      borderRadius: BorderRadius.circular(10)),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     widget.draft.notes ?? 'No Notes Added',
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 5, left: 5),
-                  child: Text(
-                    '''
-                        isTrash = ${widget.draft.isTrash.toString()}
-                        ''' ??
-                        'No Due date',
-                    style: TextStyle(
-                      fontSize: 12,
+                      color: widget.draft.notes == null
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).primaryColorDark,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

@@ -8,8 +8,8 @@ class TagCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 18,
-      height: 18,
+      width: 14,
+      height: 14,
       decoration: BoxDecoration(
         border: Border.all(color: color, width: 3),
         shape: BoxShape.circle,

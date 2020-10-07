@@ -21,8 +21,12 @@ class _SearchViewState extends State<SearchView> {
   //   });
   // }
 
-  Future<List<Draft>> _getALlPosts(String text) async {
-    return await dbhelper.getDraftList();
+  Future<List<Draft>> _getSearchDrafts(String text) async {
+    List<Draft> searcheddrafts = [];
+    var drafts = await dbhelper.getDraftList();
+    searcheddrafts.addAll(drafts.where(
+        (element) => element.title.toLowerCase().contains(text.toLowerCase())));
+    return searcheddrafts;
   }
 
   @override
@@ -34,11 +38,22 @@ class _SearchViewState extends State<SearchView> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SearchBar<Draft>(
-              onSearch: _getALlPosts,
-              onItemFound: (Draft post, int index) {
+              onSearch: _getSearchDrafts,
+              onItemFound: (Draft draft, int index) {
                 return ListTile(
-                  title: Text(post.title),
-                  subtitle: Text(post.description),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext ctx) => Details(draft: draft),
+                        )).then(
+                      (value) {
+                        setState(() {});
+                      },
+                    );
+                  },
+                  title: Text(draft.title),
+                  subtitle: Text(draft.description),
                 );
               },
               // loader: Center(
@@ -48,6 +63,7 @@ class _SearchViewState extends State<SearchView> {
               //       // valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               //       ),
               // )),
+
               textStyle: TextStyle(color: Theme.of(context).primaryColorDark),
               loader: Center(
                   child: CircularProgressIndicator(
@@ -55,6 +71,16 @@ class _SearchViewState extends State<SearchView> {
               )),
               minimumChars: 1,
               placeHolder: Image.asset('assets/images/search.png'),
+              emptyWidget: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                      child: Text(
+                    'No search results!',
+                    style: TextStyle(fontSize: 16),
+                  ))),
               cancellationWidget: Text('Ok'),
               onCancelled: () {
                 // Navigator.pop(context);

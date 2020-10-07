@@ -74,6 +74,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               builder: (BuildContext context) => SimpleDialog(
                                 backgroundColor:
                                     Theme.of(context).backgroundColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
                                 title: Text('Choose Theme'),
                                 children: <Widget>[
                                   Container(
@@ -208,8 +210,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.attach_money),
-            title: Text('Finance'),
+            leading: Icon(Icons.pie_chart_outlined),
+            title: Text('Graphs'),
           ),
           ListTile(
             leading: Icon(Icons.delete_outline),

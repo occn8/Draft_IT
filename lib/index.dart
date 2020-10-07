@@ -17,7 +17,7 @@ export 'package:Draft_IT/screens/search_view.dart';
 export 'package:Draft_IT/screens/onboarding.dart';
 export 'package:Draft_IT/screens/settings.dart';
 export 'package:Draft_IT/screens/filtered_template.dart';
-export 'package:Draft_IT/screens/profile.dart';
+export 'package:Draft_IT/screens/graphs.dart';
 
 //models
 export 'package:Draft_IT/models/draft_model.dart';

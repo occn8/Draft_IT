@@ -25,7 +25,9 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                       ? 'Archive'
                       : widget.strFilter == 'isTrash'
                           ? 'Trash'
-                          : widget.strFilter,
+                          : widget.strFilter == 'isDone'
+                          ? 'Completed Drafts'
+                          :widget.strFilter,
               leadOnTap: () {
                 Navigator.pop(context);
               },
@@ -86,6 +88,8 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                                         ? 'Oh! Nothing Archived yet'
                                         : widget.strFilter == 'isTrash'
                                             ? 'Yeaah! Nothing Trashed yet'
+                                            :widget.strFilter == 'isDone'
+                                            ? 'Oops! No Draft Completed yet'
                                             : 'Oops Nothing here yet!',
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColorDark),

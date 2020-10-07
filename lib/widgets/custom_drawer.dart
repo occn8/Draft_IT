@@ -221,6 +221,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ListTile(
             leading: Icon(Icons.pie_chart_outlined),
             title: Text('Graphs'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext ctx) => Graphs()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.delete_outline),

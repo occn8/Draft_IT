@@ -19,6 +19,67 @@ class _SettingsState extends State<Settings> {
             leadIcon: Icons.arrow_back_ios,
             trailIcon: Icons.more_horiz,
           ),
+          SizedBox(height: 5),
+          Card(
+            child: ListTile(
+              title: Text('Edit Tags'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+              onTap: () {},
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Notifications'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+              onTap: () {},
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Theme'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+              onTap: () {},
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Security'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+              onTap: () {},
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('Support | Contacts'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+              onTap: () {},
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text('About'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+              onTap: () {},
+            ),
+          ),
         ]),
       ),
     );

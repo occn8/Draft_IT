@@ -31,10 +31,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   child: Row(
                     children: [
                       Container(
-                        child: Icon(
-                          Icons.drafts,
-                          color: Theme.of(context).primaryColor,
-                        ),
+                        height: 35,
+                        child: Image.asset('assets/icon.png',),
                       ),
                       SizedBox(width: 5),
                       RichText(
@@ -198,7 +196,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.notifications),
+            leading: Icon(Icons.notifications_none),
             title: Text('Reminders'),
             onTap: () {
               // Navigator.push(

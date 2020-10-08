@@ -22,6 +22,7 @@ class _WriteDraftState extends State<WriteDraft> {
   static var _priorities = ['Low', 'Normal', 'High'];
   static final _formKey = new GlobalKey<FormState>();
   String _title, _body;
+  var hr, min;
 
   _WriteDraftState(this.appBarTitle, this.draft);
 
@@ -349,99 +350,148 @@ class _WriteDraftState extends State<WriteDraft> {
               //     ),
               //   ),
               // ),
+              buildDivider(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
+                    Column(
                       children: [
-                        Text('Due Time:'),
                         Container(
-                          child: IconButton(
-                              icon: Icon(Icons.calendar_today),
-                              onPressed: () {
-                                showTimePicker(
-                                  initialTime: TimeOfDay.now(),
-                                  context: context,
-                                  initialEntryMode: TimePickerEntryMode.input,
-                                ).then((selectedTime) async {
-                                  var hour = selectedTime.hour;
-                                  var minute = selectedTime.minute;
-                                  draft.dtime = DateFormat.Hm()
-                                      .format(DateTime(0, 0, 0, hour, minute));
-                                  print(draft.dtime);
-
-                                  // Navigator.pop(context);
-                                });
-                              }),
+                          padding: EdgeInsets.only(left: 8),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            children: [
+                              Text('Due Day:'),
+                              Container(
+                                child: IconButton(
+                                    icon: Icon(Icons.calendar_today),
+                                    onPressed: () {
+                                      showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime(2018),
+                                              lastDate: DateTime(2025))
+                                          .then((selectedDate) async {
+                                        int year = selectedDate.year;
+                                        int month = selectedDate.month;
+                                        int day = selectedDate.day;
+                                        draft.ddate = DateFormat.yMd()
+                                            .format(DateTime(year, month, day));
+                                        print(draft.ddate);
+                                        setState(() {});
+                                        // Navigator.pop(context, 'ok');
+                                      });
+                                    }),
+                              ),
+                            ],
+                          ),
                         ),
+                        Container(
+                          child: Text(
+                            draft.ddate ?? '____',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        )
                       ],
                     ),
                     SizedBox(width: 5),
-                    Row(
+                    Column(
                       children: [
-                        Text('Due Day:'),
                         Container(
-                          child: IconButton(
-                              icon: Icon(Icons.calendar_today),
-                              onPressed: () {
-                                showDatePicker(
+                          padding: EdgeInsets.only(left: 8),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            children: [
+                              Text('Due Time:'),
+                              Container(
+                                child: IconButton(
+                                    icon: Icon(Icons.calendar_today),
+                                    onPressed: () {
+                                      showTimePicker(
+                                        initialTime: TimeOfDay.now(),
                                         context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(2018),
-                                        lastDate: DateTime(2025))
-                                    .then((selectedDate) async {
-                                  int year = selectedDate.year;
-                                  int month = selectedDate.month;
-                                  int day = selectedDate.day;
-                                  draft.ddate = DateFormat.yMd()
-                                      .format(DateTime(year, month, day));
-                                  print(draft.ddate);
-
-                                  // Navigator.pop(context, 'ok');
-                                });
-                              }),
+                                        initialEntryMode:
+                                            TimePickerEntryMode.input,
+                                      ).then((selectedTime) async {
+                                        hr = selectedTime.hour;
+                                        min = selectedTime.minute;
+                                        draft.dtime = DateFormat.Hm()
+                                            .format(DateTime(0, 0, 0, hr, min));
+                                        print(draft.dtime.split(':')[1]);
+                                        setState(() {});
+                                        // Navigator.pop(context);
+                                      });
+                                    }),
+                              ),
+                            ],
+                          ),
                         ),
+                        Container(
+                          child: Text(
+                            draft.dtime ?? '__:__',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        )
                       ],
                     ),
                   ],
                 ),
               ),
-              FlatButton(
-                color: Colors.grey,
-                onPressed: () {
-                  showTimePicker(
-                    initialTime: TimeOfDay.now(),
-                    context: context,
-                  ).then((selectedTime) async {
-                    int hour = selectedTime.hour;
-                    int minute = selectedTime.minute;
-                    print(selectedTime);
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.notifications),
+                  SizedBox(width: 8),
+                  Container(
+                    width: 200,
+                    child: FlatButton(
+                      color: Theme.of(context).cardColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      onPressed: () async {
+                        if (draft.ddate != null && draft.dtime != null) {
+                          var nFId = await helper
+                              .insertNF(NotificationsModel(_body, _title));
 
-                    var nFId = await helper
-                        .insertNF(NotificationsModel(_body, _title));
-
-                    notificationSchedule(
-                        draft.id, draft.title, draft.description, hour, minute);
-                    print('New notification id' + nFId.toString());
-                    // Navigator.pop(context, nFId);
-                  });
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Shedule Notification",
-                    style: TextStyle(fontSize: 14.0, color: Colors.white),
+                          notificationSchedule(draft.id, draft.title,
+                              draft.description, hr, min);
+                          print('New notification id' + nFId.toString());
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: Text('Please choose Date & Time'),
+                                );
+                              });
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Shedule Notification",
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
+              buildDivider(),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      flex: 4,
+                      flex: 5,
                       child: RaisedButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
@@ -450,6 +500,7 @@ class _WriteDraftState extends State<WriteDraft> {
                             'Save',
                             textScaleFactor: 1.5,
                             style: TextStyle(
+                                fontWeight: FontWeight.w800,
                                 color: Theme.of(context).primaryColorLight),
                           ),
                           onPressed: () {
@@ -460,7 +511,7 @@ class _WriteDraftState extends State<WriteDraft> {
                     ),
                     SizedBox(width: 5),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: RaisedButton(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
@@ -469,6 +520,7 @@ class _WriteDraftState extends State<WriteDraft> {
                             'Cancel',
                             textScaleFactor: 1.5,
                             style: TextStyle(
+                                fontWeight: FontWeight.w800,
                                 color: Theme.of(context).primaryColorLight),
                           ),
                           onPressed: () {
@@ -486,6 +538,12 @@ class _WriteDraftState extends State<WriteDraft> {
       ),
     );
   }
+
+  Divider buildDivider() => Divider(
+        indent: 20,
+        endIndent: 20,
+        height: 15,
+      );
 
   Form _buildForm() {
     TextStyle labelsStyle =

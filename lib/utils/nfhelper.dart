@@ -55,7 +55,7 @@ Future<void> notification() async {
 
 Future<void> notificationSchedule(
     int id, String title, String body, int hour, int minute) async {
-  var timeDate = DateTime(2020, 10, 3, hour, minute);
+  var timeDate = DateTime(2020, 10, 8, hour, minute);
 
   await flutterLocalNotificationsPlugin.schedule(
       id, title, body, timeDate, getPlatformChannelSpecfics());

@@ -30,7 +30,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   // width: 20,
                   child: Row(
                     children: [
-                      CircleAvatar(
+                      Container(
                         child: Icon(
                           Icons.drafts,
                           color: Theme.of(context).primaryColor,

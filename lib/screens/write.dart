@@ -22,7 +22,6 @@ class _WriteDraftState extends State<WriteDraft> {
   static var _priorities = ['Low', 'Normal', 'High'];
   static final _formKey = new GlobalKey<FormState>();
   String _title, _body;
-  var hr, min;
 
   _WriteDraftState(this.appBarTitle, this.draft);
 
@@ -420,10 +419,10 @@ class _WriteDraftState extends State<WriteDraft> {
                                         initialEntryMode:
                                             TimePickerEntryMode.input,
                                       ).then((selectedTime) async {
-                                        hr = selectedTime.hour;
-                                        min = selectedTime.minute;
-                                        draft.dtime = DateFormat.Hm()
-                                            .format(DateTime(0, 0, 0, hr, min));
+                                        var hour = selectedTime.hour;
+                                        var minute = selectedTime.minute;
+                                        draft.dtime = DateFormat.Hm().format(
+                                            DateTime(0, 0, 0, hour, minute));
                                         print(draft.dtime.split(':')[1]);
                                         setState(() {});
                                         // Navigator.pop(context);
@@ -460,6 +459,9 @@ class _WriteDraftState extends State<WriteDraft> {
                         if (draft.ddate != null && draft.dtime != null) {
                           var nFId = await helper
                               .insertNF(NotificationsModel(_body, _title));
+                              
+                          var hr = int.parse(draft.dtime.split(':')[0]);
+                          var min = int.parse(draft.dtime.split(':')[1]);
 
                           notificationSchedule(draft.id, draft.title,
                               draft.description, hr, min);

@@ -1,10 +1,11 @@
 import 'package:Draft_IT/index.dart';
 
-enum Themes { Light, Night, Dark }
+enum Themes { Light, Night,MidNight, Dark }
 
 final themesData = {
   Themes.Light: light,
   Themes.Night: night,
+  Themes.MidNight: midnight,
   Themes.Dark: dark
 };
 

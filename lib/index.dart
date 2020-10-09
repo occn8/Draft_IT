@@ -40,5 +40,6 @@ export 'package:Draft_IT/widgets/custom_appbar.dart';
 export 'package:Draft_IT/themes/light.dart';
 export 'package:Draft_IT/themes/dark.dart';
 export 'package:Draft_IT/themes/night.dart';
+export 'package:Draft_IT/themes/mid_night.dart';
 //providers
 export 'package:Draft_IT/providers/themeprovider.dart';

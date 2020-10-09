@@ -17,5 +17,3 @@ ThemeData night = ThemeData(
 // Color(0xff00adb2)
 // Color(0xff308c98)
 // accentColor: Color(0xffa3e6e9),
-// backgroundColor: Color(0xff303542),
-// scaffoldBackgroundColor: Color(0xff2c313f),

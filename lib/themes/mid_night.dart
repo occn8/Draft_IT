@@ -10,7 +10,8 @@ ThemeData midnight = ThemeData(
   primaryColorLight: Colors.black,
   primaryColorDark: Colors.white,
   cardColor: Color(0xff2a3c40),
-  canvasColor: Color(0xff2c3e43),
+  canvasColor: Color(0xff2a3c40),
   secondaryHeaderColor: Colors.grey[700],
 );
 
+// canvasColor: Color(0xff2c3e43),

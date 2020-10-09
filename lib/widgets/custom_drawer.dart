@@ -32,7 +32,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     children: [
                       Container(
                         height: 35,
-                        child: Image.asset('assets/icon.png',),
+                        child: Image.asset(
+                          'assets/icon.png',
+                        ),
                       ),
                       SizedBox(width: 5),
                       RichText(
@@ -77,7 +79,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                 title: Text('Choose Theme'),
                                 children: <Widget>[
                                   Container(
-                                    height: 150,
+                                    height: 200,
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 5),
                                     child: ListView.builder(
@@ -98,6 +100,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                                     },
                                                     child: Row(
                                                       children: [
+                                                        SizedBox(width: 10),
                                                         themesData[theme] ==
                                                                 notifier
                                                                     .themeData
@@ -250,7 +253,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           tagList(),
           ListTile(
             leading: Icon(
-              Icons.add_circle,
+              Icons.add_circle_outline,
               color: Theme.of(context).primaryColor,
             ),
             title: Text(
@@ -282,17 +285,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
       future: dbhelper.getTagList(),
       initialData: [],
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        List<Widget> tgList() {
-          List<Widget> tgItemList = List();
+        // List<Widget> tgList() {
+        //   List<Widget> tgItemList = List();
 
-          for (int i = 0; i < snapshot.data.length; i++) {
-            tgItemList.add(ListTile(
-              leading: Icon(Icons.loyalty),
-              title: Text(snapshot.data[i].name),
-            ));
-          }
-          return tgItemList;
-        }
+        //   for (int i = 0; i < snapshot.data.length; i++) {
+        //     tgItemList.add(ListTile(
+        //       leading: Icon(Icons.loyalty),
+        //       title: Text(snapshot.data[i].name),
+        //     ));
+        //   }
+        //   return tgItemList;
+        // }
 
         // return Column(children: tgList());
         return Container(

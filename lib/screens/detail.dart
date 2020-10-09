@@ -87,7 +87,7 @@ class _DetailsState extends State<Details> {
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
                                             color: Theme.of(context)
-                                                .primaryColorDark)),
+                                                .primaryColor)),
                           )
                           // Text(
                           //   widget.draft.ddate == null
@@ -164,7 +164,7 @@ class _DetailsState extends State<Details> {
                     widget.draft.description ?? 'No Description Added',
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w800,
                       color: widget.draft.description == null
                           ? Theme.of(context).primaryColor
                           : Theme.of(context).primaryColorDark,

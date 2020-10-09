@@ -253,7 +253,7 @@ class _HomeState extends State<Home> {
                 decoration: BoxDecoration(
                     // color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(10)),
-                child: new Icon(Icons.notifications,
+                child: new Icon(Icons.notifications_none,
                     size: 25, color: Theme.of(context).primaryColorDark),
               ),
             ),

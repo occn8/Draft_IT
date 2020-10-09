@@ -83,8 +83,8 @@ class _SearchViewState extends State<SearchView> {
                   ))),
               cancellationWidget: Text('Back'),
               onCancelled: () {
-                // Navigator.pop(context);
-                print("Cancelled triggered");
+                Navigator.pop(context);
+                // print("Cancelled triggered");
               },
               searchBarStyle: SearchBarStyle(
                 backgroundColor: Theme.of(context).cardColor,

@@ -77,9 +77,14 @@ class _SearchViewState extends State<SearchView> {
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
-                      child: Text(
-                    'No search results!',
-                    style: TextStyle(fontSize: 16),
+                      child: Column(
+                    children: [
+                      Text(
+                        'No search results!',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Image.asset('assets/images/not_found.png')
+                    ],
                   ))),
               cancellationWidget: Text('Back'),
               onCancelled: () {

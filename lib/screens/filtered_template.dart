@@ -26,8 +26,8 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                       : widget.strFilter == 'isTrash'
                           ? 'Trash'
                           : widget.strFilter == 'isDone'
-                          ? 'Completed Drafts'
-                          :widget.strFilter,
+                              ? 'Completed Drafts'
+                              : widget.strFilter,
               leadOnTap: () {
                 Navigator.pop(context);
               },
@@ -88,9 +88,9 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                                         ? 'Oh! Nothing Archived yet'
                                         : widget.strFilter == 'isTrash'
                                             ? 'Yeaah! Nothing Trashed yet'
-                                            :widget.strFilter == 'isDone'
-                                            ? 'Oops! No Draft Completed yet'
-                                            : 'Oops Nothing here yet!',
+                                            : widget.strFilter == 'isDone'
+                                                ? 'Oops! No Draft Completed yet'
+                                                : 'Oops Nothing here yet!',
                                 style: TextStyle(
                                     color: Theme.of(context).primaryColorDark),
                               )),
@@ -103,8 +103,12 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                               decoration: BoxDecoration(
                                   color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(10)),
-                              child:
-                                  Image.asset('assets/images/completing.png'),
+                              child: widget.strFilter == 'isTrash'
+                                  ? Image.asset('assets/images/Throw_away.png')
+                                  : widget.strFilter == 'isDone'
+                                      ? Image.asset(
+                                          'assets/images/completing.png')
+                                      : Image.asset('assets/images/void.png'),
                             ),
                           ],
                         )

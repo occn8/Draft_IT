@@ -59,7 +59,10 @@ class _SettingsState extends State<Settings> {
                 Icons.arrow_forward_ios,
                 size: 18,
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (ctx) => Security()));
+              },
             ),
           ),
           Card(
@@ -69,7 +72,10 @@ class _SettingsState extends State<Settings> {
                 Icons.arrow_forward_ios,
                 size: 18,
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (ctx) => Support()));
+              },
             ),
           ),
           Card(

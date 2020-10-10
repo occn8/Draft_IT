@@ -21,6 +21,8 @@ export 'package:Draft_IT/screens/settings/settings.dart';
 export 'package:Draft_IT/screens/settings/about.dart';
 export 'package:Draft_IT/screens/settings/themer.dart';
 export 'package:Draft_IT/screens/settings/tags_edit.dart';
+export 'package:Draft_IT/screens/settings/security.dart';
+export 'package:Draft_IT/screens/settings/support.dart';
 //models
 export 'package:Draft_IT/models/draft_model.dart';
 export 'package:Draft_IT/models/tag_model.dart';

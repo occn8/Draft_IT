@@ -69,11 +69,11 @@ void showNotificationDaily(
   print('Notification Succesfully Scheduled at ${time.hour.toString()}'+title);
 }
 
-Future onSelectNotification(String payLoad) {
-  if (payLoad != null) {
-    print(payLoad);
-  }
-}
+// Future onSelectNotification(String payLoad) {
+//   if (payLoad != null) {
+//     print(payLoad);
+//   }
+// }
 
 Future onDidReceiveLocalNotification(
     int id, String title, String body, String payload) async {

@@ -31,7 +31,7 @@ class _SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(resizeToAvoidBottomPadding: true,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -76,16 +76,23 @@ class _SearchViewState extends State<SearchView> {
                   decoration: BoxDecoration(
                       color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                      child: Column(
+                  child: ListView(
                     children: [
-                      Text(
-                        'No search results!',
-                        style: TextStyle(fontSize: 16),
+                  Center(
+                    child: Container( padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        'No results Found!',
+                        style: TextStyle(fontSize: 16,color: Theme.of(context).primaryColor),
                       ),
-                      Image.asset('assets/images/not_found.png')
+                    ),
+                  ),SizedBox(height: 10),
+                  Center(child: Image.asset('assets/images/not_found.png'))
                     ],
-                  ))),
+                  )),
               cancellationWidget: Text('Back'),
               onCancelled: () {
                 Navigator.pop(context);

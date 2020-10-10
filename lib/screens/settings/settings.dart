@@ -77,7 +77,9 @@ class _SettingsState extends State<Settings> {
                 Icons.arrow_forward_ios,
                 size: 18,
               ),
-              onTap: () {},
+              onTap: () {
+                buildShowAboutDialog(context);
+              },
             ),
           ),
         ]),

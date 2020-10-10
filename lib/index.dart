@@ -14,9 +14,11 @@ export 'package:Draft_IT/screens/write.dart';
 export 'package:Draft_IT/screens/detail.dart';
 export 'package:Draft_IT/screens/search_view.dart';
 export 'package:Draft_IT/screens/onboarding.dart';
-export 'package:Draft_IT/screens/settings/settings.dart';
 export 'package:Draft_IT/screens/filtered_template.dart';
 export 'package:Draft_IT/screens/graphs.dart';
+//
+export 'package:Draft_IT/screens/settings/settings.dart';
+export 'package:Draft_IT/screens/settings/about.dart';
 //models
 export 'package:Draft_IT/models/draft_model.dart';
 export 'package:Draft_IT/models/tag_model.dart';

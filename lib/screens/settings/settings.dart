@@ -31,13 +31,10 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           Card(
-            child: ListTile(
+            child: SwitchListTile(
               title: Text('Notifications'),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 18,
-              ),
-              onTap: () {},
+              value: true,
+              onChanged: (bool value) {},
             ),
           ),
           Consumer<ThemeChanger>(

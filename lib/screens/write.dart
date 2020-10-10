@@ -479,7 +479,7 @@ class _WriteDraftState extends State<WriteDraft> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "Shedule Notification",
-                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                          style: TextStyle(fontSize: 14.0),
                         ),
                       ),
                     ),

@@ -31,7 +31,8 @@ class _SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomPadding: true,
+    return Scaffold(
+      resizeToAvoidBottomPadding: true,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -70,7 +71,26 @@ class _SearchViewState extends State<SearchView> {
                 valueColor: AlwaysStoppedAnimation<Color>(Color(0xff308c98)),
               )),
               minimumChars: 1,
-              placeHolder: Image.asset('assets/images/searching.png'),
+              placeHolder: ListView(
+                children: [
+                  Center(
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        'Search through your drafts',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).primaryColor),
+                      ),
+                    ),
+                  ),
+                  Image.asset('assets/images/searching.png'),
+                ],
+              ),
               emptyWidget: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                   decoration: BoxDecoration(
@@ -78,19 +98,23 @@ class _SearchViewState extends State<SearchView> {
                       borderRadius: BorderRadius.circular(10)),
                   child: ListView(
                     children: [
-                  Center(
-                    child: Container( padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Text(
-                        'No results Found!',
-                        style: TextStyle(fontSize: 16,color: Theme.of(context).primaryColor),
+                      Center(
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                          decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            'No results Found!',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),SizedBox(height: 10),
-                  Center(child: Image.asset('assets/images/not_found.png'))
+                      SizedBox(height: 10),
+                      Center(child: Image.asset('assets/images/not_found.png'))
                     ],
                   )),
               cancellationWidget: Text('Back'),

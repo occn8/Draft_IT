@@ -30,7 +30,7 @@ class DataBaseHelper {
   void _createDb(Database db, int newVersion) async {
     await db.execute('''
     CREATE TABLE draftstable(id INTEGER PRIMARY KEY, 
-        title TEXT,description TEXT, notes TEXT, priority INTEGER, 
+        title TEXT,description TEXT, notes TEXT(300), priority INTEGER, 
         mdate Text, ddate Text, dtime Text, isStarred INTEGER, 
         isArchived INTEGER, isTrash INTEGER, isDone INTEGER)
         ''');
@@ -41,6 +41,7 @@ class DataBaseHelper {
         'CREATE TABLE notifications(id INTEGER PRIMARY KEY, title TEXT, body TEXT)');
 
     await db.rawInsert('INSERT INTO tags(id, name) VALUES(1, "Work")');
+    await db.rawInsert('INSERT INTO tags(id, name) VALUES(2, "Personal")');
   }
 
 //Drafts

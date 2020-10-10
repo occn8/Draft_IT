@@ -8,17 +8,15 @@ export 'package:sqflite/sqflite.dart';
 export 'package:flutter/foundation.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:google_fonts/google_fonts.dart';
-
 //screens
 export 'package:Draft_IT/screens/home.dart';
 export 'package:Draft_IT/screens/write.dart';
 export 'package:Draft_IT/screens/detail.dart';
 export 'package:Draft_IT/screens/search_view.dart';
 export 'package:Draft_IT/screens/onboarding.dart';
-export 'package:Draft_IT/screens/settings.dart';
+export 'package:Draft_IT/screens/settings/settings.dart';
 export 'package:Draft_IT/screens/filtered_template.dart';
 export 'package:Draft_IT/screens/graphs.dart';
-
 //models
 export 'package:Draft_IT/models/draft_model.dart';
 export 'package:Draft_IT/models/tag_model.dart';

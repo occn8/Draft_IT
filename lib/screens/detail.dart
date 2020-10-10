@@ -103,7 +103,10 @@ class _DetailsState extends State<Details> {
                           ),
                       Row(
                         children: [
-                          Text('Done'),
+                          Text(
+                            'Done',
+                            style: TextStyle(fontSize: 12),
+                          ),
                           Checkbox(
                             activeColor: Theme.of(context).primaryColor,
                             checkColor: Theme.of(context).primaryColorLight,
@@ -161,7 +164,8 @@ class _DetailsState extends State<Details> {
                   // color: Theme.of(context).cardColor,
                   padding: EdgeInsets.all(5),
                   child: Text(
-                   '     '+ widget.draft.description ?? 'No Description Added',
+                    '     ' + widget.draft.description ??
+                        'No Description Added',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w800,

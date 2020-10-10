@@ -186,8 +186,8 @@ class _HomeState extends State<Home> {
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).cardColor,
                                     borderRadius: BorderRadius.circular(10)),
-                                child:
-                                    Image.asset('assets/images/design_components.png'),
+                                child: Image.asset(
+                                    'assets/images/design_components.png'),
                               ),
                             ],
                           )

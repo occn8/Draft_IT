@@ -70,7 +70,7 @@ class _SearchViewState extends State<SearchView> {
                 valueColor: AlwaysStoppedAnimation<Color>(Color(0xff308c98)),
               )),
               minimumChars: 1,
-              placeHolder: Image.asset('assets/images/search.png'),
+              placeHolder: Image.asset('assets/images/searching.png'),
               emptyWidget: Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                   decoration: BoxDecoration(

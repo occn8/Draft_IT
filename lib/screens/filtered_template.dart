@@ -104,7 +104,7 @@ class _FilteredTemplateState extends State<FilteredTemplate> {
                                   color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(10)),
                               child:
-                                  Image.asset('assets/images/annotation.png'),
+                                  Image.asset('assets/images/completing.png'),
                             ),
                           ],
                         )

@@ -163,7 +163,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               Center(
                                 child: Image(
                                   image: AssetImage(
-                                    'assets/images/task.png',
+                                    'assets/images/add_tasks.png',
                                   ),
                                   height: 200.0,
                                   width: 200.0,

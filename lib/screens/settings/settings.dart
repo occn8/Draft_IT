@@ -40,14 +40,16 @@ class _SettingsState extends State<Settings> {
               onTap: () {},
             ),
           ),
-          Card(
-            child: ListTile(
-              title: Text('Theme'),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 18,
+          Consumer<ThemeChanger>(
+            builder: (context, notifier, child) => Card(
+              child: ListTile(
+                title: Text('Theme'),
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18,
+                ),
+                onTap: () => themer(context),
               ),
-              onTap: () {},
             ),
           ),
           Card(

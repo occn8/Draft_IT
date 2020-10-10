@@ -161,7 +161,7 @@ class _DetailsState extends State<Details> {
                   // color: Theme.of(context).cardColor,
                   padding: EdgeInsets.all(5),
                   child: Text(
-                    widget.draft.description ?? 'No Description Added',
+                   '     '+ widget.draft.description ?? 'No Description Added',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w800,
@@ -173,7 +173,7 @@ class _DetailsState extends State<Details> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.white10,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(10)),
                   padding: EdgeInsets.all(8),
                   child: Text(

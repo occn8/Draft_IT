@@ -1,21 +1,21 @@
 import 'package:Draft_IT/index.dart';
 
-class TagSettings extends StatefulWidget {
-  TagSettings({Key key}) : super(key: key);
+class Support extends StatefulWidget {
+  Support({Key key}) : super(key: key);
 
   @override
-  _TagSettingsState createState() => _TagSettingsState();
+  _SupportState createState() => _SupportState();
 }
 
-class _TagSettingsState extends State<TagSettings> {
+class _SupportState extends State<Support> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       body: SafeArea(
         child: ListView(
           children: [
             CustomAppBar(
-              title: 'Edit Tags',
+              title: 'Support & Contact',
               leadOnTap: () {
                 Navigator.pop(context);
               },
